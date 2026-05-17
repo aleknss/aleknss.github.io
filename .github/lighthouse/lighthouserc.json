@@ -2,9 +2,13 @@
   "ci": {
     "collect": {
       "staticDistDir": "./dist",
-      "numberOfRuns": 1
+      "numberOfRuns": 1,
+      "settings": {
+        "chromeFlags": "--no-sandbox --headless"
+      }
     },
     "assert": {
+      "preset": "lighthouse:no-pwa",
       "assertions": {
         "categories:performance": ["error", { "minScore": 0.7 }],
         "categories:accessibility": ["error", { "minScore": 0.9 }],
