@@ -23,7 +23,7 @@ const sectionVariants = {
 function SectionSkeleton() {
   return (
     <div className="w-full py-24 flex justify-center">
-      <div className="h-64 w-full max-w-[1440px] mx-8 rounded-xl bg-primary-muted animate-pulse" />
+      <div className="h-64 w-full max-w-[1440px] mx-8 rounded bg-neutral-100 dark:bg-neutral-800 animate-pulse" />
     </div>
   );
 }

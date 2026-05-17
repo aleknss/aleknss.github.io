@@ -51,7 +51,7 @@ export function SecondaryButton({
       {...commonProps}
     >
       {icon}
-      <span className={`${header ? "hidden lg:inline" : ""}`}>{label}</span>
+      <span className={`${header ? "hidden md:block" : ""}`}>{label}</span>
     </motion.a>
   ) : (
     <motion.button
@@ -59,7 +59,7 @@ export function SecondaryButton({
       {...commonProps}
     >
       {icon}
-      <span className={`${header ? "hidden lg:inline" : ""}`}>{label}</span>
+      <span className={`${header ? "hidden lg:block" : ""}`}>{label}</span>
     </motion.button>
   );
 }

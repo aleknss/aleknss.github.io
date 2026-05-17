@@ -51,7 +51,7 @@ export default function Participaciones() {
                     }
                     alt={participation.name}
                     loading="lazy"
-                    className="max-w-24 max-h-24 object-contain mx-auto"
+                    className="w-24 h-24 mx-auto"
                   />
                   <SecondaryTitle>{participation.name}</SecondaryTitle>
                 </div>

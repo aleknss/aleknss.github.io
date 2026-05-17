@@ -7,32 +7,24 @@ import ProjectCard from "../../components/ui/ProjectCard";
 import tonelaImg from "../../assets/proyectos/tonela.webp";
 import tfgImg from "../../assets/proyectos/tfg.webp";
 
-const projectConfigs: Record<string, {
-  image: string;
-  gradientFrom: string;
-  gradientTo: string;
-  borderColor: string;
-  hoverBorderColor: string;
-  buttonColor: string;
-  buttonHoverColor: string;
-}> = {
+const projectConfigs: Record<string, any> = {
   tonela: {
     image: tonelaImg,
     gradientFrom: "from-[#2d2621]",
     gradientTo: "to-[#57514d]",
-    borderColor: "#6D4C41",
-    hoverBorderColor: "#8D6E63",
-    buttonColor: "#6D4C41",
-    buttonHoverColor: "#8D6E63",
+    borderColor: "border-[#6D4C41]",
+    hoverBorderColor: "border-[#8D6E63]",
+    buttonColor: "bg-[#6D4C41]",
+    buttonHoverColor: "bg-[#8D6E63]",
   },
   ordenna: {
     image: tfgImg,
     gradientFrom: "from-[#1a2238]",
     gradientTo: "to-[#2d3a58]",
-    borderColor: "#3e5c8a",
-    hoverBorderColor: "#5c7eb5",
-    buttonColor: "#3e5c8a",
-    buttonHoverColor: "#5c7eb5",
+    borderColor: "border-[#3e5c8a]",
+    hoverBorderColor: "border-[#5c7eb5]",
+    buttonColor: "bg-[#3e5c8a]",
+    buttonHoverColor: "bg-[#5c7eb5]",
   },
 };
 
@@ -48,8 +40,8 @@ export default function Proyectos() {
             <AiOutlineFundProjectionScreen />
             {language === "es" ? "Proyectos" : "Projects"}
           </Title>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {projects.map((project: { name: string; description: string; link: string; skills: string[]; logo: string }, index: number) => {
+          <div className="gap-4 grid grid-cols-1">
+            {projects.map((project: any, index: number) => {
               const config =
                 projectConfigs[project.logo] || projectConfigs.tonela;
               return (

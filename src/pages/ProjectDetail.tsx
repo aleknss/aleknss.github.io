@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
 import Wrapper from "../layouts/Wrapper";
@@ -40,14 +39,6 @@ export default function ProjectDetail() {
   const project = projects.find(
     (p: { logo: string }) => p.logo === slug
   );
-
-  useEffect(() => {
-    if (project) {
-      document.title = `${project.name} | Alek Suso`;
-    } else {
-      document.title = language === "es" ? "Proyecto no encontrado | Alek Suso" : "Project not found | Alek Suso";
-    }
-  }, [project, language]);
 
   if (!project) {
     return (

@@ -6,36 +6,22 @@
   --background: #ffffff;
   --bg-gradient: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
   --foreground: #171717;
-  --primary: #4d7c0f;
-  --primary-muted: #f7fee7;
-  --secondary: #365314;
+  --primary: #4d7c0f; 
+  --primary-muted: #f7fee7; 
+  --secondary: #365314; 
   --accent: #65a30d;
-  --border: #4d7c0f;
-  --card-radius: 0.75rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #09090b;
-    --bg-gradient: linear-gradient(180deg, #18181b 0%, #09090b 100%);
-    --foreground: #fafafa;
-    --primary: #84cc16;
-    --primary-muted: #1a2e0a;
-    --secondary: #bef264;
-    --accent: #a3e635;
-    --border: #3f3f46;
-  }
+  --border: #4d7c0f; 
 }
 
 .dark {
-  --background: #09090b;
-  --bg-gradient: linear-gradient(180deg, #18181b 0%, #09090b 100%);
-  --foreground: #fafafa;
-  --primary: #84cc16;
-  --primary-muted: #1a2e0a;
-  --secondary: #bef264;
-  --accent: #a3e635;
-  --border: #3f3f46;
+  --background: #09090b; 
+  --bg-gradient: radial-gradient(ellipse at top, #18181b 0%, #09090b 100%);
+  --foreground: #fafafa; 
+  --primary: #84cc16; 
+  --primary-muted: #18181b; 
+  --secondary: #bef264; 
+  --accent: #65a30d; 
+  --border: #27272a; 
 }
 
 @theme {
@@ -60,8 +46,7 @@ body {
   background-attachment: fixed;
   color: var(--foreground);
   min-height: 100vh;
-  line-height: 1.6;
-  transition: background-color 0.3s, color 0.3s;
+  transition: color 0.3s;
 }
 
 :focus-visible {
@@ -81,37 +66,5 @@ body {
 
   html {
     scroll-behavior: auto;
-  }
-}
-
-@media print {
-  .fixed,
-  .sticky {
-    position: static !important;
-  }
-
-  header,
-  nav,
-  button {
-    display: none !important;
-  }
-
-  body {
-    background: white !important;
-    color: black !important;
-  }
-
-  [id^="bio"],
-  [id^="experience"],
-  [id^="projects"],
-  [id^="attendee"],
-  [id^="education"],
-  [id^="skills"],
-  [id^="contact"] {
-    page-break-before: always;
-  }
-
-  [id^="bio"] {
-    page-break-before: avoid;
   }
 }
