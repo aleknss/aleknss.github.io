@@ -16,7 +16,7 @@ const LanguageSwitch: React.FC = () => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       onClick={toggleLanguage}
-      className="text-xl p-3 rounded bg-primary text-white dark:text-background fixed bottom-24 right-4 sm:right-6 md:right-12 hover:bg-accent transition-colors duration-300 ease-in-out flex items-center justify-center z-50 overflow-hidden"
+      className="text-xl p-3 rounded bg-primary text-white dark:text-background fixed bottom-24 right-4 sm:right-6 md:right-12 hover:bg-accent transition-colors duration-300 ease-in-out flex items-center justify-center z-40 overflow-hidden"
       aria-label={`Switch to ${language === "es" ? "English" : "Spanish"}`}
     >
       <AnimatePresence mode="wait" initial={false}>

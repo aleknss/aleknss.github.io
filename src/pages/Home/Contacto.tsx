@@ -18,7 +18,7 @@ export default function Contacts() {
 
   return (
     <footer id="contact" className="w-full">
-      <div className="w-full h-full bg-lime-900">
+      <div className="w-full h-full bg-primary dark:bg-neutral-950 pb-24">
         <Wrapper>
           <div className="flex flex-col gap-6">
             <p className="flex gap-2 items-center font-serif font-bold text-2xl text-accent">

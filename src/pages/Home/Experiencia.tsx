@@ -37,7 +37,7 @@ export default function Experience() {
                     src={experience.logo}
                     alt={experience.company}
                     loading="lazy"
-                    className=" max-w-18 max-h-18 w-full h-full object-cover rounded"
+                    className="max-w-[4.5rem] max-h-[4.5rem] object-contain rounded"
                   />
                   <SecondaryTitle>{experience.company}</SecondaryTitle>
                 </div>

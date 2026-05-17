@@ -9,7 +9,7 @@ export default function ThemeSwitch() {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       onClick={toggleTheme}
-      className="text-xl p-3 rounded bg-primary text-white dark:text-background fixed bottom-8 right-4 sm:right-6 md:right-12 hover:bg-accent transition-colors duration-300 ease-in-out z-50 overflow-hidden"
+      className="text-xl p-3 rounded bg-primary text-white dark:text-background fixed bottom-8 right-4 sm:right-6 md:right-12 hover:bg-accent transition-colors duration-300 ease-in-out z-40 overflow-hidden"
     >
       <AnimatePresence mode="wait" initial={false}>
         <motion.div

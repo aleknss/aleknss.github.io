@@ -18,10 +18,10 @@
   --bg-gradient: radial-gradient(ellipse at top, #18181b 0%, #09090b 100%);
   --foreground: #fafafa; 
   --primary: #84cc16; 
-  --primary-muted: #18181b; 
+  --primary-muted: #1a2e0a; 
   --secondary: #bef264; 
-  --accent: #65a30d; 
-  --border: #27272a; 
+  --accent: #a3e635; 
+  --border: #3f3f46; 
 }
 
 @theme {
@@ -46,6 +46,7 @@ body {
   background-attachment: fixed;
   color: var(--foreground);
   min-height: 100vh;
+  line-height: 1.6;
   transition: color 0.3s;
 }
 

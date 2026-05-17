@@ -28,11 +28,11 @@ export default function Bio() {
                   : `Nice to meet you! I'm ${portfolioData.name}`}
               </h1>
               <h2 className="font-serif font-semibold text-2xl text-accent">
-                Fullstack Developer Junior especializado en Next.js
+                {portfolioData.subtitle}
               </h2>
             </div>
             <div>
-              <p className="w-full">{portfolioData.bio}</p>
+              <p className="w-full leading-relaxed">{portfolioData.bio}</p>
               <div className="flex mt-4 gap-4">
                 <a
                   href={`${import.meta.env.BASE_URL}cv.pdf`}
@@ -50,16 +50,19 @@ export default function Bio() {
                 </a>
                 <SecondaryButton
                   href={portfolioData.contacts?.github}
-                  label=""
+                  label="GitHub"
                   icon={<FaGithub className="w-5 h-5" />}
                 />
                 <SecondaryButton
                   href={portfolioData.contacts?.linkedin}
-                  label=""
+                  label="LinkedIn"
                   icon={<FaLinkedin className="w-5 h-5" />}
                 />
               </div>
             </div>
+          </div>
+          <div className="hidden md:block w-48 h-48 md:w-64 md:h-64 rounded-full md:rounded-2xl border-4 border-primary dark:border-accent overflow-hidden hover:shadow-xl shadow-primary/30 dark:shadow-accent/10 transition duration-300 ease-in-out shrink-0">
+            <img src="./alek.webp" alt="Foto personal" className="w-full h-full object-cover" />
           </div>
         </div>
       </Wrapper>
