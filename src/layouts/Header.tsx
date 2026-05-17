@@ -33,7 +33,7 @@ export default function Header() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <header className="sticky top-0 bg-white/60 dark:bg-neutral-800/60 backdrop-blur-xl w-full h-16 shadow-black/10 shadow-lg z-10">
+    <header className="sticky top-0 bg-background/60 backdrop-blur-xl w-full h-16 shadow-black/10 shadow-lg z-50">
       <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-20 focus:px-4 focus:py-2 focus:bg-lime-700 focus:text-white focus:rounded">
         {language === "es" ? "Saltar al contenido" : "Skip to content"}
       </a>
@@ -43,7 +43,7 @@ export default function Header() {
             whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }}
             whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}
             href="/"
-            className="flex gap-2 items-center font-semibold font-serif text-xl text-lime-700 dark:text-lime-500"
+            className="flex gap-2 items-center font-semibold font-serif text-xl text-primary"
           >
             {prefersReducedMotion ? (
               <GiPineTree size={24} />

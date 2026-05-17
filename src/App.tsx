@@ -7,7 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="bg-white dark:bg-neutral-800">
+    <div className="text-foreground transition-colors duration-300">
       <LanguageProvider>
         <ThemeProvider>
           <Header />

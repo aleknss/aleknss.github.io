@@ -38,7 +38,7 @@ export default function Habilidades() {
               </div>
               <div
                 id="col2"
-                className="lg:border-x lg:border-lime-700 flex flex-col gap-4 px-4 m-auto"
+                className="lg:border-x lg:border-border flex flex-col gap-4 px-4 m-auto"
               >
                 <SecondaryTitle>Frameworks</SecondaryTitle>
                 <div className="p-4 grid grid-cols-1 lg:grid-cols-2 gap-4 m-auto">

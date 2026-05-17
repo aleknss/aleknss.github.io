@@ -10,7 +10,7 @@
 
 Mi sitio web personal desarrollado con Vite + React y TailwindCSS para mostrar mis proyectos, habilidades y experiencia profesional. Incluye toda mi experiencia, habilidades, contacto y features como modo oscuro.
 
-**Live**: https://aleknss.github.io/
+**Live**: https://alek.is-a.dev/
 
 ## Índice
 

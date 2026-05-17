@@ -37,13 +37,6 @@
       "logo": "ordenna",
       "description": "Ordenna es un sistema de gestión de inventarios automático, accesible y de bajo coste, desarrollado como Trabajo de Fin de Grado. Utiliza una ESP32-CAM que toma fotos cenitales periódicas de estanterías donde los artículos están marcados con pegatinas de colores (🔴🟡🔵). Una aplicación en FastAPI (Python) con OpenCV analiza cada imagen para detectar, contar y clasificar los productos, almacenando los resultados de forma estructurada en una base de datos. La información se muestra en una web con gráficos y acceso por usuarios para clientes. Está pensado para adaptarse desde almacenes de empresa hasta una despensa doméstica.",
       "skills": ["React", "FastAPI", "Tailwind CSS"]
-    },
-    {
-      "name": "Sistema de Iluminación IoT y Eficiencia Energética",
-      "link": "https://spoo.me/iot-alek",
-      "logo": "arduino",
-      "description": "Este proyecto surge como respuesta a una necesidad de renovar la iluminación del jardín tras unos cambios estructurales. Con interés en la eficiencia energética y el respeto al medio ambiente, busqué integrar un sistema de iluminación solar. Además, tomé la oportunidad de adentrarme en el mundo del IoT, automatizando el sistema mediante sensores y dispositivos conectados, lo que me permitió explorar nuevas tecnologías y aplicar mis conocimientos en diseño y programación de arquitecturas inteligentes.",
-      "skills": ["Arduino", "Electrónica"]
     }
   ],
   "experience": [

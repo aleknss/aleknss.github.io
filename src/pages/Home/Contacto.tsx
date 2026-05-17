@@ -20,54 +20,54 @@ export default function Contacts() {
       <div className="w-full h-full bg-lime-900">
         <Wrapper>
           <div className="flex flex-col gap-4">
-            <p className="flex gap-2 items-center font-serif font-bold text-2xl text-lime-300">
+            <p className="flex gap-2 items-center font-serif font-bold text-2xl text-accent">
               <FaPaperPlane />
               {language === "es" ? "Contacto" : "Contact"}
             </p>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <a
                 href={`mailto:${profile.contacts.email}`}
-                className="flex items-center gap-4 text-lime-100 hover:text-lime-200"
+                className="flex items-center gap-4 text-white hover:text-accent"
               >
-                <FaEnvelope size={20} className="text-lime-300" />
+                <FaEnvelope size={20} className="text-accent" />
                 {profile.contacts.email}
               </a>
               <a
                 href={`tel:${profile.contacts.phone}`}
-                className="flex items-center gap-4 text-lime-100 hover:text-lime-200"
+                className="flex items-center gap-4 text-white hover:text-accent"
               >
-                <FaPhone size={20} className="text-lime-300" />
+                <FaPhone size={20} className="text-accent" />
                 {profile.contacts.phone}
               </a>
               <a
-                className="flex items-center gap-4 text-lime-100 hover:text-lime-200"
+                className="flex items-center gap-4 text-white hover:text-accent"
                 href={profile.contacts.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaTwitter size={20} className="text-lime-300" />
+                <FaTwitter size={20} className="text-accent" />
                 {profile.contacts.twitter}
               </a>
               <a
                 href={profile.contacts.linkedin}
-                className="flex items-center gap-4 text-lime-100 hover:text-lime-200"
+                className="flex items-center gap-4 text-white hover:text-accent"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaLinkedin size={20} className="text-lime-300" />
+                <FaLinkedin size={20} className="text-accent" />
                 {profile.contacts.linkedin}
               </a>
               <a
                 href={profile.contacts.github}
-                className="flex items-center gap-4 text-lime-100 hover:text-lime-200"
+                className="flex items-center gap-4 text-white hover:text-accent"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaGithub size={20} className="text-lime-300" />
+                <FaGithub size={20} className="text-accent" />
                 {profile.contacts.github}
               </a>
-              <div className="flex items-center gap-4 text-lime-100 hover:text-lime-200">
-                <HiLocationMarker size={20} className="text-lime-300" />
+              <div className="flex items-center gap-4 text-white hover:text-accent">
+                <HiLocationMarker size={20} className="text-accent" />
                 {profile.contacts.location}
                 <img src={LR} alt="Bandera de La Rioja." loading="lazy" className="h-5" />
               </div>

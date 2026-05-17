@@ -32,18 +32,11 @@
       "skills": ["Next.js", "Better Auth", "Prisma", "Tailwind CSS"]
     },
     {
-      "name": "Ordenna",
+      "name": "Ordenna: Inventory Management System with Artificial Intelligence (TFG)",
       "link": "https://github.com/aleknss/TFG",
       "logo": "ordenna",
       "description": "Ordenna is an automatic, accessible, and low-cost inventory management system, developed as a Final Degree Project. It uses an ESP32-CAM that takes periodic overhead photos of shelves where items are marked with colored stickers (🔴🟡🔵). A FastAPI (Python) application with OpenCV analyzes each image to detect, count, and classify products, storing results in a structured database. The information is displayed on a web interface with charts and user access for clients. It is designed to adapt from company warehouses to a home pantry.",
       "skills": ["React", "FastAPI", "Tailwind CSS"]
-    },
-    {
-      "name": "Self-sufficient and automated lamp",
-      "link": "https://spoo.me/iot-alek",
-      "logo": "arduino",
-      "description": "This project arose as a response to a need to renew garden lighting after some structural changes. With an interest in energy efficiency and environmental respect, I sought to integrate a solar lighting system. In addition, I took the opportunity to delve into the world of IoT, automating the system through sensors and connected devices, which allowed me to explore new technologies and apply my knowledge in designing and programming intelligent architectures.",
-      "skills": ["Arduino", "Electronics"]
     }
   ],
   "experience": [

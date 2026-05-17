@@ -13,7 +13,7 @@ export function PrimaryButton({ label, icon, href }: ButtonProps) {
   const commonProps = {
     whileHover: { scale: 1.05 },
     whileTap: { scale: 0.95 },
-    className: "flex justify-center items-center gap-2 text-sm px-3 py-2 cursor-pointer text-white bg-lime-700 hover:bg-lime-600 dark:bg-lime-500 dark:hover:bg-lime-400 dark:text-stone-900 rounded transition-colors duration-300 ease-in-out"
+    className: "flex justify-center items-center gap-2 text-sm px-3 py-2 cursor-pointer text-white dark:text-background bg-primary hover:bg-accent rounded transition-colors duration-300 ease-in-out"
   };
 
   return href ? (
@@ -42,7 +42,7 @@ export function SecondaryButton({
   const commonProps = {
     whileHover: { scale: 1.05 },
     whileTap: { scale: 0.95 },
-    className: "flex justify-center items-center gap-2 text-sm px-1 sm:px-3 py-2 cursor-pointer text-lime-700 hover:text-lime-600 dark:text-lime-500 dark:hover:text-lime-300 transition-colors duration-300 ease-in-out"
+    className: "flex justify-center items-center gap-2 text-sm px-1 sm:px-3 py-2 cursor-pointer text-primary hover:text-accent transition-colors duration-300 ease-in-out"
   };
 
   return href ? (

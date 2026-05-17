@@ -43,10 +43,10 @@ export default function Experience() {
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <p className="text-lime-600 dark:text-lime-300 font-semibold">
+                    <p className="text-accent font-semibold">
                       {experience.role}
                     </p>
-                    <p className="text-sm text-lime-600 dark:text-lime-300">
+                    <p className="text-sm text-accent">
                       {dayjs(experience.from).format("MMMM YYYY")} ~{" "}
                       {experience.to === null
                         ? language === "es"
