@@ -21,10 +21,10 @@ export default function Contacts() {
       <div className="w-full h-full bg-primary dark:bg-neutral-950 pb-24">
         <Wrapper>
           <div className="flex flex-col gap-6">
-            <p className="flex gap-2 items-center font-serif font-bold text-2xl text-accent">
+            <h2 className="flex gap-2 items-center font-serif font-bold text-2xl text-accent">
               <FaPaperPlane />
               {language === "es" ? "Contacto" : "Contact"}
-            </p>
+            </h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <ContactForm />
               <div className="grid grid-cols-1 gap-4 content-start">
