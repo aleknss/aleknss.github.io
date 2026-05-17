@@ -24,7 +24,7 @@ export default function Proyectos() {
   const projectData = (portfolioData.projects || []) as ProyectItem[];
 
   return (
-    <div id="proyects" className="w-full">
+    <div id="projects" className="w-full">
       <Wrapper>
         <div className="flex flex-col gap-4">
           <Title>
@@ -47,8 +47,9 @@ export default function Proyectos() {
                       ? Tonela
                       : project.logo
                   }
-                  alt="logo"
-                  className="lg:w-1/3 ml-4 my-2 w-2/3 h-36 lg:h-full object-cover rounded"
+                  alt={project.name}
+                    loading="lazy"
+                    className="lg:w-1/3 ml-4 my-2 w-2/3 h-36 lg:h-full object-cover rounded"
                 />
                 <div className="flex flex-col justify-between items-center gap-6 p-6 rounded-lg overflow-hidden">
                   <div className="flex flex-col justify-start items-center gap-2">

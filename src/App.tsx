@@ -12,10 +12,12 @@ function App() {
         <ThemeProvider>
           <Header />
           <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="*" element={<Home />} />
-            </Routes>
+            <main id="main-content">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="*" element={<Home />} />
+              </Routes>
+            </main>
           </BrowserRouter>
         </ThemeProvider>
       </LanguageProvider>

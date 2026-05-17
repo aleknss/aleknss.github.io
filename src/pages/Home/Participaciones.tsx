@@ -49,7 +49,8 @@ export default function Participaciones() {
                         ? BALogo
                         : HACKLogo
                     }
-                    alt="logo"
+                    alt={participation.name}
+                    loading="lazy"
                     className="w-24 h-24 mx-auto"
                   />
                   <SecondaryTitle>{participation.name}</SecondaryTitle>

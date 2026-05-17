@@ -35,7 +35,8 @@ export default function Experience() {
                 <div className="flex flex-col justify-start items-center gap-4">
                   <img
                     src={experience.logo}
-                    alt="logo"
+                    alt={experience.company}
+                    loading="lazy"
                     className=" max-w-18 max-h-18 w-full h-full object-cover rounded"
                   />
                   <SecondaryTitle>{experience.company}</SecondaryTitle>

@@ -10,7 +10,7 @@ import { AiOutlineFundProjectionScreen } from "react-icons/ai";
 import { SecondaryButton } from "../components/ui/Button";
 import { GiPineTree } from "react-icons/gi";
 import Wrapper from "./Wrapper";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 import { useLanguage } from "../contexts/LanguageContext";
 
@@ -30,27 +30,35 @@ export default function Header() {
   };
 
   const { language } = useLanguage();
+  const prefersReducedMotion = useReducedMotion();
 
   return (
-    <div className="sticky top-0 bg-white/60 dark:bg-neutral-800/60 backdrop-blur-xl w-full h-16 shadow-black/10 shadow-lg z-10">
+    <header className="sticky top-0 bg-white/60 dark:bg-neutral-800/60 backdrop-blur-xl w-full h-16 shadow-black/10 shadow-lg z-10">
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-20 focus:px-4 focus:py-2 focus:bg-lime-700 focus:text-white focus:rounded">
+        {language === "es" ? "Saltar al contenido" : "Skip to content"}
+      </a>
       <Wrapper>
         <div className="h-full flex justify-between items-center gap-12">
           <motion.a
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            href="/portfolio/"
+            whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }}
+            whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}
+            href="/"
             className="flex gap-2 items-center font-semibold font-serif text-xl text-lime-700 dark:text-lime-500"
           >
-            <motion.div
-              animate={{ rotate: [0, 10, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-            >
+            {prefersReducedMotion ? (
               <GiPineTree size={24} />
-            </motion.div>
+            ) : (
+              <motion.div
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              >
+                <GiPineTree size={24} />
+              </motion.div>
+            )}
             Alek{" "}
             <span className="hidden sm:block">Suso</span>
           </motion.a>
-          <div className="flex items-center justify-start gap-1">
+          <nav aria-label={language === "es" ? "Navegación principal" : "Main navigation"} className="flex items-center justify-start gap-1">
             <SecondaryButton
               onClick={() => scrollTo("#bio")}
               label="Bio"
@@ -64,7 +72,7 @@ export default function Header() {
               header={true}
             />
             <SecondaryButton
-              onClick={() => scrollTo("#proyects")}
+              onClick={() => scrollTo("#projects")}
               label={language === "es" ? "Proyectos" : "Projects"}
               icon={<AiOutlineFundProjectionScreen size={16} />}
               header={true}
@@ -93,9 +101,9 @@ export default function Header() {
               icon={<FaPaperPlane size={16} />}
               header={true}
             />
-          </div>
+          </nav>
         </div>
       </Wrapper>
-    </div>
+    </header>
   );
 }

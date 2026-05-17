@@ -61,11 +61,13 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
   };
 
   const switchLanguage = (lang: "es" | "en") => {
+    document.documentElement.lang = lang;
     setLanguage(lang);
     dayjs.locale(lang);
   };
 
   useEffect(() => {
+    document.documentElement.lang = language;
     loadPortfolioData(language);
     dayjs.locale(language);
   }, [language]);

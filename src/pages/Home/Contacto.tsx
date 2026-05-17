@@ -16,7 +16,7 @@ export default function Contacts() {
   const { language } = useLanguage();
 
   return (
-    <div id="contact" className="w-full">
+    <footer id="contact" className="w-full">
       <div className="w-full h-full bg-lime-900">
         <Wrapper>
           <div className="flex flex-col gap-4">
@@ -69,12 +69,12 @@ export default function Contacts() {
               <div className="flex items-center gap-4 text-lime-100 hover:text-lime-200">
                 <HiLocationMarker size={20} className="text-lime-300" />
                 {profile.contacts.location}
-                <img src={LR} alt="Bandera de La Rioja." className="h-5" />
+                <img src={LR} alt="Bandera de La Rioja." loading="lazy" className="h-5" />
               </div>
             </div>
           </div>
         </Wrapper>
       </div>
-    </div>
+    </footer>
   );
 }

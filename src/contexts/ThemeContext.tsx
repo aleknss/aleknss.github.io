@@ -30,6 +30,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const root = document.documentElement;
     root.classList.toggle('dark', theme === 'dark');
     window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute('content', theme === 'dark' ? '#1c1917' : '#ecfccb');
+    }
   }, [theme]);
 
   const value = useMemo<ThemeContextValue>(

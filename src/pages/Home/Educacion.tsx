@@ -36,7 +36,8 @@ export default function Educacion() {
             <Card className="flex flex-col gap-4 py-8 px-6">
               <img
                 src={bach}
-                alt="university-logo"
+                alt={educationData.bach?.grado || "Bachillerato"}
+                loading="lazy"
                 className="w-2/3 h-32 object-cover mx-auto rounded-sm"
               />
               <SecondaryTitle>
@@ -69,7 +70,8 @@ export default function Educacion() {
             <Card className="flex flex-col gap-4 py-8 px-6">
               <img
                 src={fp}
-                alt="university-logo"
+                alt={educationData.fp?.grado || "Formación Profesional"}
+                loading="lazy"
                 className="w-2/3 h-32 object-cover mx-auto rounded-sm"
               />
               <SecondaryTitle>

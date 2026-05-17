@@ -7,7 +7,7 @@ import Contacto from "./Home/Contacto";
 import ThemeSwitch from "../components/ThemeSwitch";
 import Participaciones from "./Home/Participaciones";
 import LanguageSwitch from "../components/LanguageSwitch";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -18,18 +18,23 @@ const sectionVariants = {
   }
 } as const;
 
-const Section = ({ children }: { children: React.ReactNode }) => (
-  <motion.div
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true, amount: 0.2 }}
-    variants={sectionVariants}
-  >
-    {children}
-  </motion.div>
-);
-
 export default function Home() {
+  const prefersReducedMotion = useReducedMotion();
+
+  const Section = ({ children }: { children: React.ReactNode }) => {
+    if (prefersReducedMotion) return <>{children}</>;
+    return (
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={sectionVariants}
+      >
+        {children}
+      </motion.div>
+    );
+  };
+
   return (
     <div id="home" className="w-full">
       <ThemeSwitch />
