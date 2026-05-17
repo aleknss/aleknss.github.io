@@ -7,7 +7,7 @@ import {
 } from "react-icons/fa";
 
 import bach from "../../assets/bach.jpg";
-import fp from "../../assets/fp.png";
+import fp from "../../assets/fp.webp";
 
 import Title from "../../components/ui/Title";
 import Card from "../../components/ui/Card";

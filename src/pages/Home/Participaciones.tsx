@@ -2,9 +2,9 @@ import { FaPeopleCarry } from "react-icons/fa";
 import Wrapper from "../../layouts/Wrapper";
 
 import ADCLogo from "../../assets/participaciones/AgentesDelCambio.svg";
-import WCLogo from "../../assets/participaciones/WordCamp25.png";
-import BALogo from "../../assets/participaciones/BancoAlimentos.png";
-import HACKLogo from "../../assets/participaciones/Hackaton.png";
+import WCLogo from "../../assets/participaciones/WordCamp25.webp";
+import BALogo from "../../assets/participaciones/BancoAlimentos.webp";
+import HACKLogo from "../../assets/participaciones/Hackaton.webp";
 
 import Card from "../../components/ui/Card";
 import Title from "../../components/ui/Title";

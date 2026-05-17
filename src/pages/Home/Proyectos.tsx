@@ -4,8 +4,8 @@ import { useLanguage } from "../../contexts/LanguageContext";
 import Title from "../../components/ui/Title";
 import ProjectCard from "../../components/ui/ProjectCard";
 
-import tonelaImg from "../../assets/proyectos/tonela.png";
-import tfgImg from "../../assets/proyectos/tfg.png";
+import tonelaImg from "../../assets/proyectos/tonela.webp";
+import tfgImg from "../../assets/proyectos/tfg.webp";
 
 const projectConfigs: Record<string, any> = {
   tonela: {
