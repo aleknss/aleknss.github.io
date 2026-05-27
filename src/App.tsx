@@ -1,5 +1,5 @@
 import { Suspense, lazy } from "react";
-import Header from "./layouts/Header";
+import Sidebar from "./layouts/Sidebar";
 import "dayjs/locale/es";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
@@ -21,9 +21,9 @@ function App() {
     <div className="text-foreground transition-colors duration-300">
       <LanguageProvider>
         <ThemeProvider>
-          <Header />
+          <Sidebar />
           <BrowserRouter>
-            <main id="main-content">
+            <main id="main-content" className="ml-16 lg:ml-60">
               <Suspense fallback={<PageSkeleton />}>
                 <Routes>
                   <Route path="/" element={<Home />} />
