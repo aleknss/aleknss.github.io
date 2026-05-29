@@ -19,10 +19,10 @@ function PageSkeleton() {
 function App() {
   return (
     <div className="text-foreground transition-colors duration-300">
-      <LanguageProvider>
-        <ThemeProvider>
-          <Sidebar />
-          <BrowserRouter>
+      <BrowserRouter>
+        <LanguageProvider>
+          <ThemeProvider>
+            <Sidebar />
             <main id="main-content" className="ml-16 lg:ml-60">
               <Suspense fallback={<PageSkeleton />}>
                 <Routes>
@@ -32,9 +32,9 @@ function App() {
                 </Routes>
               </Suspense>
             </main>
-          </BrowserRouter>
-        </ThemeProvider>
-      </LanguageProvider>
+          </ThemeProvider>
+        </LanguageProvider>
+      </BrowserRouter>
     </div>
   );
 }
