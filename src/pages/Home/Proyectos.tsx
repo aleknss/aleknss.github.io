@@ -6,6 +6,7 @@ import ProjectCard from "../../components/ui/ProjectCard";
 
 import tonelaImg from "../../assets/proyectos/tonela.webp";
 import tfgImg from "../../assets/proyectos/tfg.webp";
+import animepolImg from "../../assets/proyectos/animepol.webp";
 
 const projectConfigs: Record<string, any> = {
   tonela: {
@@ -26,6 +27,15 @@ const projectConfigs: Record<string, any> = {
     buttonColor: "bg-[#3e5c8a]",
     buttonHoverColor: "bg-[#5c7eb5]",
   },
+  animepol: {
+  image: animepolImg,
+  gradientFrom: "from-[#020617]", 
+  gradientTo: "to-[#0f172a]",    
+  borderColor: "border-[#1e293b]",
+  hoverBorderColor: "border-[#3b82f6]", 
+  buttonColor: "bg-[#1e293b]",     
+  buttonHoverColor: "bg-[#334155]", 
+}
 };
 
 export default function Proyectos() {
@@ -55,6 +65,7 @@ export default function Proyectos() {
                   hoverBorderColor={config.hoverBorderColor}
                   buttonColor={config.buttonColor}
                   buttonHoverColor={config.buttonHoverColor}
+                  linkLabel={language === "es" ? "Visitar" : "Visit"}
                 />
               );
             })}

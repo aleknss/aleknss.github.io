@@ -14,6 +14,7 @@ interface ProjectCardProps {
   hoverBorderColor: string;
   buttonColor: string;
   buttonHoverColor: string;
+  linkLabel?: string;
 }
 
 function ProjectCard({
@@ -25,18 +26,21 @@ function ProjectCard({
   hoverBorderColor,
   buttonColor,
   buttonHoverColor,
+  linkLabel = "Visitar",
 }: ProjectCardProps) {
   return (
     <div
-      className={`relative bg-gradient-to-br ${gradientFrom} ${gradientTo} border ${borderColor} hover:${hoverBorderColor} card p-4 hover:shadow-xl shadow-black/20 rounded flex flex-col md:flex-row gap-4 items-center`}
+      className={`group relative bg-gradient-to-br ${gradientFrom} ${gradientTo} border ${borderColor} hover:${hoverBorderColor} card p-4 hover:shadow-xl shadow-black/20 rounded flex flex-col md:flex-row gap-4 items-center`}
     >
       <a
         href={data.link}
         target="_blank"
         rel="noopener noreferrer"
-        className={`absolute top-6 right-6 ${buttonColor} hover:${buttonHoverColor} text-white rounded w-fit h-fit p-3 z-10 shadow-lg transition-colors`}
+        title={linkLabel + " proyecto"}
+        className={`absolute top-4 right-4 ${buttonColor} hover:${buttonHoverColor} text-white rounded-full w-fit h-fit px-4 py-2 z-10 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl flex items-center gap-2`}
       >
-        <FaLink />
+        <FaLink className="text-sm" />
+        <span className="text-sm font-medium">{linkLabel}</span>
       </a>
       <img src={image} alt={data.name} loading="lazy" className="w-full md:w-1/2 rounded object-cover aspect-video" />
       <div className="flex flex-col gap-2 w-full md:w-1/2">
