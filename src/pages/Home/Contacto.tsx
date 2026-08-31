@@ -9,7 +9,7 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
-import LR from "../../assets/LR.svg";
+import TNF from "../../assets/TNF.svg";
 import { useLanguage } from "../../contexts/LanguageContext";
 import ContactForm from "../../components/ContactForm";
 
@@ -72,7 +72,7 @@ export default function Contacts() {
                 <div className="flex items-center gap-4 text-white">
                   <HiLocationMarker size={20} className="text-accent" />
                   {profile.contacts.location}
-                  <img src={LR} alt="Bandera de La Rioja." loading="lazy" className="h-5" />
+                  <img src={TNF} alt="Bandera de Tenerife." loading="lazy" className="h-5" />
                 </div>
               </div>
             </div>
