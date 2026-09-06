@@ -5,6 +5,7 @@ import { FaArrowLeft, FaExternalLinkAlt } from "react-icons/fa";
 
 import tonelaImg from "../assets/proyectos/tonela.webp";
 import tfgImg from "../assets/proyectos/tfg.webp";
+import lamparaSlide01 from "../assets/proyectos/lampara/slide-01.webp";
 
 interface ProjectConfig {
   image: string;
@@ -28,6 +29,13 @@ const projectConfigs: Record<string, ProjectConfig> = {
     gradientTo: "to-[#2d3a58]",
     borderColor: "border-[#3e5c8a]",
     buttonColor: "bg-[#3e5c8a]",
+  },
+  lampara: {
+    image: lamparaSlide01,
+    gradientFrom: "from-[#0c1f12]",
+    gradientTo: "to-[#14532d]",
+    borderColor: "border-[#166534]",
+    buttonColor: "bg-[#15803d]",
   },
 };
 
@@ -91,15 +99,17 @@ export default function ProjectDetail() {
                   </span>
                 ))}
               </div>
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 ${config.buttonColor} hover:opacity-90 text-white px-6 py-3 rounded-lg w-fit mt-4 transition-opacity`}
-              >
-                <FaExternalLinkAlt />
-                {language === "es" ? "Visitar proyecto" : "Visit project"}
-              </a>
+              {project.link ? (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`inline-flex items-center gap-2 ${config.buttonColor} hover:opacity-90 text-white px-6 py-3 rounded-lg w-fit mt-4 transition-opacity`}
+                >
+                  <FaExternalLinkAlt />
+                  {language === "es" ? "Visitar proyecto" : "Visit project"}
+                </a>
+              ) : null}
             </div>
           </div>
         </Wrapper>

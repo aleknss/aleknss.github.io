@@ -44,6 +44,12 @@
       "logo": "ordenna",
       "description": "Ordenna es un sistema de gestión de inventarios automático, accesible y de bajo coste, desarrollado como Trabajo de Fin de Grado. Utiliza una ESP32-CAM que toma fotos cenitales periódicas de estanterías donde los artículos están marcados con pegatinas de colores (🔴🟡🔵). Una aplicación en FastAPI (Python) con OpenCV analiza cada imagen para detectar, contar y clasificar los productos, almacenando los resultados de forma estructurada en una base de datos. La información se muestra en una web con gráficos y acceso por usuarios para clientes. Está pensado para adaptarse desde almacenes de empresa hasta una despensa doméstica.",
       "skills": ["React", "FastAPI", "Tailwind CSS"]
+    },
+    {
+      "name": "Lámpara Autosuficiente con Energía Solar",
+      "logo": "lampara",
+      "description": "Proyecto de iluminación autónoma y automatizada. Un panel solar de 10W carga una batería de plomo de 12Ah durante el día, regulada por un controlador de carga. Un Arduino UNO con sensor fotosensible KY018 detecta el anochecer y activa mediante un relé la lámpara LED E27 de 12W; el módulo RTC PCF8563 la apaga a medianoche para conservar energía. Sistema eficiente, sostenible y listo para múltiples entornos.",
+      "skills": ["Arduino", "C++", "Electrónica", "Energía Solar"]
     }
   ],
   "experience": [

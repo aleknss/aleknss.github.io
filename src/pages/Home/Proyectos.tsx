@@ -8,6 +8,13 @@ import tonelaImg from "../../assets/proyectos/tonela.webp";
 import tfgImg from "../../assets/proyectos/tfg.webp";
 import animepolImg from "../../assets/proyectos/animepol.webp";
 
+const lamparaSlides = Object.values(
+  import.meta.glob("../../assets/proyectos/lampara/*.webp", {
+    eager: true,
+    import: "default",
+  })
+).sort() as string[];
+
 const projectConfigs: Record<string, any> = {
   tonela: {
     image: tonelaImg,
@@ -35,7 +42,17 @@ const projectConfigs: Record<string, any> = {
   hoverBorderColor: "border-[#3b82f6]", 
   buttonColor: "bg-[#1e293b]",     
   buttonHoverColor: "bg-[#334155]", 
-}
+},
+  lampara: {
+    image: lamparaSlides[0],
+    slides: lamparaSlides,
+    gradientFrom: "from-[#0c1f12]",
+    gradientTo: "to-[#14532d]",
+    borderColor: "border-[#166534]",
+    hoverBorderColor: "border-[#22c55e]",
+    buttonColor: "bg-[#15803d]",
+    buttonHoverColor: "bg-[#16a34a]",
+  }
 };
 
 export default function Proyectos() {
@@ -59,6 +76,7 @@ export default function Proyectos() {
                   key={index}
                   data={project}
                   image={config.image}
+                  slides={config.slides}
                   gradientFrom={config.gradientFrom}
                   gradientTo={config.gradientTo}
                   borderColor={config.borderColor}
