@@ -83,7 +83,11 @@ const es = {
   "nav.contact": "Contacto",
   "bio.available": "Disponible para trabajo",
   "bio.greeting": "¡Encantado! Soy",
+  "bio.role": "Desarrollador Fullstack",
+  "bio.lead":
+    "Construyo aplicaciones web funcionales y cuidadas: del backend al último detalle visual.",
   "bio.cv": "Currículum Vitae",
+  "bio.scroll": "Desplázate para ver más",
   "experience.present": "Presente",
   "projects.visit": "Visitar",
   "education.city": "Ciudad:",
@@ -121,7 +125,11 @@ const en = {
   "nav.contact": "Contact",
   "bio.available": "Available for work",
   "bio.greeting": "Nice to meet you! I'm",
+  "bio.role": "Fullstack Developer",
+  "bio.lead":
+    "I build functional, polished web applications: from backend to the last visual detail.",
   "bio.cv": "Curriculum Vitae",
+  "bio.scroll": "Scroll to see more",
   "experience.present": "Present",
   "projects.visit": "Visit",
   "education.city": "City:",

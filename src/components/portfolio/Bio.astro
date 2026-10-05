@@ -12,58 +12,139 @@ interface Props {
 const { locale = "es" } = Astro.props;
 const m = t(locale);
 const portfolio = (await getSite(locale))!;
+
+const stack = ["React", "Next.js", "Python", "Astro", "Tailwind"];
+const socials = [
+  { icon: "FaGithub", href: portfolio.contacts?.github, label: "GitHub" },
+  { icon: "FaLinkedin", href: portfolio.contacts?.linkedin, label: "LinkedIn" },
+  { icon: "FaTwitter", href: portfolio.contacts?.twitter, label: "Twitter" },
+];
 ---
 
-<div id="bio" class="w-full">
-  <Wrapper>
-    <div class="flex flex-col md:flex-row justify-between gap-4">
-      <div class="flex flex-col gap-4 xl:w-2/3 pr-4">
-        <div class="flex flex-col">
-          <div
-            class="flex items-center gap-2 px-3 py-1 w-fit rounded-full bg-primary-muted text-primary text-sm font-medium mb-4"
-          >
-            <span class="relative flex h-2 w-2">
-              <span
-                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
-              ></span>
-              <span
-                class="relative inline-flex rounded-full h-2 w-2 bg-primary"
-              ></span>
-            </span>
-            {m["bio.available"]}
-          </div>
-          <h1 class="font-serif font-semibold text-4xl text-secondary">
-            {
-              locale === "es"
-                ? `¡Encantado! Soy ${portfolio.name}`
-                : `Nice to meet you! I'm ${portfolio.name}`
-            }
-          </h1>
-          <h2 class="font-serif font-semibold text-2xl text-accent">
-            Fullstack Developer Junior especializado en Next.js
-          </h2>
-        </div>
-        <div>
-          <p class="w-full">{portfolio.bio}</p>
-          <div class="flex mt-4 gap-4">
-            <a
-              href={`${import.meta.env.BASE_URL}cv.pdf`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button label={m["bio.cv"]}>
-                <Icon slot="icon" name="FaFileDownload" size={16} />
-              </Button>
-            </a>
-            <Button variant="secondary" href={portfolio.contacts?.github}>
-              <Icon slot="icon" name="FaGithub" size={20} />
-            </Button>
-            <Button variant="secondary" href={portfolio.contacts?.linkedin}>
-              <Icon slot="icon" name="FaLinkedin" size={20} />
-            </Button>
-          </div>
+<div id="bio" class="relative w-full overflow-hidden">
+  <div class="bio-glow pointer-events-none absolute inset-0" aria-hidden="true">
+  </div>
+  <div class="bio-grid pointer-events-none absolute inset-0" aria-hidden="true">
+  </div>
+
+  <Wrapper class="relative">
+    <div
+      class="flex min-h-[calc(100vh_-_4rem)] flex-col justify-center gap-6 py-16"
+    >
+      <span
+        class="inline-flex w-fit items-center gap-2 rounded-full bg-primary-muted px-3 py-1 text-sm font-medium text-primary"
+      >
+        <span class="relative flex h-2 w-2">
+          <span
+            class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"
+          ></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-primary"
+          ></span>
+        </span>
+        {m["bio.available"]}
+      </span>
+
+      <h1
+        class="max-w-4xl font-serif text-5xl font-semibold leading-[1.05] text-secondary sm:text-6xl lg:text-7xl"
+      >
+        {m["bio.greeting"]} <span class="text-primary">{portfolio.name}</span>
+      </h1>
+
+      <p class="font-serif text-2xl text-foreground/80 sm:text-3xl">
+        {m["bio.role"]}
+      </p>
+
+      <ul class="flex flex-wrap gap-2">
+        {
+          stack.map((tech) => (
+            <li class="rounded-md border border-border px-3 py-1 text-sm text-foreground/70">
+              {tech}
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="max-w-2xl text-base leading-relaxed text-foreground/70 sm:text-lg">
+        {m["bio.lead"]}
+      </p>
+
+      <div class="mt-2 flex flex-wrap items-center gap-4">
+        <a
+          href={`${import.meta.env.BASE_URL}cv.pdf`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button label={m["bio.cv"]}>
+            <Icon slot="icon" name="FaFileDownload" size={16} />
+          </Button>
+        </a>
+        <div class="flex items-center gap-2">
+          {
+            socials.map(({ icon, href, label }) => (
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                class="grid h-10 w-10 place-items-center rounded-md border border-border text-foreground/70 transition-colors hover:border-primary hover:text-primary"
+              >
+                <Icon name={icon} size={18} />
+              </a>
+            ))
+          }
         </div>
       </div>
     </div>
   </Wrapper>
+
+  <a
+    href="#experience"
+    aria-label={m["bio.scroll"]}
+    class="absolute bottom-6 left-1/2 hidden -translate-x-1/2 text-foreground/40 transition-colors hover:text-primary sm:block"
+  >
+    <svg
+      class="h-6 w-6 motion-safe:animate-bounce"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M12 5v14M19 12l-7 7-7-7"></path>
+    </svg>
+  </a>
 </div>
+
+<style>
+  .bio-glow {
+    background: radial-gradient(
+      50% 50% at 15% 10%,
+      color-mix(in srgb, var(--primary) 16%, transparent) 0%,
+      transparent 70%
+    );
+  }
+  .bio-grid {
+    background-image:
+      linear-gradient(
+        to right,
+        color-mix(in srgb, var(--foreground) 18%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--foreground) 18%, transparent) 1px,
+        transparent 1px
+      );
+    background-size: 64px 64px;
+    mask-image: radial-gradient(70% 60% at 50% 30%, #000 0%, transparent 90%);
+    -webkit-mask-image: radial-gradient(
+      70% 60% at 50% 30%,
+      #000 0%,
+      transparent 90%
+    );
+    opacity: 0.6;
+  }
+</style>
