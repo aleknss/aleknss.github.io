@@ -12,6 +12,8 @@ languages:
 frameworks:
   - name: "React"
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+  - name: "Astro"
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg"
   - name: "FastAPI"
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg"
   - name: "Angular"
