@@ -7,7 +7,7 @@
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=222222)
 
-Mi sitio web personal, 100% **Astro** (estático, sin React) + TailwindCSS. Muestra proyectos, experiencia, habilidades y contacto. Incluye modo oscuro, i18n (ES/EN), carrusel de diapositivas y formulario de contacto.
+Mi sitio web personal, 100% **Astro** (estático, sin React) + TailwindCSS. Hero tipográfico, navegación superior y secciones de proyectos, experiencia, habilidades y contacto, además de una página de servicios. Incluye modo oscuro, i18n (ES/EN), carrusel de diapositivas, transiciones de página y formulario de contacto.
 
 **Live**: https://alek.is-a.dev/
 
@@ -31,9 +31,12 @@ Mi sitio web personal, 100% **Astro** (estático, sin React) + TailwindCSS. Mues
 ## Características
 
 - 🎨 **Diseño Responsive**: móvil, tablet y desktop.
+- 🧩 **Navegación superior**: fija, con monograma `AS` y menú móvil; persiste entre páginas.
 - 🌓 **Modo Oscuro/Claro**: toggle vanilla con persistencia en `localStorage` (sin flash, script inline en el layout).
 - 🌍 **i18n**: rutas reales `/` (ES) y `/en/`, con `hreflang` y canonical.
-- 🧭 **Scrollspy**: navegación lateral con `IntersectionObserver`.
+- 🧭 **Scrollspy**: resaltado de sección activa con `IntersectionObserver`.
+- 🎞️ **Transiciones de página**: View Transitions (`ClientRouter`) con slide en `/servicios/`.
+- 🚧 **Servicios**: página `/servicios/` (próximamente).
 - 🖼️ **Carrusel** de diapositivas vanilla.
 - ✉️ **Formulario** de contacto vía Web3Forms (`PUBLIC_WEB3FORMS_KEY`).
 - 🔍 **SEO**: meta dinámicas, Open Graph y JSON-LD.
@@ -68,7 +71,7 @@ portfolio/
 │   ├── i18n/               # Microcopy UI (labels ES/EN)
 │   ├── layouts/            # Base.astro (SEO, tema, fuentes)
 │   ├── lib/                # Tipos + helpers de acceso a contenido
-│   └── pages/              # Rutas: index, en/index, projects/[slug], 404
+│   └── pages/              # Rutas: index, en/index, projects/[slug], servicios, 404
 ├── astro.config.mjs        # Configuración de Astro
 ├── tsconfig.json
 └── package.json
