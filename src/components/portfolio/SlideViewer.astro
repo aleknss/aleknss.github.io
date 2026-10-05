@@ -1,0 +1,92 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  images: string[];
+  name: string;
+  class?: string;
+}
+
+const {
+  images,
+  name,
+  class: className = "w-full md:w-1/2",
+} = Astro.props;
+const total = images.length;
+---
+
+<div
+  data-slide-viewer
+  class={`relative overflow-hidden rounded bg-neutral-900 aspect-video ${className}`}
+>
+  {
+    images.map((src, i) => (
+      <img
+        src={src}
+        alt={`${name} — diapositiva ${i + 1}`}
+        loading={i === 0 ? "eager" : "lazy"}
+        data-slide
+        class={`absolute inset-0 w-full h-full object-cover ${i === 0 ? "" : "hidden"}`}
+      />
+    ))
+  }
+
+  <button
+    type="button"
+    data-slide-prev
+    aria-label="Diapositiva anterior"
+    class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 disabled:opacity-30 disabled:hover:bg-black/50 text-white rounded-full w-9 h-9 flex items-center justify-center transition-colors z-10"
+  >
+    <Icon name="FaChevronLeft" size={14} />
+  </button>
+  <button
+    type="button"
+    data-slide-next
+    aria-label="Diapositiva siguiente"
+    class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 disabled:opacity-30 disabled:hover:bg-black/50 text-white rounded-full w-9 h-9 flex items-center justify-center transition-colors z-10"
+  >
+    <Icon name="FaChevronRight" size={14} />
+  </button>
+
+  <span
+    data-slide-counter
+    class="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded-full z-10 tabular-nums"
+  >
+    1 / {total}
+  </span>
+</div>
+
+<script>
+  document.querySelectorAll("[data-slide-viewer]").forEach((viewer) => {
+    const slides = Array.from(
+      viewer.querySelectorAll("[data-slide]"),
+    ) as HTMLElement[];
+    const prev = viewer.querySelector(
+      "[data-slide-prev]",
+    ) as HTMLButtonElement | null;
+    const next = viewer.querySelector(
+      "[data-slide-next]",
+    ) as HTMLButtonElement | null;
+    const counter = viewer.querySelector("[data-slide-counter]");
+    const total = slides.length;
+    let index = 0;
+
+    const render = () => {
+      slides.forEach((slide, i) => slide.classList.toggle("hidden", i !== index));
+      if (prev) prev.disabled = index === 0;
+      if (next) next.disabled = index === total - 1;
+      if (counter) counter.textContent = `${index + 1} / ${total}`;
+    };
+
+    prev?.addEventListener("click", () => {
+      index = Math.max(index - 1, 0);
+      render();
+    });
+    next?.addEventListener("click", () => {
+      index = Math.min(index + 1, total - 1);
+      render();
+    });
+
+    render();
+  });
+</script>

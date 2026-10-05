@@ -1,82 +1,106 @@
 # 🌐 Portfolio - Alek
 
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Astro](https://img.shields.io/badge/Astro-BC52EE?style=for-the-badge&logo=astro&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=fff)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![CloudCannon](https://img.shields.io/badge/CloudCannon-4471F0?style=for-the-badge&logo=cloudcannon&logoColor=white)
 ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=GitHub-Pages&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=222222)
 
-Mi sitio web personal desarrollado con Vite + React y TailwindCSS para mostrar mis proyectos, habilidades y experiencia profesional. Incluye toda mi experiencia, habilidades, contacto y features como modo oscuro.
+Mi sitio web personal, 100% **Astro** (estático, sin React) + TailwindCSS. Muestra proyectos, experiencia, habilidades y contacto. Incluye modo oscuro, i18n (ES/EN), carrusel de diapositivas y formulario de contacto.
 
 **Live**: https://alek.is-a.dev/
 
 ## Índice
 
-- [Tecnologías Utilizadas](#tecnologías-utilizadas)
+- [Tecnologías](#tecnologías)
 - [Características](#características)
-- [Instalación y Configuración](#instalación-y-configuración)
-- [Estructura del Proyecto](#estructura-del-proyecto)
-- [Última integración](#última-integración)
-- [Próximamente](#próximamente)
+- [Instalación](#instalación)
+- [Estructura del proyecto](#estructura-del-proyecto)
+- [Contenido y CMS](#contenido-y-cms)
+- [Scripts](#scripts)
+
+## Tecnologías
+
+- **Astro** (output estático, `src/pages/`)
+- **Tailwind CSS v4** (tokens en `src/index.css`)
+- **TypeScript** estricto, validado con `astro check`
+- **Content Collections** + schemas Zod
+- **CloudCannon** (CMS git-based)
+- Interactividad **vanilla JS** (sin frameworks de UI)
 
 ## Características
 
-- 🎨 **Diseño Responsive**: Optimizado para móviles, tablets y desktops.
-- 🌓 **Modo Oscuro/Claro**: Toggle con persistencia en `localStorage`.
-- 🔍 **SEO**: Meta tags dinámicas.
+- 🎨 **Diseño Responsive**: móvil, tablet y desktop.
+- 🌓 **Modo Oscuro/Claro**: toggle vanilla con persistencia en `localStorage` (sin flash, script inline en el layout).
+- 🌍 **i18n**: rutas reales `/` (ES) y `/en/`, con `hreflang` y canonical.
+- 🧭 **Scrollspy**: navegación lateral con `IntersectionObserver`.
+- 🖼️ **Carrusel** de diapositivas vanilla.
+- ✉️ **Formulario** de contacto vía Web3Forms (`PUBLIC_WEB3FORMS_KEY`).
+- 🔍 **SEO**: meta dinámicas, Open Graph y JSON-LD.
+- 📦 **Contenido gestionado por CMS** (CloudCannon), validado por Zod en build.
 
-## Instalación y configuración
+## Instalación
 
-- Node.js 18.x o superior
-- npm
-
-### Clonar el repositorio
+Requisitos: Node.js 20+ y npm.
 
 ```bash
 git clone https://github.com/aleknss/aleknss.github.io
-cd portfolio-web
-```
-
-### Instalar dependencias
-
-```bash
+cd aleknss.github.io
 npm install
 npm run dev
 ```
 
-Visita: http://localhost:3000
+Visita http://localhost:4321
 
-## Estructura del Proyecto
+## Estructura del proyecto
 
 ```markdown
-portfolio-web/
-├── public/ # Assets estáticos
-│ └── index.html # Plantilla HTML
+portfolio/
+├── public/                 # Assets estáticos (cv.pdf, favicon, og-image, robots)
+├── schemas/                # Schemas de CloudCannon (input types)
 ├── src/
-│ ├── assets/ # Assets, imágenes
-│ ├── components/ # Componentes React reutilizables
-│ │ └── ui/
-│ ├── pages/ # Parte de páginas
-│ │ ├── Home/ # Secciones de Home
-│ │ └── Home.tsx
-│ ├── contexts/ # Contextos React
-│ │ └── ThemeContext.ts
-│ ├── layouts/ # Layouts de la página
-│ └── App.tsx # Componente principal
-├── .gitignore # Archivos ignorados por Git
-├── package.json # Dependencias y scripts
-└── tsconfig.json # Configuración de TypeScript
+│   ├── assets/             # Imágenes (optimizadas por Astro)
+│   ├── components/
+│   │   └── portfolio/      # Componentes .astro (secciones + UI)
+│   ├── content/            # Contenido (Content Collections)
+│   │   ├── projects/       #   {es,en}/<slug>.md  (1 archivo por proyecto)
+│   │   ├── site/           #   {es,en}.yml  (bio, contactos, educación, experiencia)
+│   │   └── skills/         #   skills.yml
+│   ├── i18n/               # Microcopy UI (labels ES/EN)
+│   ├── layouts/            # Base.astro (SEO, tema, fuentes)
+│   ├── lib/                # Tipos + helpers de acceso a contenido
+│   └── pages/              # Rutas: index, en/index, projects/[slug], 404
+├── astro.config.mjs        # Configuración de Astro
+├── cloudcannon.config.yml  # Mapeo de colecciones para el CMS
+├── tsconfig.json
+└── package.json
 ```
 
-## Últimas integraciones
+## Contenido y CMS
 
-25-09-25
-Traducción al inglés, no nos quedamos sujetos a un solo idioma y vamos a abrirnos un poco a un entorno más internacional. Al igual que el tema, ¡un click a un botón y muestra un cambio instantáneo!
-![Traduccion](./src/assets/readme/languages-portfolio.jpg)
+Todo el contenido editable vive en `src/content/` como **Markdown/YAML** (nunca TS), para que CloudCannon pueda editarlo:
 
-18-09-25
-¡Nuevo tema! Dedicado a aquellos usuarios que no estén acostumbrados a usar el modo claro y así evitar ese flashbang repentino. Aventura un tono más moderno en comparación al tradicional y clásico anterior.
+- **Proyectos** → `src/content/projects/{es,en}/<slug>.md`. Frontmatter validado por schema Zod (`name`, `link`, `logo`, `skills`, `locale`, `order`, `description`).
+- **Site** → `src/content/site/{es,en}.yml` (nombre, bio, contactos, educación, experiencia, participaciones).
+- **Skills** → `src/content/skills/skills.yml` (languages / frameworks / tools).
 
-![Modo oscuro](./src/assets/readme/dark-theme-portfolio.jpg)
+CloudCannon se conecta al repo Git, edita estos archivos y hace commit. Configuración:
+
+- Build command: `npm run build`
+- Output: `dist`
+- Configuración de colecciones: `cloudcannon.config.yml`
+- Schemas de inputs: `schemas/`
+
+El hosting sigue en **GitHub Pages**: cada commit dispara `.github/workflows/deploy.yml`.
+
+## Scripts
+
+```bash
+npm run dev       # servidor de desarrollo
+npm run build     # build estático → dist/
+npm run preview   # previsualizar el build
+npm run lint      # ESLint
+npx astro check   # type-check (TS + .astro)
+```

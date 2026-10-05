@@ -1,0 +1,61 @@
+---
+import Wrapper from "./Wrapper.astro";
+import Title from "./Title.astro";
+import Card from "./Card.astro";
+import SecondaryTitle from "./SecondaryTitle.astro";
+import Icon from "./Icon.astro";
+import { t } from "../../i18n";
+import { getSite } from "../../lib/content";
+
+import ADCLogo from "../../assets/participaciones/AgentesDelCambio.svg";
+import WCLogo from "../../assets/participaciones/WordCamp25.webp";
+import BALogo from "../../assets/participaciones/BancoAlimentos.webp";
+import HACKLogo from "../../assets/participaciones/Hackaton.webp";
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = "es" } = Astro.props;
+const m = t(locale);
+const portfolio = (await getSite(locale))!;
+const participacionData = portfolio.participaciones || [];
+
+const logoByClave: Record<string, string> = {
+  ADC: ADCLogo.src,
+  WC: WCLogo.src,
+  BA: BALogo.src,
+  HACK: HACKLogo.src,
+};
+---
+
+<div id="attendee" class="w-full">
+  <Wrapper>
+    <div class="flex flex-col gap-4">
+      <Title>
+        <Icon name="FaPeopleCarry" size={24} />
+        {m["nav.attendee"]}
+      </Title>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {
+          participacionData.map((participation) => (
+            <Card class="flex flex-col gap-6 px-4">
+              <div class="flex flex-col justify-start items-center gap-4">
+                <img
+                  src={logoByClave[participation.clave] || HACKLogo.src}
+                  alt={participation.name}
+                  loading="lazy"
+                  class="w-24 h-24 mx-auto"
+                />
+                <SecondaryTitle>{participation.name}</SecondaryTitle>
+              </div>
+              <div>
+                <p class="text-sm">{participation.description}</p>
+              </div>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </Wrapper>
+</div>

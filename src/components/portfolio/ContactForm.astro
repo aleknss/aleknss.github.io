@@ -1,0 +1,142 @@
+---
+import Icon from "./Icon.astro";
+import { t } from "../../i18n";
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = "es" } = Astro.props;
+const m = t(locale);
+const key = import.meta.env.PUBLIC_WEB3FORMS_KEY || "";
+
+const inputClass =
+  "w-full px-4 py-2.5 rounded bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:border-accent transition-colors";
+---
+
+{
+  !key ? (
+    <div class="w-full max-w-md">
+      <p class="text-white/70 text-sm">{m["form.noKey"]}</p>
+    </div>
+  ) : (
+    <div class="w-full max-w-md">
+      <form
+        data-contact-form
+        data-key={key}
+        data-send={m["form.send"]}
+        data-sending={m["form.sending"]}
+        class="w-full flex flex-col gap-3"
+      >
+        <div
+          data-form-error
+          class="hidden items-center gap-2 text-red-300 bg-red-900/30 p-3 rounded text-sm"
+        >
+          <Icon name="FaExclamationTriangle" size={16} />
+          <span>{m["form.errorText"]}</span>
+        </div>
+        <input
+          type="text"
+          name="name"
+          required
+          placeholder={m["form.namePlaceholder"]}
+          class={inputClass}
+        />
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder={m["form.email"]}
+          class={inputClass}
+        />
+        <textarea
+          name="message"
+          required
+          rows={4}
+          placeholder={m["form.messagePlaceholder"]}
+          class={`${inputClass} resize-none`}
+        ></textarea>
+        <button
+          type="submit"
+          class="flex items-center justify-center gap-2 bg-accent hover:bg-accent/80 text-white font-medium px-6 py-2.5 rounded transition-colors disabled:opacity-50"
+        >
+          <span data-form-spinner class="hidden">
+            <Icon name="FaSpinner" size={16} class="animate-spin" />
+          </span>
+          <span data-form-send-label>{m["form.send"]}</span>
+        </button>
+      </form>
+
+      <div
+        data-form-success
+        class="hidden w-full p-6 rounded bg-white/10 border border-accent/30"
+      >
+        <div class="flex items-center gap-3 text-accent mb-2">
+          <Icon name="FaCheck" size={24} />
+          <span class="font-bold text-lg">{m["form.successTitle"]}</span>
+        </div>
+        <p class="text-white/80">{m["form.successText"]}</p>
+      </div>
+    </div>
+  )
+}
+
+<script>
+  document.querySelectorAll("[data-contact-form]").forEach((node) => {
+    const form = node as HTMLFormElement;
+    const key = form.getAttribute("data-key") || "";
+    const wrapper = form.parentElement;
+    const success = wrapper?.querySelector(
+      "[data-form-success]",
+    ) as HTMLElement | null;
+    const error = form.querySelector("[data-form-error]") as HTMLElement | null;
+    const button = form.querySelector(
+      "button[type=submit]",
+    ) as HTMLButtonElement | null;
+    const spinner = form.querySelector(
+      "[data-form-spinner]",
+    ) as HTMLElement | null;
+    const label = form.querySelector(
+      "[data-form-send-label]",
+    ) as HTMLElement | null;
+    const sendText = form.getAttribute("data-send") || "Enviar";
+    const sendingText = form.getAttribute("data-sending") || "Enviando...";
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!key) return;
+      if (error) {
+        error.classList.add("hidden");
+        error.style.display = "";
+      }
+      if (button) button.disabled = true;
+      spinner?.classList.remove("hidden");
+      if (label) label.textContent = sendingText;
+
+      try {
+        const data = new FormData(form);
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            access_key: key,
+            name: data.get("name"),
+            email: data.get("email"),
+            message: data.get("message"),
+          }),
+        });
+        if (!res.ok) throw new Error("submit failed");
+        form.classList.add("hidden");
+        success?.classList.remove("hidden");
+      } catch {
+        if (error) {
+          error.classList.remove("hidden");
+          error.style.display = "flex";
+        }
+        if (button) button.disabled = false;
+        spinner?.classList.add("hidden");
+        if (label) label.textContent = sendText;
+      }
+    });
+  });
+</script>

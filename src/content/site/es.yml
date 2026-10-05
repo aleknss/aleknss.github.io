@@ -1,0 +1,52 @@
+name: Alek
+bio: "Soy un desarrollador fullstack con 1 año de experiencia en entornos web. Disfruto y siento mucha motivación participando en soluciones que impliquen gran utilidad y con una muy buena presentación esencialmente diseño web, usando herramientas como React, Next.js o Python."
+contacts:
+  phone: "+34 642 80 05 89"
+  email: "aleksusob@gmail.com"
+  github: "https://github.com/aleknss"
+  twitter: "https://twitter.com/aleksuso"
+  linkedin: "https://www.linkedin.com/in/alek-suso-bondoc-b91b15294/"
+  location: "Tenerife"
+education:
+  bach:
+    modalidad: "Bachillerato de Ciencias"
+    grado: "IES Bartolomé Cossio"
+    ciudad: "Haro"
+    graduacion: "2023/06/01 00:00:00"
+  fp:
+    modalidad: "Desarrollo de Aplicaciones Multiplataformas"
+    grado: "Sagrado Corazón Jesuitas"
+    ciudad: "Logroño"
+    graduacion: "2025/06/01 00:00:00"
+experience:
+  - from: 1709251200000
+    to: 1717200000000
+    company: "Standard Profil"
+    role: "Desarrollador de Aplicaciones Web"
+    logo: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D286585020687520&f=1&nofb=1&ipt=0a56f91348eef696876641ff517dd902cd4f1ba0abb72de201e573fe1ad97256"
+    descriptions:
+      - "Desarrollo de aplicaciones web de gestión interna y visualización/control de archivos con ASP.NET AJAX."
+      - "Manejo y control de conexiones de bases de datos con SQL Server."
+      - "Trabajo en equipo en proyectos duales."
+  - from: 1735689600000
+    to: 1748736000000
+    company: "Standard Profil"
+    role: "Desarrollador de Aplicaciones Web"
+    logo: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D286585020687520&f=1&nofb=1&ipt=0a56f91348eef696876641ff517dd902cd4f1ba0abb72de201e573fe1ad97256"
+    descriptions:
+      - "Desarrollo de sistema de llamadas andon a tiempo real con ASP.NET AJAX e Ignition."
+      - "Digitalización de procesos tradicionales de partes de trabajo."
+      - "Plantilla de visualización de datos con lógica y de diseño de prensas mecánicas."
+participaciones:
+  - name: "WordCamp 2025 Logroño"
+    description: "Acudí a este evento con la ilusión y el objetivo de conocer mucha gente nueva que me abrió los ojos en contenidos de programación web y tecnología hasta diseño o marketing. Aprendí mucho en el transcurso con las conferencias y charlas con los asistentes del programa y con la comunidad de desarrolladores, no sin pasármelo bien, evidentemente."
+    clave: "WC"
+  - name: "Agentes del Cambio"
+    description: "Completé el curso paralelo de Agentes del Cambio, una propuesta impulsada por el Gobierno de España y la Unión Europea para la transición de la digitalización de PYMEs con un enfoque en la planificación de proyectos de desarrollo de marca empresarial digital. Aquí aprendí esencialmente a gestionar bien un plan de análisis de puntos fuertes y débiles de una empresa y acciones que deben ser tomadas para satisfacer las necesidades del cliente y poder ser competitivos."
+    clave: "ADC"
+  - name: "Banco de Alimentos"
+    description: "No fue una experiencia de aprendizaje directamente relacionada con el trabajo, pero sentí una aportación indirecta a un objetivo que considero noble. Además, me ayudó a abrir la mente y poder dar un paso adelante y sacar iniciativa a la hora de mostrar propuestas y razonar."
+    clave: "BA"
+  - name: "Hacka Retods"
+    description: "Terminamos finalistas con una propuesta diferente: HydroLoop, una solución de reciclaje de agua casero. Participé con un equipo en una actividad de colaboración destinada a priorizar la resolución de un problema socioeconómico con la ayuda de la tecnología y la innovación. Lo fundamental de esta experiencia fue tener que idear un plan compatible con alguna o algunas de los 17 objetivos de desarrollo sostenible."
+    clave: "HACK"

@@ -1,0 +1,157 @@
+---
+import Icon from "./Icon.astro";
+import { t } from "../../i18n";
+import type { MessageKey } from "../../i18n";
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = "es" } = Astro.props;
+const m = t(locale);
+
+const SECTIONS: { id: string; icon: string; key: MessageKey }[] = [
+  { id: "bio", icon: "FaHome", key: "nav.bio" },
+  { id: "experience", icon: "FaAward", key: "nav.experience" },
+  { id: "projects", icon: "AiOutlineFundProjectionScreen", key: "nav.projects" },
+  { id: "attendee", icon: "FaPeopleCarry", key: "nav.attendee" },
+  { id: "education", icon: "FaGraduationCap", key: "nav.education" },
+  { id: "skills", icon: "FaBrain", key: "nav.skills" },
+  { id: "contact", icon: "FaPaperPlane", key: "nav.contact" },
+];
+
+const SOCIAL = [
+  { icon: "FaGithub", href: "https://github.com/aleknss", label: "GitHub" },
+  {
+    icon: "FaLinkedin",
+    href: "https://www.linkedin.com/in/alek-suso-bondoc-b91b15294/",
+    label: "LinkedIn",
+  },
+];
+---
+
+<aside
+  class="fixed left-0 top-0 h-screen w-16 lg:w-60 bg-background/60 dark:bg-background backdrop-blur-xl shadow-lg shadow-black/10 dark:shadow-black/40 border-r border-border z-50 flex flex-col justify-around"
+>
+  <div class="flex flex-col items-center gap-4 pt-4 px-2">
+    <a
+      href="/"
+      class="flex flex-col items-center gap-2 font-semibold font-serif text-xl text-primary"
+    >
+      <Icon name="GiPineTree" size={48} />
+      <span class="hidden lg:inline text-3xl">
+        Alek <span class="hidden sm:inline">Suso</span>
+      </span>
+    </a>
+  </div>
+
+  <nav
+    aria-label={m["nav.aria"]}
+    class="flex flex-col items-center mt-4 px-6"
+  >
+    {
+      SECTIONS.map(({ id, icon, key }) => (
+        <a
+          href={`#${id}`}
+          data-section={id}
+          class="sidebar-link flex items-center gap-3 px-3 py-2 w-full cursor-pointer transition-colors duration-300 text-primary hover:text-accent"
+        >
+          <span class="flex-shrink-0">
+            <Icon name={icon} size={16} />
+          </span>
+          <span class="hidden lg:inline">{m[key]}</span>
+        </a>
+      ))
+    }
+  </nav>
+
+  <div class="flex gap-4 justify-center pb-4 px-2">
+    {
+      SOCIAL.map(({ icon, href, label }) => (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={label}
+          class="text-primary hover:text-accent transition-colors duration-300"
+        >
+          <Icon name={icon} size={20} />
+        </a>
+      ))
+    }
+  </div>
+</aside>
+
+<style>
+  .sidebar-link {
+    position: relative;
+  }
+  .sidebar-link::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 20px;
+    border-radius: 0 2px 2px 0;
+    background: transparent;
+  }
+  .sidebar-link.is-active {
+    color: var(--accent);
+  }
+  .sidebar-link.is-active::before {
+    background: var(--accent);
+  }
+</style>
+
+<script>
+  const SECTION_IDS = [
+    "bio",
+    "experience",
+    "projects",
+    "attendee",
+    "education",
+    "skills",
+    "contact",
+  ];
+  const links = new Map<string, Element>();
+  document.querySelectorAll("a[data-section]").forEach((a) => {
+    const id = (a as HTMLElement).dataset.section;
+    if (id) links.set(id, a);
+  });
+
+  if (links.size > 0) {
+    const ratios = new Map<string, number>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          ratios.set(entry.target.id, entry.intersectionRatio);
+        }
+        let maxId = "";
+        let maxRatio = 0;
+        for (const id of SECTION_IDS) {
+          const ratio = ratios.get(id) ?? 0;
+          if (ratio > maxRatio) {
+            maxRatio = ratio;
+            maxId = id;
+          }
+        }
+        if (maxId) {
+          links.forEach((link, id) =>
+            link.classList.toggle("is-active", id === maxId),
+          );
+        }
+      },
+      {
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+        rootMargin: "-10% 0px -70% 0px",
+      },
+    );
+
+    for (const id of SECTION_IDS) {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    }
+  }
+</script>

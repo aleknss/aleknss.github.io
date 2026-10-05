@@ -1,0 +1,25 @@
+---
+import Bio from "./Bio.astro";
+import Experiencia from "./Experiencia.astro";
+import Proyectos from "./Proyectos.astro";
+import Participaciones from "./Participaciones.astro";
+import Educacion from "./Educacion.astro";
+import Habilidades from "./Habilidades.astro";
+import Contacto from "./Contacto.astro";
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = "es" } = Astro.props;
+---
+
+<div id="home" class="w-full">
+  <Bio locale={locale} />
+  <Experiencia locale={locale} />
+  <Proyectos locale={locale} />
+  <Participaciones locale={locale} />
+  <Educacion locale={locale} />
+  <Habilidades locale={locale} />
+  <Contacto locale={locale} />
+</div>

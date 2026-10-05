@@ -1,0 +1,78 @@
+---
+import dayjs from "dayjs";
+import "dayjs/locale/es";
+import "dayjs/locale/en";
+import Wrapper from "./Wrapper.astro";
+import Title from "./Title.astro";
+import Card from "./Card.astro";
+import SecondaryTitle from "./SecondaryTitle.astro";
+import Icon from "./Icon.astro";
+import bach from "../../assets/bach.jpg";
+import fp from "../../assets/fp.webp";
+import { t } from "../../i18n";
+import { getSite } from "../../lib/content";
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = "es" } = Astro.props;
+const m = t(locale);
+const portfolio = (await getSite(locale))!;
+const education = portfolio.education || {};
+
+const entries = [
+  { image: bach.src, data: education.bach, fallback: "Bachillerato" },
+  { image: fp.src, data: education.fp, fallback: "Formación Profesional" },
+];
+
+const fmt = (value: string) =>
+  dayjs(value).locale(locale).format("MMMM YYYY");
+---
+
+<div id="education" class="w-full">
+  <Wrapper>
+    <div class="flex flex-col gap-4">
+      <Title>
+        <Icon name="FaGraduationCap" size={24} />
+        {m["nav.education"]}
+      </Title>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {
+          entries.map(({ image, data, fallback }) => (
+            <Card class="flex flex-col gap-4 py-8 px-6">
+              <img
+                src={image}
+                alt={data?.grado || fallback}
+                loading="lazy"
+                class="w-2/3 h-32 object-cover mx-auto rounded-sm"
+              />
+              <SecondaryTitle>{data?.grado || "Loading..."}</SecondaryTitle>
+              <p class="flex items-center gap-1 text-sm">
+                <span class="flex items-center gap-1 font-bold">
+                  <Icon name="FaMapMarkerAlt" size={14} />
+                  {m["education.city"]}
+                </span>
+                {data?.ciudad || "N/A"}
+              </p>
+              <p class="flex items-center gap-1 text-sm">
+                <span class="flex items-center gap-1 font-bold">
+                  <Icon name="FaCertificate" size={14} />
+                  {m["education.degree"]}
+                </span>
+                {data?.modalidad || "N/A"}
+              </p>
+              <p class="flex items-center gap-1 text-sm">
+                <span class="flex items-center gap-1 font-bold">
+                  <Icon name="FaCalendar" size={14} />
+                  {m["education.graduated"]}
+                </span>
+                {data?.graduacion ? fmt(data.graduacion) : "N/A"}
+              </p>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </Wrapper>
+</div>

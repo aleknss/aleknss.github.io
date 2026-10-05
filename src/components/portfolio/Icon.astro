@@ -1,0 +1,34 @@
+---
+import { icons } from "../../icons";
+
+interface Props {
+  name: string;
+  size?: number | string;
+  class?: string;
+}
+
+const { name, size = 16, class: className = "" } = Astro.props;
+const def = icons[name];
+const circles = def?.circles ?? [];
+---
+
+{
+  def && (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox={def.viewBox}
+      width={size}
+      height={size}
+      class={className}
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      {circles.map((c) => (
+        <circle cx={c.cx} cy={c.cy} r={c.r} />
+      ))}
+      {def.paths.map((d) => (
+        <path d={d} />
+      ))}
+    </svg>
+  )
+}

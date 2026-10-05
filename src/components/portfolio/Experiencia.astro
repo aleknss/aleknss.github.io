@@ -1,0 +1,68 @@
+---
+import dayjs from "dayjs";
+import "dayjs/locale/es";
+import "dayjs/locale/en";
+import Wrapper from "./Wrapper.astro";
+import Title from "./Title.astro";
+import Card from "./Card.astro";
+import SecondaryTitle from "./SecondaryTitle.astro";
+import Icon from "./Icon.astro";
+import { t } from "../../i18n";
+import { getSite } from "../../lib/content";
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = "es" } = Astro.props;
+const m = t(locale);
+const portfolio = (await getSite(locale))!;
+const experienceData = portfolio.experience || [];
+
+const fmt = (value: number | string) =>
+  dayjs(value).locale(locale).format("MMMM YYYY");
+---
+
+<div id="experience" class="w-full">
+  <Wrapper>
+    <div class="flex flex-col gap-4">
+      <Title>
+        <Icon name="FaAward" size={24} />
+        {m["nav.experience"]}
+      </Title>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {
+          experienceData.map((experience) => (
+            <Card class="flex flex-col gap-6">
+              <div class="flex flex-col justify-start items-center gap-4">
+                <img
+                  src={experience.logo}
+                  alt={experience.company}
+                  loading="lazy"
+                  class="max-w-18 max-h-18 w-full h-full object-cover rounded"
+                />
+                <SecondaryTitle>{experience.company}</SecondaryTitle>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <p class="text-accent font-semibold">{experience.role}</p>
+                  <p class="text-sm text-accent">
+                    {fmt(experience.from)} ~{" "}
+                    {experience.to === null
+                      ? m["experience.present"]
+                      : fmt(experience.to)}
+                  </p>
+                </div>
+                <ul class="text-sm mt-3 pl-4">
+                  {experience.descriptions.map((description) => (
+                    <li class="list-disc">{description}</li>
+                  ))}
+                </ul>
+              </div>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </Wrapper>
+</div>

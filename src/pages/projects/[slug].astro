@@ -1,0 +1,22 @@
+---
+import Base from "../../layouts/Base.astro";
+import Shell from "../../components/portfolio/Shell.astro";
+import ProjectDetail from "../../components/portfolio/ProjectDetail.astro";
+import { getProjectSlugs } from "../../lib/content";
+
+export async function getStaticPaths() {
+  const slugs = await getProjectSlugs("es");
+  return slugs.map((slug) => ({
+    params: { slug },
+  }));
+}
+
+const { slug = "" } = Astro.params;
+const locale = Astro.currentLocale ?? "es";
+---
+
+<Base path={`/projects/${slug}/`}>
+  <Shell locale={locale}>
+    <ProjectDetail slug={slug} locale={locale} />
+  </Shell>
+</Base>

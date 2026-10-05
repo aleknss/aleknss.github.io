@@ -1,0 +1,52 @@
+name: Alek
+bio: "I am a full-stack developer with 1 year of experience in web environments. I enjoy and feel highly motivated participating in solutions that involve great utility and excellent presentation, such as IoT applications and essentially web design, using tools like React, Next.js, or Python."
+contacts:
+  phone: "+34 642 80 05 89"
+  email: "aleksusob@gmail.com"
+  github: "https://github.com/aleknss"
+  twitter: "https://twitter.com/aleksuso"
+  linkedin: "https://www.linkedin.com/in/alek-suso-bondoc-b91b15294/"
+  location: "La Rioja"
+education:
+  bach:
+    modalidad: "Science High School"
+    grado: "IES Bartolomé Cossio"
+    ciudad: "Haro"
+    graduacion: "2023/06/01 00:00:00"
+  fp:
+    modalidad: "Multiplatform Application Development"
+    grado: "Sagrado Corazón Jesuitas"
+    ciudad: "Logroño"
+    graduacion: "2025/06/01 00:00:00"
+experience:
+  - from: 1709251200000
+    to: 1717200000000
+    company: "Standard Profil"
+    role: "Web Application Developer"
+    logo: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D286585020687520&f=1&nofb=1&ipt=0a56f91348eef696876641ff517dd902cd4f1ba0abb72de201e573fe1ad97256"
+    descriptions:
+      - "Development of internal management web applications and visualization/control of files with ASP.NET AJAX."
+      - "Management and control of database connections with SQL Server."
+      - "Teamwork on dual projects."
+  - from: 1735689600000
+    to: 1748736000000
+    company: "Standard Profil"
+    role: "Web Application Developer"
+    logo: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D286585020687520&f=1&nofb=1&ipt=0a56f91348eef696876641ff517dd902cd4f1ba0abb72de201e573fe1ad97256"
+    descriptions:
+      - "Development of real-time andon call system with ASP.NET AJAX and Ignition."
+      - "Digitization of traditional work report processes."
+      - "Data visualization template with logic and design for mechanical presses."
+participaciones:
+  - name: "WordCamp 2025 Logroño"
+    description: "I attended this event with the enthusiasm and goal of meeting many new people who opened my eyes to web programming content, technology, design, and marketing. I learned a lot throughout the conferences and conversations with program attendees and the developer community, having a great time, obviously."
+    clave: "WC"
+  - name: "Agents of Change"
+    description: "I completed the parallel Change Agents course, an Government of Spain and European Union proposal for the digital transition of SMEs with a focus on planning digital brand development projects. Here I essentially learned how to properly manage an analysis plan of company strengths and weaknesses and actions that must be taken to meet customer needs and be competitive."
+    clave: "ADC"
+  - name: "Food Bank"
+    description: "It was not a learning experience directly related to work, but I felt an indirect contribution to a goal I consider noble. Moreover, it helped me open my mind and take a step forward to show proposals and reason."
+    clave: "BA"
+  - name: "Hacka Retods"
+    description: "We ended as finalists with a different proposal: HydroLoop, a home water recycling solution. I took part on a team in a collaboration activity aimed at prioritizing the resolution of a socioeconomic problem with the help of technology and innovation. The fundamental aspect of this experience was having to devise a plan compatible with one or more of the 17 sustainable development goals."
+    clave: "HACK"

@@ -1,0 +1,23 @@
+---
+import Base from "../layouts/Base.astro";
+import Shell from "../components/portfolio/Shell.astro";
+
+const locale = Astro.currentLocale ?? "es";
+const notFound = locale === "en" ? "Page not found" : "Página no encontrada";
+const back = locale === "en" ? "Back to home" : "Volver al inicio";
+---
+
+<Base path="/404" locale={locale} title="404">
+  <Shell locale={locale}>
+    <div class="w-full min-h-screen flex items-center justify-center">
+      <div class="text-center">
+        <h1 class="text-4xl font-serif font-bold mb-4">404</h1>
+        <p class="mb-6">{notFound}</p>
+        <a
+          href={locale === "en" ? "/en/" : "/"}
+          class="text-primary hover:underline">{back}</a
+        >
+      </div>
+    </div>
+  </Shell>
+</Base>

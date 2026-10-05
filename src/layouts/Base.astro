@@ -1,0 +1,104 @@
+---
+import "../index.css";
+import { otherLocalePath } from "../i18n";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  path?: string;
+  locale?: string;
+}
+
+const {
+  title = "Alek Suso | Portfolio",
+  description = "Soy Alek, un desarrollador web con experiencia en frameworks modernos, integración IoT y diseño accesible. Proyectos funcionales, escalables y pensados para el futuro.",
+  image = "https://aleknss.github.io/og-image.webp",
+  path = "/",
+  locale = Astro.currentLocale ?? "es",
+} = Astro.props;
+
+const site = Astro.site ?? new URL("https://aleknss.github.io");
+const canonical = new URL(path, site).href;
+const alternatePath = otherLocalePath(locale, path);
+const esPath = locale === "en" ? alternatePath : path;
+const enPath = locale === "en" ? path : alternatePath;
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Alek",
+  familyName: "Suso",
+  jobTitle: "Fullstack Developer Junior",
+  url: "https://aleknss.github.io/",
+  sameAs: [
+    "https://github.com/aleknss",
+    "https://www.linkedin.com/in/aleksuso/",
+    "https://twitter.com/aleksuso",
+  ],
+  knowsAbout: [
+    "TypeScript",
+    "JavaScript",
+    "Python",
+    "Java",
+    "C#",
+    "React",
+    "Next.js",
+    "FastAPI",
+    "Angular",
+    "Spring Boot",
+    "IoT",
+    "Web Development",
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "La Rioja",
+    addressCountry: "ES",
+  },
+};
+---
+<!doctype html>
+<html lang={locale} dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ecfccb" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    />
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonical} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="es" href={new URL(esPath, site).href} />
+    <link rel="alternate" hreflang="en" href={new URL(enPath, site).href} />
+    <link rel="alternate" hreflang="x-default" href={new URL(esPath, site).href} />
+    <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script is:inline>
+      (function () {
+        var saved = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var dark = saved ? saved === 'dark' : prefersDark;
+        document.documentElement.classList.toggle('dark', dark);
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', dark ? '#1c1917' : '#ecfccb');
+      })();
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

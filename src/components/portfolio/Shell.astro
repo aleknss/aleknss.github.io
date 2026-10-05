@@ -1,0 +1,18 @@
+---
+import Sidebar from "./Sidebar.astro";
+import ThemeSwitch from "./ThemeSwitch.astro";
+import LanguageSwitch from "./LanguageSwitch.astro";
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = "es" } = Astro.props;
+---
+
+<Sidebar locale={locale} />
+<ThemeSwitch locale={locale} />
+<LanguageSwitch locale={locale} />
+<main id="main-content" class="ml-16 lg:ml-60">
+  <slot />
+</main>

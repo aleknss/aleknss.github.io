@@ -1,0 +1,104 @@
+---
+import Wrapper from "./Wrapper.astro";
+import Title from "./Title.astro";
+import ProjectCard from "./ProjectCard.astro";
+import Icon from "./Icon.astro";
+import { t } from "../../i18n";
+import { getProjects } from "../../lib/content";
+
+import tonelaImg from "../../assets/proyectos/tonela.webp";
+import tfgImg from "../../assets/proyectos/tfg.webp";
+import animepolImg from "../../assets/proyectos/animepol.webp";
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = "es" } = Astro.props;
+const m = t(locale);
+
+const lamparaSlides = (
+  Object.values(
+    import.meta.glob("../../assets/proyectos/lampara/*.webp", {
+      eager: true,
+      import: "default",
+    }),
+  ) as any[]
+)
+  .map((mod) => mod.src ?? mod)
+  .sort();
+
+const projectConfigs: Record<string, any> = {
+  tonela: {
+    image: tonelaImg.src,
+    gradientFrom: "from-[#2d2621]",
+    gradientTo: "to-[#57514d]",
+    borderColor: "border-[#6D4C41]",
+    hoverBorderColor: "border-[#8D6E63]",
+    buttonColor: "bg-[#6D4C41]",
+    buttonHoverColor: "bg-[#8D6E63]",
+  },
+  ordenna: {
+    image: tfgImg.src,
+    gradientFrom: "from-[#1a2238]",
+    gradientTo: "to-[#2d3a58]",
+    borderColor: "border-[#3e5c8a]",
+    hoverBorderColor: "border-[#5c7eb5]",
+    buttonColor: "bg-[#3e5c8a]",
+    buttonHoverColor: "bg-[#5c7eb5]",
+  },
+  animepol: {
+    image: animepolImg.src,
+    gradientFrom: "from-[#020617]",
+    gradientTo: "to-[#0f172a]",
+    borderColor: "border-[#1e293b]",
+    hoverBorderColor: "border-[#3b82f6]",
+    buttonColor: "bg-[#1e293b]",
+    buttonHoverColor: "bg-[#334155]",
+  },
+  lampara: {
+    image: lamparaSlides[0],
+    slides: lamparaSlides,
+    gradientFrom: "from-[#0c1f12]",
+    gradientTo: "to-[#14532d]",
+    borderColor: "border-[#166534]",
+    hoverBorderColor: "border-[#22c55e]",
+    buttonColor: "bg-[#15803d]",
+    buttonHoverColor: "bg-[#16a34a]",
+  },
+};
+
+const projects = await getProjects(locale);
+---
+
+<div id="projects" class="w-full">
+  <Wrapper>
+    <div class="flex flex-col gap-4">
+      <Title>
+        <Icon name="AiOutlineFundProjectionScreen" size={24} />
+        {m["nav.projects"]}
+      </Title>
+      <div class="gap-4 grid grid-cols-1">
+        {
+          projects.map((project) => {
+            const config = projectConfigs[project.logo] || projectConfigs.tonela;
+            return (
+              <ProjectCard
+                data={project}
+                image={config.image}
+                slides={config.slides}
+                gradientFrom={config.gradientFrom}
+                gradientTo={config.gradientTo}
+                borderColor={config.borderColor}
+                hoverBorderColor={config.hoverBorderColor}
+                buttonColor={config.buttonColor}
+                buttonHoverColor={config.buttonHoverColor}
+                linkLabel={m["projects.visit"]}
+              />
+            );
+          })
+        }
+      </div>
+    </div>
+  </Wrapper>
+</div>

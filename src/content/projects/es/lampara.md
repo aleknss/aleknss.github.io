@@ -1,0 +1,12 @@
+---
+name: "Lámpara Autosuficiente con Energía Solar"
+logo: "lampara"
+skills:
+  - "Arduino"
+  - "C++"
+  - "Electrónica"
+  - "Energía Solar"
+locale: "es"
+order: 3
+description: "Proyecto de iluminación autónoma y automatizada. Un panel solar de 10W carga una batería de plomo de 12Ah durante el día, regulada por un controlador de carga. Un Arduino UNO con sensor fotosensible KY018 detecta el anochecer y activa mediante un relé la lámpara LED E27 de 12W; el módulo RTC PCF8563 la apaga a medianoche para conservar energía. Sistema eficiente, sostenible y listo para múltiples entornos."
+---

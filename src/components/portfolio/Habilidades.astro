@@ -1,0 +1,66 @@
+---
+import Wrapper from "./Wrapper.astro";
+import Title from "./Title.astro";
+import Card from "./Card.astro";
+import SecondaryTitle from "./SecondaryTitle.astro";
+import SkillItem from "./SkillItem.astro";
+import Icon from "./Icon.astro";
+import { getSkills } from "../../lib/content";
+import { t } from "../../i18n";
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = "es" } = Astro.props;
+const m = t(locale);
+const skills = (await getSkills())!;
+---
+
+<div id="skills" class="w-full">
+  <Wrapper>
+    <div class="flex flex-col gap-4">
+      <Title>
+        <Icon name="FaBrain" size={24} />
+        {m["nav.skills"]}
+      </Title>
+      <Card class="flex flex-col gap-4 py-8 px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+          <div id="col1" class="flex flex-col gap-4">
+            <SecondaryTitle>{m["skills.languages"]}</SecondaryTitle>
+            <div class="p-4 grid grid-cols-1 lg:grid-cols-2 gap-4 m-auto">
+              {
+                skills.languages.map((skill) => (
+                  <SkillItem name={skill.name} icon={skill.icon} />
+                ))
+              }
+            </div>
+          </div>
+          <div
+            id="col2"
+            class="lg:border-x lg:border-border flex flex-col gap-4 px-4 m-auto"
+          >
+            <SecondaryTitle>Frameworks</SecondaryTitle>
+            <div class="p-4 grid grid-cols-1 lg:grid-cols-2 gap-4 m-auto">
+              {
+                skills.frameworks.map((skill) => (
+                  <SkillItem name={skill.name} icon={skill.icon} />
+                ))
+              }
+            </div>
+          </div>
+          <div id="col3" class="flex flex-col gap-4">
+            <SecondaryTitle>{m["skills.tools"]}</SecondaryTitle>
+            <div class="p-4 grid grid-cols-1 lg:grid-cols-2 gap-4 m-auto">
+              {
+                skills.tools.map((skill) => (
+                  <SkillItem name={skill.name} icon={skill.icon} />
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </Card>
+    </div>
+  </Wrapper>
+</div>

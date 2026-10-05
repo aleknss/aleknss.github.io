@@ -1,0 +1,15 @@
+---
+interface Props {
+  name: string;
+  icon: string;
+}
+
+const { name, icon } = Astro.props;
+---
+
+<div
+  class="flex items-center gap-4 hover:bg-primary-muted transition rounded p-2 cursor-pointer"
+>
+  <img src={icon} alt={name} loading="lazy" class="w-12" />
+  <p>{name}</p>
+</div>
