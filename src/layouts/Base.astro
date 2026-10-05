@@ -13,12 +13,12 @@ interface Props {
 const {
   title = "Alek Suso | Portfolio",
   description = "Soy Alek, un desarrollador web con experiencia en frameworks modernos, integración IoT y diseño accesible. Proyectos funcionales, escalables y pensados para el futuro.",
-  image = "https://aleknss.github.io/og-image.webp",
+  image = "https://alek.is-a.dev/og-image.webp",
   path = "/",
   locale = Astro.currentLocale ?? "es",
 } = Astro.props;
 
-const site = Astro.site ?? new URL("https://aleknss.github.io");
+const site = Astro.site ?? new URL("https://alek.is-a.dev");
 const canonical = new URL(path, site).href;
 const alternatePath = otherLocalePath(locale, path);
 const esPath = locale === "en" ? alternatePath : path;
@@ -30,7 +30,7 @@ const personSchema = {
   name: "Alek",
   familyName: "Suso",
   jobTitle: "Fullstack Developer Junior",
-  url: "https://aleknss.github.io/",
+  url: site.href,
   sameAs: [
     "https://github.com/aleknss",
     "https://www.linkedin.com/in/aleksuso/",

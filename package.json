@@ -1,6 +1,6 @@
 {
   "name": "portfolio",
-  "homepage": "https://aleknss.github.io/",
+  "homepage": "https://alek.is-a.dev/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,6 +11,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
     "@tailwindcss/vite": "^4.1.13",
     "dayjs": "^1.11.18",
     "tailwindcss": "^4.1.13"

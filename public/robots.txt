@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://aleknss.github.io/sitemap.xml
+Sitemap: https://alek.is-a.dev/sitemap-index.xml
