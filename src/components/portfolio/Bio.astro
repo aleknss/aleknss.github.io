@@ -14,6 +14,7 @@ const m = t(locale);
 const portfolio = (await getSite(locale))!;
 
 const stack = ["React", "Next.js", "Python", "Astro", "Tailwind"];
+const servicesHref = "/servicios/";
 const socials = [
   { icon: "FaGithub", href: portfolio.contacts?.github, label: "GitHub" },
   { icon: "FaLinkedin", href: portfolio.contacts?.linkedin, label: "LinkedIn" },
@@ -28,71 +29,99 @@ const socials = [
   </div>
 
   <Wrapper class="relative">
-    <div
-      class="flex min-h-[calc(100vh_-_4rem)] flex-col justify-center gap-6 py-16"
-    >
-      <span
-        class="inline-flex w-fit items-center gap-2 rounded-full bg-primary-muted px-3 py-1 text-sm font-medium text-primary"
+    <div class="flex min-h-[calc(100vh_-_4rem)] items-center py-16">
+      <div
+        class="grid w-full gap-10 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-center"
       >
-        <span class="relative flex h-2 w-2">
+        <div class="flex flex-col gap-6">
           <span
-            class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"
-          ></span>
-          <span class="relative inline-flex h-2 w-2 rounded-full bg-primary"
-          ></span>
-        </span>
-        {m["bio.available"]}
-      </span>
+            class="inline-flex w-fit items-center gap-2 rounded-full bg-primary-muted px-3 py-1 text-sm font-medium text-primary"
+          >
+            <span class="relative flex h-2 w-2">
+              <span
+                class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"
+              ></span>
+              <span class="relative inline-flex h-2 w-2 rounded-full bg-primary"
+              ></span>
+            </span>
+            {m["bio.available"]}
+          </span>
 
-      <h1
-        class="max-w-4xl font-serif text-5xl font-semibold leading-[1.05] text-secondary sm:text-6xl lg:text-7xl"
-      >
-        {m["bio.greeting"]} <span class="text-primary">{portfolio.name}</span>
-      </h1>
+          <h1
+            class="max-w-4xl font-serif text-5xl font-semibold leading-[1.05] text-secondary sm:text-6xl lg:text-7xl"
+          >
+            {m["bio.greeting"]} <span class="text-primary">{portfolio.name}</span>
+          </h1>
 
-      <p class="font-serif text-2xl text-foreground/80 sm:text-3xl">
-        {m["bio.role"]}
-      </p>
+          <p class="font-serif text-2xl text-foreground/80 sm:text-3xl">
+            {m["bio.role"]}
+          </p>
 
-      <ul class="flex flex-wrap gap-2">
-        {
-          stack.map((tech) => (
-            <li class="rounded-md border border-border px-3 py-1 text-sm text-foreground/70">
-              {tech}
-            </li>
-          ))
-        }
-      </ul>
+          <ul class="flex flex-wrap gap-2">
+            {
+              stack.map((tech) => (
+                <li class="rounded-md border border-border px-3 py-1 text-sm text-foreground/70">
+                  {tech}
+                </li>
+              ))
+            }
+          </ul>
 
-      <p class="max-w-2xl text-base leading-relaxed text-foreground/70 sm:text-lg">
-        {m["bio.lead"]}
-      </p>
+          <p class="max-w-2xl text-base leading-relaxed text-foreground/70 sm:text-lg">
+            {m["bio.lead"]}
+          </p>
 
-      <div class="mt-2 flex flex-wrap items-center gap-4">
-        <a
-          href={`${import.meta.env.BASE_URL}cv.pdf`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Button label={m["bio.cv"]}>
-            <Icon slot="icon" name="FaFileDownload" size={16} />
-          </Button>
-        </a>
-        <div class="flex items-center gap-2">
-          {
-            socials.map(({ icon, href, label }) => (
-              <a
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                class="grid h-10 w-10 place-items-center rounded-md border border-border text-foreground/70 transition-colors hover:border-primary hover:text-primary"
-              >
-                <Icon name={icon} size={18} />
-              </a>
-            ))
-          }
+          <div class="mt-2 flex flex-wrap items-center gap-3">
+            <Button
+              href={`${import.meta.env.BASE_URL}cv.pdf`}
+              target="_blank"
+              rel="noopener noreferrer"
+              label={m["bio.cv"]}
+            >
+              <Icon slot="icon" name="FaFileDownload" size={16} />
+            </Button>
+            <Button
+              variant="secondary"
+              href={servicesHref}
+              label={m["services.title"]}
+              class="lg:hidden"
+            />
+            <div class="flex items-center gap-2">
+              {
+                socials.map(({ icon, href, label }) => (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    class="grid h-10 w-10 place-items-center rounded-md border border-border text-foreground/70 transition-colors hover:border-primary hover:text-primary"
+                  >
+                    <Icon name={icon} size={18} />
+                  </a>
+                ))
+              }
+            </div>
+          </div>
         </div>
+
+        <aside
+          class="hidden flex-col gap-4 rounded-2xl border border-border bg-primary-muted/50 p-6 lg:flex"
+        >
+          <span
+            class="inline-flex w-fit items-center rounded-full bg-background px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary"
+          >
+            {m["services.title"]}
+          </span>
+          <h2 class="font-serif text-2xl font-semibold text-secondary">
+            {m["services.hero"]}
+          </h2>
+          <p class="text-sm text-foreground/70">{m["services.soon.text"]}</p>
+          <Button
+            href={servicesHref}
+            label={m["services.cta"]}
+            class="mt-2 w-fit"
+          />
+        </aside>
       </div>
     </div>
   </Wrapper>

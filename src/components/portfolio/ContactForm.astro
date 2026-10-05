@@ -82,61 +82,68 @@ const inputClass =
 }
 
 <script>
-  document.querySelectorAll("[data-contact-form]").forEach((node) => {
-    const form = node as HTMLFormElement;
-    const key = form.getAttribute("data-key") || "";
-    const wrapper = form.parentElement;
-    const success = wrapper?.querySelector(
-      "[data-form-success]",
-    ) as HTMLElement | null;
-    const error = form.querySelector("[data-form-error]") as HTMLElement | null;
-    const button = form.querySelector(
-      "button[type=submit]",
-    ) as HTMLButtonElement | null;
-    const spinner = form.querySelector(
-      "[data-form-spinner]",
-    ) as HTMLElement | null;
-    const label = form.querySelector(
-      "[data-form-send-label]",
-    ) as HTMLElement | null;
-    const sendText = form.getAttribute("data-send") || "Enviar";
-    const sendingText = form.getAttribute("data-sending") || "Enviando...";
+  function initContactForms() {
+    document.querySelectorAll("[data-contact-form]").forEach((node) => {
+      const form = node as HTMLFormElement;
+      if (form.dataset.bound) return;
+      form.dataset.bound = "true";
+      const key = form.getAttribute("data-key") || "";
+      const wrapper = form.parentElement;
+      const success = wrapper?.querySelector(
+        "[data-form-success]",
+      ) as HTMLElement | null;
+      const error = form.querySelector("[data-form-error]") as HTMLElement | null;
+      const button = form.querySelector(
+        "button[type=submit]",
+      ) as HTMLButtonElement | null;
+      const spinner = form.querySelector(
+        "[data-form-spinner]",
+      ) as HTMLElement | null;
+      const label = form.querySelector(
+        "[data-form-send-label]",
+      ) as HTMLElement | null;
+      const sendText = form.getAttribute("data-send") || "Enviar";
+      const sendingText = form.getAttribute("data-sending") || "Enviando...";
 
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      if (!key) return;
-      if (error) {
-        error.classList.add("hidden");
-        error.style.display = "";
-      }
-      if (button) button.disabled = true;
-      spinner?.classList.remove("hidden");
-      if (label) label.textContent = sendingText;
-
-      try {
-        const data = new FormData(form);
-        const res = await fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            access_key: key,
-            name: data.get("name"),
-            email: data.get("email"),
-            message: data.get("message"),
-          }),
-        });
-        if (!res.ok) throw new Error("submit failed");
-        form.classList.add("hidden");
-        success?.classList.remove("hidden");
-      } catch {
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (!key) return;
         if (error) {
-          error.classList.remove("hidden");
-          error.style.display = "flex";
+          error.classList.add("hidden");
+          error.style.display = "";
         }
-        if (button) button.disabled = false;
-        spinner?.classList.add("hidden");
-        if (label) label.textContent = sendText;
-      }
+        if (button) button.disabled = true;
+        spinner?.classList.remove("hidden");
+        if (label) label.textContent = sendingText;
+
+        try {
+          const data = new FormData(form);
+          const res = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              access_key: key,
+              name: data.get("name"),
+              email: data.get("email"),
+              message: data.get("message"),
+            }),
+          });
+          if (!res.ok) throw new Error("submit failed");
+          form.classList.add("hidden");
+          success?.classList.remove("hidden");
+        } catch {
+          if (error) {
+            error.classList.remove("hidden");
+            error.style.display = "flex";
+          }
+          if (button) button.disabled = false;
+          spinner?.classList.add("hidden");
+          if (label) label.textContent = sendText;
+        }
+      });
     });
-  });
+  }
+
+  document.addEventListener("astro:page-load", initContactForms);
+  initContactForms();
 </script>

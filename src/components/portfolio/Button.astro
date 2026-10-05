@@ -2,6 +2,9 @@
 interface Props {
   variant?: "primary" | "secondary";
   href?: string;
+  target?: string;
+  rel?: string;
+  id?: string;
   label?: string;
   header?: boolean;
   class?: string;
@@ -10,6 +13,9 @@ interface Props {
 const {
   variant = "primary",
   href,
+  target,
+  rel,
+  id,
   label = "",
   header = false,
   class: className = "",
@@ -17,15 +23,22 @@ const {
 
 const isPrimary = variant === "primary";
 const base =
-  "flex justify-center items-center gap-2 text-sm cursor-pointer transition-colors duration-300 ease-in-out";
+  "inline-flex items-center justify-center gap-2 rounded-md text-sm transition-all duration-300 ease-in-out";
 const styles = isPrimary
-  ? "px-3 py-2 text-white dark:text-background bg-primary hover:bg-accent rounded"
-  : "px-1 sm:px-3 py-2 text-primary hover:text-accent";
+  ? "px-5 py-2.5 font-semibold text-white bg-primary shadow-lg shadow-primary/25 hover:bg-accent hover:shadow-primary/40 hover:-translate-y-0.5"
+  : "px-5 py-2.5 font-medium border border-border text-foreground/80 hover:border-primary hover:text-primary";
 
 const Tag = href ? "a" : "button";
 ---
 
-<Tag href={href} class={`${base} ${styles} ${className}`}>
+<Tag
+  href={href}
+  target={target}
+  rel={rel}
+  id={id}
+  type={Tag === "button" ? "button" : undefined}
+  class={`${base} ${styles} ${className}`}
+>
   <slot name="icon" />
   {label && <span class={header ? "hidden lg:block" : ""}>{label}</span>}
 </Tag>

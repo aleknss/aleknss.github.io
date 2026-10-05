@@ -110,6 +110,13 @@ const es = {
   "project.notFound": "Proyecto no encontrado",
   "project.backHome": "Volver al inicio",
   "project.visit": "Visitar proyecto",
+  "services.title": "Servicios",
+  "services.hero": "Diseño y desarrollo web a medida.",
+  "services.cta": "Ver servicios",
+  "services.soon.title": "Próximamente",
+  "services.soon.text":
+    "Estoy preparando una sección de servicios. Vuelve pronto.",
+  "services.soon.back": "Volver al inicio",
   "theme.switch": "Cambiar tema",
   "lang.switch": "Switch to English",
 } as const;
@@ -152,6 +159,13 @@ const en = {
   "project.notFound": "Project not found",
   "project.backHome": "Back to home",
   "project.visit": "Visit project",
+  "services.title": "Services",
+  "services.hero": "Custom web design and development.",
+  "services.cta": "View services",
+  "services.soon.title": "Coming soon",
+  "services.soon.text":
+    "I'm preparing a services section. Check back soon.",
+  "services.soon.back": "Back to home",
   "theme.switch": "Toggle theme",
   "lang.switch": "Cambiar a español",
 } as const;

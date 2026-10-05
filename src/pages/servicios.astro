@@ -1,0 +1,53 @@
+---
+import Base from "../layouts/Base.astro";
+import Shell from "../components/portfolio/Shell.astro";
+import Button from "../components/portfolio/Button.astro";
+import { t } from "../i18n";
+
+const locale = Astro.currentLocale ?? "es";
+const m = t(locale);
+const home = locale === "en" ? "/en/" : "/";
+---
+
+<Base path="/servicios/" locale={locale} title={m["services.title"]}>
+  <Shell locale={locale} slideTransition>
+    <div
+      class="flex min-h-[calc(100vh_-_4rem)] items-center justify-center px-6"
+    >
+      <div class="text-center">
+        <span
+          class="inline-flex items-center gap-2 rounded-full bg-primary-muted px-3 py-1 text-sm font-medium text-primary"
+        >
+          {m["services.title"]}
+        </span>
+        <h1
+          class="mt-6 font-serif text-5xl font-semibold text-secondary sm:text-6xl"
+        >
+          {m["services.soon.title"]}
+        </h1>
+        <p class="mt-4 max-w-md mx-auto text-foreground/70">
+          {m["services.soon.text"]}
+        </p>
+        <Button
+          id="services-back"
+          href={home}
+          label={m["services.soon.back"]}
+          class="mt-8"
+        />
+      </div>
+    </div>
+  </Shell>
+</Base>
+
+<script>
+  const back = document.getElementById("services-back");
+  back?.addEventListener("click", (event) => {
+    if (
+      document.referrer &&
+      document.referrer.startsWith(window.location.origin)
+    ) {
+      event.preventDefault();
+      history.back();
+    }
+  });
+</script>

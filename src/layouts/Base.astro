@@ -1,5 +1,6 @@
 ---
 import "../index.css";
+import { ClientRouter } from "astro:transitions";
 import { otherLocalePath } from "../i18n";
 
 interface Props {
@@ -58,9 +59,10 @@ const personSchema = {
 };
 ---
 <!doctype html>
-<html lang={locale} dir="ltr">
+<html lang={locale} dir="ltr" transition:name="root" transition:animate="none">
   <head>
     <meta charset="UTF-8" />
+    <ClientRouter />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#ffffff" />
@@ -88,14 +90,16 @@ const personSchema = {
     <title>{title}</title>
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
     <script is:inline>
-      (function () {
+      function applyTheme() {
         var saved = localStorage.getItem('theme');
         var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         var dark = saved ? saved === 'dark' : prefersDark;
         document.documentElement.classList.toggle('dark', dark);
         var meta = document.querySelector('meta[name="theme-color"]');
         if (meta) meta.setAttribute('content', dark ? '#0e100d' : '#ffffff');
-      })();
+      }
+      applyTheme();
+      document.addEventListener('astro:after-swap', applyTheme);
     </script>
   </head>
   <body>
