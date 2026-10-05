@@ -13,7 +13,7 @@ const href = otherLocalePath(locale, Astro.url.pathname);
 <a
   href={href}
   aria-label={m["lang.switch"]}
-  class="text-xl p-3 rounded bg-primary text-white dark:text-background fixed bottom-24 right-4 sm:right-6 md:right-12 hover:bg-accent transition-colors duration-300 ease-in-out flex items-center justify-center z-50 overflow-hidden"
+  class="grid h-10 w-10 place-items-center rounded-md text-foreground/70 transition-colors hover:bg-primary-muted hover:text-primary"
 >
   {
     locale === "es" ? (

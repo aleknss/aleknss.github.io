@@ -1,0 +1,213 @@
+---
+import ThemeSwitch from "./ThemeSwitch.astro";
+import LanguageSwitch from "./LanguageSwitch.astro";
+import { t } from "../../i18n";
+import type { MessageKey } from "../../i18n";
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = "es" } = Astro.props;
+const m = t(locale);
+const home = locale === "en" ? "/en/" : "/";
+
+const SECTIONS: { id: string; key: MessageKey }[] = [
+  { id: "bio", key: "nav.bio" },
+  { id: "experience", key: "nav.experience" },
+  { id: "projects", key: "nav.projects" },
+  { id: "attendee", key: "nav.attendee" },
+  { id: "education", key: "nav.education" },
+  { id: "skills", key: "nav.skills" },
+  { id: "contact", key: "nav.contact" },
+];
+---
+
+<header
+  class="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl"
+>
+  <div
+    class="mx-auto flex h-16 max-w-[1440px] items-center justify-between gap-4 px-4 sm:px-8"
+  >
+    <a href={home} class="group flex items-center gap-3">
+      <span
+        class="grid h-9 w-9 place-items-center rounded-lg bg-primary font-serif text-lg font-bold text-white transition-colors group-hover:bg-accent"
+        aria-hidden="true">AS</span
+      >
+      <span
+        class="hidden font-serif text-xl font-semibold text-secondary sm:inline"
+        >Alek Suso</span
+      >
+    </a>
+
+    <nav
+      aria-label={m["nav.aria"]}
+      class="hidden items-center gap-1 lg:flex"
+    >
+      {
+        SECTIONS.map(({ id, key }) => (
+          <a
+            href={`#${id}`}
+            data-section={id}
+            class="nav-link rounded-md px-3 py-2 text-sm font-medium text-foreground/70 transition-colors hover:bg-primary-muted hover:text-primary"
+          >
+            {m[key]}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-1">
+      <LanguageSwitch locale={locale} />
+      <ThemeSwitch locale={locale} />
+      <button
+        id="menu-toggle"
+        type="button"
+        aria-label={m["nav.aria"]}
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        class="grid h-10 w-10 place-items-center rounded-md text-foreground/70 transition-colors hover:bg-primary-muted hover:text-primary lg:hidden"
+      >
+        <svg
+          class="menu-open h-5 w-5"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg
+          class="menu-close hidden h-5 w-5"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <path d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden border-t border-border lg:hidden">
+    <nav
+      aria-label={m["nav.aria"]}
+      class="mx-auto flex max-w-[1440px] flex-col px-4 py-3 sm:px-8"
+    >
+      {
+        SECTIONS.map(({ id, key }) => (
+          <a
+            href={`#${id}`}
+            data-section={id}
+            data-mobile
+            class="nav-link rounded-md px-3 py-2.5 text-sm font-medium text-foreground/70 transition-colors hover:bg-primary-muted hover:text-primary"
+          >
+            {m[key]}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav-link.is-active {
+    color: var(--primary);
+  }
+  .nav-link.is-active::after {
+    content: "";
+    display: block;
+    height: 2px;
+    margin-top: 2px;
+    border-radius: 2px;
+    background: var(--accent);
+  }
+  #mobile-menu .nav-link.is-active::after {
+    display: none;
+  }
+</style>
+
+<script>
+  const SECTION_IDS = [
+    "bio",
+    "experience",
+    "projects",
+    "attendee",
+    "education",
+    "skills",
+    "contact",
+  ];
+
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  const openIcon = toggle?.querySelector(".menu-open");
+  const closeIcon = toggle?.querySelector(".menu-close");
+
+  function setMenu(open: boolean) {
+    if (!menu || !toggle) return;
+    menu.classList.toggle("hidden", !open);
+    toggle.setAttribute("aria-expanded", String(open));
+    openIcon?.classList.toggle("hidden", open);
+    closeIcon?.classList.toggle("hidden", !open);
+  }
+
+  toggle?.addEventListener("click", () => {
+    setMenu(menu?.classList.contains("hidden") ?? false);
+  });
+
+  menu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setMenu(false));
+  });
+
+  const links = new Map<string, Element[]>();
+  document.querySelectorAll("a[data-section]").forEach((a) => {
+    const id = (a as HTMLElement).dataset.section;
+    if (!id) return;
+    const list = links.get(id) ?? [];
+    list.push(a);
+    links.set(id, list);
+  });
+
+  if (links.size > 0) {
+    const ratios = new Map<string, number>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          ratios.set(entry.target.id, entry.intersectionRatio);
+        }
+        let maxId = "";
+        let maxRatio = 0;
+        for (const id of SECTION_IDS) {
+          const ratio = ratios.get(id) ?? 0;
+          if (ratio > maxRatio) {
+            maxRatio = ratio;
+            maxId = id;
+          }
+        }
+        if (maxId) {
+          links.forEach((els, id) =>
+            els.forEach((el) =>
+              el.classList.toggle("is-active", id === maxId),
+            ),
+          );
+        }
+      },
+      {
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+        rootMargin: "-10% 0px -70% 0px",
+      },
+    );
+
+    for (const id of SECTION_IDS) {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    }
+  }
+</script>

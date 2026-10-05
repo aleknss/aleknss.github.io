@@ -6,24 +6,24 @@
 
 :root {
   --background: #ffffff;
-  --bg-gradient: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
-  --foreground: #171717;
-  --primary: #4d7c0f; 
-  --primary-muted: #f7fee7; 
-  --secondary: #365314; 
+  --bg-gradient: linear-gradient(180deg, #ffffff 0%, #f7f9f4 100%);
+  --foreground: #1c211a;
+  --primary: #4d7c0f;
+  --primary-muted: #f2f7e8;
+  --secondary: #2f4a0f;
   --accent: #65a30d;
-  --border: #4d7c0f; 
+  --border: #e6ebe0;
 }
 
 .dark {
-  --background: #09090b; 
-  --bg-gradient: radial-gradient(ellipse at top, #18181b 0%, #09090b 100%);
-  --foreground: #fafafa; 
-  --primary: #84cc16; 
-  --primary-muted: #18181b; 
-  --secondary: #bef264; 
-  --accent: #a3e635; 
-  --border: #27272a; 
+  --background: #0e100d;
+  --bg-gradient: radial-gradient(ellipse 120% 80% at 50% 0%, #171a15 0%, #0e100d 65%);
+  --foreground: #e7e7e2;
+  --primary: #7cae4f;
+  --primary-muted: #161a14;
+  --secondary: #f5f4ee;
+  --accent: #8bc05a;
+  --border: #242822;
 }
 
 @theme {
@@ -43,12 +43,18 @@ html {
   scroll-behavior: smooth;
 }
 
+[id] {
+  scroll-margin-top: 5.5rem;
+}
+
 body {
   background: var(--bg-gradient);
   background-attachment: fixed;
   color: var(--foreground);
   min-height: 100vh;
-  transition: color 0.3s;
+  transition:
+    color 0.3s,
+    background-color 0.3s;
 }
 
 :focus-visible {
