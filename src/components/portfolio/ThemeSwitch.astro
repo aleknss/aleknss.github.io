@@ -21,15 +21,17 @@ const m = t(locale);
 </button>
 
 <script>
-  const btn = document.getElementById("theme-toggle");
-  btn?.addEventListener("click", () => {
-    const root = document.documentElement;
-    const dark = !root.classList.contains("dark");
-    root.classList.toggle("dark", dark);
-    try {
-      localStorage.setItem("theme", dark ? "dark" : "light");
-    } catch {}
-    const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", dark ? "#0e100d" : "#ffffff");
+  document.addEventListener("astro:page-load", () => {
+    const btn = document.getElementById("theme-toggle");
+    btn?.addEventListener("click", () => {
+      const root = document.documentElement;
+      const dark = !root.classList.contains("dark");
+      root.classList.toggle("dark", dark);
+      try {
+        localStorage.setItem("theme", dark ? "dark" : "light");
+      } catch {}
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute("content", dark ? "#0e100d" : "#ffffff");
+    });
   });
 </script>

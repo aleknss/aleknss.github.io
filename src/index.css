@@ -2,8 +2,6 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@source inline("hover:border-[#8D6E63] hover:border-[#5c7eb5] hover:border-[#3b82f6] hover:border-[#22c55e] hover:bg-[#8D6E63] hover:bg-[#5c7eb5] hover:bg-[#334155] hover:bg-[#16a34a]");
-
 :root {
   --background: #ffffff;
   --bg-gradient: linear-gradient(180deg, #ffffff 0%, #f7f9f4 100%);

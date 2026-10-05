@@ -10,10 +10,8 @@ const home = locale === "en" ? "/en/" : "/";
 ---
 
 <Base path="/servicios/" locale={locale} title={m["services.title"]}>
-  <Shell locale={locale} slideTransition>
-    <div
-      class="flex min-h-[calc(100vh_-_4rem)] items-center justify-center px-6"
-    >
+  <Shell locale={locale} slideTransition hideHeader>
+    <div class="flex min-h-screen items-center justify-center px-6">
       <div class="text-center">
         <span
           class="inline-flex items-center gap-2 rounded-full bg-primary-muted px-3 py-1 text-sm font-medium text-primary"
@@ -40,14 +38,16 @@ const home = locale === "en" ? "/en/" : "/";
 </Base>
 
 <script>
-  const back = document.getElementById("services-back");
-  back?.addEventListener("click", (event) => {
-    if (
-      document.referrer &&
-      document.referrer.startsWith(window.location.origin)
-    ) {
-      event.preventDefault();
-      history.back();
-    }
+  document.addEventListener("astro:page-load", () => {
+    const back = document.getElementById("services-back");
+    back?.addEventListener("click", (event) => {
+      if (
+        document.referrer &&
+        document.referrer.startsWith(window.location.origin)
+      ) {
+        event.preventDefault();
+        history.back();
+      }
+    });
   });
 </script>

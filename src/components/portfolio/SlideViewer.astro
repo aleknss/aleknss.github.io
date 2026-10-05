@@ -7,17 +7,12 @@ interface Props {
   class?: string;
 }
 
-const {
-  images,
-  name,
-  class: className = "w-full md:w-1/2",
-} = Astro.props;
-const total = images.length;
+const { images, name, class: className = "w-full" } = Astro.props;
 ---
 
 <div
   data-slide-viewer
-  class={`relative overflow-hidden rounded bg-neutral-900 aspect-video ${className}`}
+  class={`group/slides relative aspect-video overflow-hidden ${className}`}
 >
   {
     images.map((src, i) => (
@@ -26,7 +21,9 @@ const total = images.length;
         alt={`${name} — diapositiva ${i + 1}`}
         loading={i === 0 ? "eager" : "lazy"}
         data-slide
-        class={`absolute inset-0 w-full h-full object-cover ${i === 0 ? "" : "hidden"}`}
+        class={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${
+          i === 0 ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
       />
     ))
   }
@@ -35,7 +32,7 @@ const total = images.length;
     type="button"
     data-slide-prev
     aria-label="Diapositiva anterior"
-    class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 disabled:opacity-30 disabled:hover:bg-black/50 text-white rounded-full w-9 h-9 flex items-center justify-center transition-colors z-10"
+    class="absolute left-2 top-1/2 z-20 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white opacity-0 transition-opacity hover:bg-black/75 disabled:opacity-0 group-hover/slides:opacity-100"
   >
     <Icon name="FaChevronLeft" size={14} />
   </button>
@@ -43,50 +40,82 @@ const total = images.length;
     type="button"
     data-slide-next
     aria-label="Diapositiva siguiente"
-    class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 disabled:opacity-30 disabled:hover:bg-black/50 text-white rounded-full w-9 h-9 flex items-center justify-center transition-colors z-10"
+    class="absolute right-2 top-1/2 z-20 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white opacity-0 transition-opacity hover:bg-black/75 disabled:opacity-0 group-hover/slides:opacity-100"
   >
     <Icon name="FaChevronRight" size={14} />
   </button>
 
-  <span
-    data-slide-counter
-    class="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded-full z-10 tabular-nums"
+  <div
+    data-slide-dots
+    class="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 items-center gap-1.5"
   >
-    1 / {total}
-  </span>
+    {
+      images.map((_, i) => (
+        <button
+          type="button"
+          data-slide-dot
+          aria-label={`Ir a la diapositiva ${i + 1}`}
+          class={`h-2 rounded-full transition-all duration-300 ${
+            i === 0 ? "w-5 bg-white" : "w-2 bg-white/50 hover:bg-white/80"
+          }`}
+        />
+      ))
+    }
+  </div>
 </div>
 
 <script>
-  document.querySelectorAll("[data-slide-viewer]").forEach((viewer) => {
-    const slides = Array.from(
-      viewer.querySelectorAll("[data-slide]"),
-    ) as HTMLElement[];
-    const prev = viewer.querySelector(
-      "[data-slide-prev]",
-    ) as HTMLButtonElement | null;
-    const next = viewer.querySelector(
-      "[data-slide-next]",
-    ) as HTMLButtonElement | null;
-    const counter = viewer.querySelector("[data-slide-counter]");
-    const total = slides.length;
-    let index = 0;
+  function initSlideViewers() {
+    document.querySelectorAll("[data-slide-viewer]").forEach((viewer) => {
+      if ((viewer as HTMLElement).dataset.slideBound) return;
+      (viewer as HTMLElement).dataset.slideBound = "true";
 
-    const render = () => {
-      slides.forEach((slide, i) => slide.classList.toggle("hidden", i !== index));
-      if (prev) prev.disabled = index === 0;
-      if (next) next.disabled = index === total - 1;
-      if (counter) counter.textContent = `${index + 1} / ${total}`;
-    };
+      const slides = Array.from(
+        viewer.querySelectorAll("[data-slide]"),
+      ) as HTMLElement[];
+      const dots = Array.from(
+        viewer.querySelectorAll("[data-slide-dot]"),
+      ) as HTMLElement[];
+      const prev = viewer.querySelector(
+        "[data-slide-prev]",
+      ) as HTMLButtonElement | null;
+      const next = viewer.querySelector(
+        "[data-slide-next]",
+      ) as HTMLButtonElement | null;
+      const total = slides.length;
+      let index = 0;
 
-    prev?.addEventListener("click", () => {
-      index = Math.max(index - 1, 0);
+      const render = () => {
+        slides.forEach((slide, i) => {
+          const active = i === index;
+          slide.classList.toggle("opacity-100", active);
+          slide.classList.toggle("opacity-0", !active);
+          slide.classList.toggle("pointer-events-none", !active);
+        });
+        dots.forEach((dot, i) => {
+          const active = i === index;
+          dot.classList.toggle("w-5", active);
+          dot.classList.toggle("w-2", !active);
+          dot.classList.toggle("bg-white", active);
+          dot.classList.toggle("bg-white/50", !active);
+        });
+        if (prev) prev.disabled = index === 0;
+        if (next) next.disabled = index === total - 1;
+      };
+
+      const go = (i: number) => {
+        index = Math.max(0, Math.min(i, total - 1));
+        render();
+      };
+
+      prev?.addEventListener("click", () => go(index - 1));
+      next?.addEventListener("click", () => go(index + 1));
+      dots.forEach((dot, i) => dot.addEventListener("click", () => go(i)));
+
       render();
     });
-    next?.addEventListener("click", () => {
-      index = Math.min(index + 1, total - 1);
-      render();
-    });
+  }
 
-    render();
-  });
+  document.addEventListener("astro:page-load", initSlideViewers);
+  initSlideViewers();
 </script>

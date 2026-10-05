@@ -71,7 +71,7 @@ portfolio/
 │   ├── i18n/               # Microcopy UI (labels ES/EN)
 │   ├── layouts/            # Base.astro (SEO, tema, fuentes)
 │   ├── lib/                # Tipos + helpers de acceso a contenido
-│   └── pages/              # Rutas: index, en/index, projects/[slug], servicios, 404
+│   └── pages/              # Rutas: index, en/index, servicios, 404
 ├── astro.config.mjs        # Configuración de Astro
 ├── tsconfig.json
 └── package.json

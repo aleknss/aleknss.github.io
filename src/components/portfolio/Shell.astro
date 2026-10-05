@@ -4,15 +4,20 @@ import TopNav from "./TopNav.astro";
 interface Props {
   locale?: string;
   slideTransition?: boolean;
+  hideHeader?: boolean;
 }
 
-const { locale = "es", slideTransition = false } = Astro.props;
+const {
+  locale = "es",
+  slideTransition = false,
+  hideHeader = false,
+} = Astro.props;
 ---
 
-<TopNav locale={locale} />
+{!hideHeader && <TopNav locale={locale} />}
 <main
   id="main-content"
-  class="pt-16"
+  class={hideHeader ? "" : "pt-16"}
   transition:name="content"
   transition:animate={slideTransition ? "slide" : "none"}
 >
