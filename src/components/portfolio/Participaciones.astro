@@ -36,10 +36,10 @@ const logoByClave: Record<string, string> = {
         <Icon name="FaPeopleCarry" size={24} />
         {m["nav.attendee"]}
       </Title>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {
           participacionData.map((participation) => (
-            <Card class="flex flex-col gap-6 px-4">
+            <Card class="flex flex-col gap-6 p-5">
               <div class="flex flex-col justify-start items-center gap-4">
                 <img
                   src={logoByClave[participation.clave] || HACKLogo.src}

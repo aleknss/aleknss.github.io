@@ -7,7 +7,7 @@
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=222222)
 
-Mi sitio web personal, 100% **Astro** (estático, sin React) + TailwindCSS. Hero tipográfico, navegación superior y secciones de proyectos, experiencia, habilidades y contacto, además de una página de servicios. Incluye modo oscuro, i18n (ES/EN), carrusel de diapositivas, transiciones de página y formulario de contacto.
+Mi sitio web personal, 100% **Astro** (estático) + TailwindCSS. Hero tipográfico, navegación superior y secciones de proyectos, experiencia, habilidades y contacto, además de una página de servicios. Incluye modo oscuro, i18n (ES/EN), carrusel de diapositivas, transiciones de página y formulario de contacto. Contenido editable con **Keystatic** (solo en local).
 
 **Live**: https://alek.is-a.dev/
 
@@ -26,7 +26,8 @@ Mi sitio web personal, 100% **Astro** (estático, sin React) + TailwindCSS. Hero
 - **Tailwind CSS v4** (tokens en `src/index.css`)
 - **TypeScript** estricto, validado con `astro check`
 - **Content Collections** + schemas Zod
-- Interactividad **vanilla JS** (sin frameworks de UI)
+- **Keystatic** (CMS en local, solo en dev)
+- Interactividad **vanilla JS** en el sitio (React solo para el panel de Keystatic)
 
 ## Características
 
@@ -40,7 +41,8 @@ Mi sitio web personal, 100% **Astro** (estático, sin React) + TailwindCSS. Hero
 - 🖼️ **Carrusel** de diapositivas vanilla.
 - ✉️ **Formulario** de contacto vía Web3Forms (`PUBLIC_WEB3FORMS_KEY`).
 - 🔍 **SEO**: meta dinámicas, Open Graph y JSON-LD.
-- 📦 **Contenido** en Markdown/YAML, validado por Zod en build.
+- 📦 **Contenido** en YAML, validado por Zod en build.
+- ✏️ **Keystatic**: CMS local (`/keystatic`) para editar el contenido.
 
 ## Instalación
 
@@ -65,34 +67,41 @@ portfolio/
 │   ├── components/
 │   │   └── portfolio/      # Componentes .astro (secciones + UI)
 │   ├── content/            # Contenido (Content Collections)
-│   │   ├── projects/       #   {es,en}/<slug>.md  (1 archivo por proyecto)
-│   │   ├── site/           #   {es,en}.yml  (bio, contactos, educación, experiencia)
-│   │   └── skills/         #   skills.yml
+│   │   ├── projects/       #   {es,en}/<slug>.yaml  (1 archivo por proyecto)
+│   │   ├── site/           #   {es,en}.yaml  (bio, contactos, educación, experiencia)
+│   │   └── skills/         #   skills.yaml
 │   ├── i18n/               # Microcopy UI (labels ES/EN)
 │   ├── layouts/            # Base.astro (SEO, tema, fuentes)
 │   ├── lib/                # Tipos + helpers de acceso a contenido
 │   └── pages/              # Rutas: index, en/index, servicios, 404
 ├── astro.config.mjs        # Configuración de Astro
+├── keystatic.config.ts     # Esquema del CMS (Keystatic)
 ├── tsconfig.json
 └── package.json
 ```
 
 ## Contenido
 
-Todo el contenido editable vive en `src/content/` como **Markdown/YAML** (nunca TS):
+Todo el contenido editable vive en `src/content/` como **YAML** (nunca TS):
 
-- **Proyectos** → `src/content/projects/{es,en}/<slug>.md`. Frontmatter validado por schema Zod (`name`, `link`, `logo`, `skills`, `locale`, `order`, `description`).
-- **Site** → `src/content/site/{es,en}.yml` (nombre, bio, contactos, educación, experiencia, participaciones).
-- **Skills** → `src/content/skills/skills.yml` (languages / frameworks / tools).
+- **Proyectos** → `src/content/projects/{es,en}/<slug>.yaml` (`name`, `link`, `logo`, `skills`, `locale`, `order`, `description`).
+- **Site** → `src/content/site/{es,en}.yaml` (nombre, bio, contactos, educación, experiencia, participaciones).
+- **Skills** → `src/content/skills/skills.yaml` (languages / frameworks / tools).
+
+Validado por Zod (`src/content.config.ts`) en build.
+
+### CMS (Keystatic, solo local)
+
+Con `npm run dev`, abre http://localhost:4321/keystatic para editar el contenido desde una UI. Escribe a los `.yaml`. Funciona **solo en local** (sin login); en producción las rutas del panel no se generan (`SKIP_KEYSTATIC=true` en el build). El esquema está en `keystatic.config.ts`.
 
 El hosting está en **GitHub Pages**: cada commit a `main` dispara `.github/workflows/deploy.yml`.
 
 ## Scripts
 
 ```bash
-npm run dev       # servidor de desarrollo
-npm run build     # build estático → dist/
+npm run dev       # servidor de desarrollo (+ Keystatic en /keystatic)
+npm run build     # build estático → dist/ (sin Keystatic)
 npm run preview   # previsualizar el build
+npm run check     # type-check (TS + .astro)
 npm run lint      # ESLint
-npx astro check   # type-check (TS + .astro)
 ```

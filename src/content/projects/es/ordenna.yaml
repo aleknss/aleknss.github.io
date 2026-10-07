@@ -1,4 +1,3 @@
----
 name: "Ordenna: Sistema de Gestión de Inventarios con Visión Artificial (TFG)"
 link: "https://github.com/aleknss/TFG"
 logo: "ordenna"
@@ -9,4 +8,3 @@ skills:
 locale: "es"
 order: 2
 description: "Ordenna es un sistema de gestión de inventarios automático, accesible y de bajo coste, desarrollado como Trabajo de Fin de Grado. Utiliza una ESP32-CAM que toma fotos cenitales periódicas de estanterías donde los artículos están marcados con pegatinas de colores (🔴🟡🔵). Una aplicación en FastAPI (Python) con OpenCV analiza cada imagen para detectar, contar y clasificar los productos, almacenando los resultados de forma estructurada en una base de datos. La información se muestra en una web con gráficos y acceso por usuarios para clientes. Está pensado para adaptarse desde almacenes de empresa hasta una despensa doméstica."
----

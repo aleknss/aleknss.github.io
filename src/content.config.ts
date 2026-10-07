@@ -15,10 +15,10 @@ const educationEntry = z.object({
 });
 
 const projects = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/projects" }),
+  loader: glob({ pattern: "**/*.yaml", base: "./src/content/projects" }),
   schema: z.object({
     name: z.string(),
-    link: z.url().optional(),
+    link: z.string().nullish(),
     logo: z.string(),
     skills: z.array(z.string()),
     locale: z.enum(["es", "en"]),
@@ -28,7 +28,7 @@ const projects = defineCollection({
 });
 
 const site = defineCollection({
-  loader: glob({ pattern: "**/*.yml", base: "./src/content/site" }),
+  loader: glob({ pattern: "**/*.yaml", base: "./src/content/site" }),
   schema: z.object({
     name: z.string(),
     bio: z.string(),
@@ -41,8 +41,8 @@ const site = defineCollection({
       location: z.string(),
     }),
     education: z.object({
-      bach: educationEntry.optional(),
-      fp: educationEntry.optional(),
+      bach: educationEntry.nullish(),
+      fp: educationEntry.nullish(),
     }),
     experience: z.array(
       z.object({
@@ -65,7 +65,7 @@ const site = defineCollection({
 });
 
 const skills = defineCollection({
-  loader: glob({ pattern: "**/*.yml", base: "./src/content/skills" }),
+  loader: glob({ pattern: "**/*.yaml", base: "./src/content/skills" }),
   schema: z.object({
     languages: z.array(skill),
     frameworks: z.array(skill),

@@ -6,20 +6,27 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "cross-env SKIP_KEYSTATIC=true astro build",
     "preview": "astro preview",
+    "check": "cross-env SKIP_KEYSTATIC=true astro check",
     "lint": "eslint ."
   },
   "dependencies": {
+    "@astrojs/react": "^7.0.1",
     "@astrojs/sitemap": "^3.7.4",
+    "@keystatic/astro": "^6.0.0",
+    "@keystatic/core": "^0.6.9",
     "@tailwindcss/vite": "^4.1.13",
     "dayjs": "^1.11.18",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "tailwindcss": "^4.1.13"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@eslint/js": "^9.33.0",
     "astro": "^7.3.5",
+    "cross-env": "^10.1.0",
     "eslint": "^9.33.0",
     "gh-pages": "^6.3.0",
     "globals": "^16.3.0",

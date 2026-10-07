@@ -37,10 +37,10 @@ const fmt = (value: string) =>
         <Icon name="FaGraduationCap" size={24} />
         {m["nav.education"]}
       </Title>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {
           entries.map(({ image, data, fallback }) => (
-            <Card class="flex flex-col gap-4 py-8 px-6">
+            <Card class="flex flex-col gap-4 p-6">
               <img
                 src={image}
                 alt={data?.grado || fallback}

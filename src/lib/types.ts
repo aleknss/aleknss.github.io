@@ -1,6 +1,6 @@
 export interface ProjectData {
   name: string;
-  link?: string;
+  link?: string | null;
   logo: string;
   skills: string[];
   locale: "es" | "en";
@@ -53,8 +53,8 @@ export interface SiteData {
     location: string;
   };
   education: {
-    bach?: EducationEntry;
-    fp?: EducationEntry;
+    bach?: EducationEntry | null;
+    fp?: EducationEntry | null;
   };
   experience: ExperienceItem[];
   participaciones: ParticipacionItem[];
