@@ -54,6 +54,134 @@ function projectCollection(label: string, locale: 'es' | 'en') {
   });
 }
 
+const monthlySchema = {
+  from: fields.number({
+    label: 'Cuota desde (€/mes)',
+    validation: { isRequired: false },
+  }),
+  to: fields.number({
+    label: 'Cuota hasta (€/mes)',
+    validation: { isRequired: false },
+  }),
+  note: fields.text({
+    label: 'Nota de la cuota',
+    validation: { isRequired: false },
+  }),
+  includes: fields.array(fields.text({ label: 'Incluye' }), {
+    label: 'Qué cubre la cuota',
+    itemLabel: (props) => props.value,
+  }),
+};
+
+function serviceCollection(label: string, locale: 'es' | 'en') {
+  return collection({
+    label,
+    path: `src/content/services/${locale}/*`,
+    slugField: 'title',
+    format: { data: 'yaml' },
+    schema: {
+      title: fields.slug({ name: { label: 'Título' } }),
+      tagline: fields.text({ label: 'Frase corta' }),
+      description: fields.text({ label: 'Descripción', multiline: true }),
+      bullets: fields.array(fields.text({ label: 'Punto' }), {
+        label: 'Puntos clave',
+        itemLabel: (props) => props.value,
+      }),
+      icon: fields.text({ label: 'Icono' }),
+      stack: fields.array(fields.text({ label: 'Tecnología' }), {
+        label: 'Stack',
+        itemLabel: (props) => props.value,
+      }),
+      priceNote: fields.text({
+        label: 'Texto del precio (desde / a consultar)',
+        validation: { isRequired: false },
+      }),
+      priceFrom: fields.number({
+        label: 'Precio desde (€)',
+        validation: { isRequired: false },
+      }),
+      priceTo: fields.number({
+        label: 'Precio hasta (€)',
+        validation: { isRequired: false },
+      }),
+      hourlyRate: fields.number({
+        label: 'Tarifa por hora (€)',
+        validation: { isRequired: false },
+      }),
+      tiers: fields.array(
+        fields.object({
+          name: fields.text({ label: 'Nombre' }),
+          price: fields.text({ label: 'Precio visible' }),
+          description: fields.text({ label: 'Descripción', multiline: true }),
+          includes: fields.array(fields.text({ label: 'Incluye' }), {
+            label: 'Qué incluye',
+            itemLabel: (props) => props.value,
+          }),
+          monthly: fields.object(monthlySchema, { label: 'Cuota mensual' }),
+        }),
+        {
+          label: 'Niveles',
+          itemLabel: (props) => props.fields.name.value || 'Nivel',
+        },
+      ),
+      steps: fields.array(
+        fields.object({
+          title: fields.text({ label: 'Fase' }),
+          description: fields.text({ label: 'Descripción', multiline: true }),
+        }),
+        {
+          label: 'Proceso',
+          itemLabel: (props) => props.fields.title.value || 'Fase',
+        },
+      ),
+      differentials: fields.array(fields.text({ label: 'Diferencial' }), {
+        label: 'Diferenciales',
+        itemLabel: (props) => props.value,
+      }),
+      faq: fields.array(
+        fields.object({
+          question: fields.text({ label: 'Pregunta' }),
+          answer: fields.text({ label: 'Respuesta', multiline: true }),
+        }),
+        {
+          label: 'FAQ',
+          itemLabel: (props) => props.fields.question.value || 'Pregunta',
+        },
+      ),
+      testimonials: fields.array(
+        fields.object({
+          quote: fields.text({ label: 'Testimonio', multiline: true }),
+          author: fields.text({ label: 'Nombre' }),
+          role: fields.text({
+            label: 'Rol o empresa',
+            validation: { isRequired: false },
+          }),
+        }),
+        {
+          label: 'Testimonios',
+          itemLabel: (props) => props.fields.author.value || 'Testimonio',
+        },
+      ),
+      featuredClient: fields.object(
+        {
+          name: fields.text({ label: 'Cliente' }),
+          href: fields.text({ label: 'Enlace al proyecto' }),
+        },
+        { label: 'Proyecto de cliente destacado' },
+      ),
+      locale: fields.select({
+        label: 'Idioma',
+        options: [
+          { label: 'ES', value: 'es' },
+          { label: 'EN', value: 'en' },
+        ],
+        defaultValue: locale,
+      }),
+      order: fields.integer({ label: 'Orden', defaultValue: 0 }),
+    },
+  });
+}
+
 const siteSchema = {
   name: fields.text({ label: 'Nombre' }),
   bio: fields.text({ label: 'Bio', multiline: true }),
@@ -128,6 +256,8 @@ export default config({
   collections: {
     projects_es: projectCollection('Proyectos (ES)', 'es'),
     projects_en: projectCollection('Projects (EN)', 'en'),
+    services_es: serviceCollection('Servicios (ES)', 'es'),
+    services_en: serviceCollection('Services (EN)', 'en'),
   },
   singletons: {
     site_es: singleton({

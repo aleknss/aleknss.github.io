@@ -1,0 +1,141 @@
+---
+import Base from "../../../layouts/Base.astro";
+import Shell from "../Shell.astro";
+import Wrapper from "../Wrapper.astro";
+import SecondaryTitle from "../SecondaryTitle.astro";
+import Button from "../Button.astro";
+import ServicesHeader from "./ServicesHeader.astro";
+import ServiceTierCard from "./ServiceTierCard.astro";
+import ServiceSteps from "./ServiceSteps.astro";
+import ServiceFaq from "./ServiceFaq.astro";
+import { t } from "../../../i18n";
+import { getServices, getSite } from "../../../lib/content";
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = Astro.currentLocale ?? "es" } = Astro.props;
+const m = t(locale);
+const home = locale === "en" ? "/en/" : "/";
+const path = `${home}servicios/`;
+const services = await getServices(locale);
+const service = services[0]!;
+const portfolio = await getSite(locale);
+const email = portfolio?.contacts?.email ?? "";
+const mailto = `mailto:${email}?subject=${encodeURIComponent(service.title)}`;
+---
+
+<Base
+  path={path}
+  locale={locale}
+  title={`${service.title} — ${m["services.company"]}`}
+  description={service.description}
+>
+  <Shell locale={locale} slideTransition hideHeader>
+    <ServicesHeader service={service} locale={locale} />
+
+    <Wrapper class="pb-24">
+      {
+        service.tiers.length > 0 && (
+          <section id="precios" class="pt-4">
+            <SecondaryTitle>{m["services.pricing"]}</SecondaryTitle>
+            <div class="mt-8 grid gap-6 lg:grid-cols-3">
+              {service.tiers.map((tier) => (
+                <ServiceTierCard tier={tier} locale={locale} />
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      {
+        service.steps.length > 0 && (
+          <section id="proceso" class="pt-20">
+            <SecondaryTitle>{m["services.process"]}</SecondaryTitle>
+            <div class="mt-8">
+              <ServiceSteps steps={service.steps} />
+            </div>
+          </section>
+        )
+      }
+
+      {
+        service.differentials.length > 0 && (
+          <section id="diferenciales" class="pt-20">
+            <SecondaryTitle>{m["services.differentials"]}</SecondaryTitle>
+            <ul class="mx-auto mt-8 grid max-w-4xl gap-4 sm:grid-cols-2">
+              {service.differentials.map((item) => (
+                <li class="flex items-start gap-3 rounded-xl bg-primary-muted/50 p-4 text-sm text-foreground/75">
+                  <svg
+                    class="mt-0.5 h-4 w-4 shrink-0 text-primary"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M4 12l5 5L20 6" />
+                  </svg>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      {
+        service.faq.length > 0 && (
+          <section id="faq" class="pt-20">
+            <SecondaryTitle>{m["services.faq"]}</SecondaryTitle>
+            <div class="mx-auto mt-8">
+              <ServiceFaq faq={service.faq} />
+            </div>
+          </section>
+        )
+      }
+
+      <section class="mt-20 border-t border-border pt-12 text-center">
+        <h2 class="font-serif text-3xl font-semibold text-secondary sm:text-4xl">
+          {m["services.start"]}
+        </h2>
+        <p class="mx-auto mt-3 max-w-md text-sm text-foreground/65">
+          {m["services.hero.sub"]}
+        </p>
+        {
+          service.hourlyRate && (
+            <p class="mt-2 text-xs text-foreground/50">
+              {m["services.hourly"]}: {service.hourlyRate} €/h,{" "}
+              {m["services.hourlyNote"]}.
+            </p>
+          )
+        }
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <Button href={mailto} label={m["services.startEmail"]} />
+          <Button
+            variant="secondary"
+            href={`${home}#contact`}
+            label={m["services.startForm"]}
+          />
+        </div>
+      </section>
+
+      {
+        service.featuredClient && (
+          <p class="mt-10 text-center text-sm">
+            <a
+              href={service.featuredClient.href}
+              class="text-primary underline decoration-primary/40 underline-offset-4 transition-colors hover:decoration-primary"
+            >
+              {m["services.featuredClient"]}: {service.featuredClient.name}
+            </a>
+          </p>
+        )
+      }
+    </Wrapper>
+  </Shell>
+</Base>

@@ -14,7 +14,7 @@ const m = t(locale);
 const portfolio = (await getSite(locale))!;
 
 const stack = ["React", "Next.js", "Python", "Astro", "Tailwind"];
-const servicesHref = "/servicios/";
+const servicesHref = locale === "en" ? "/en/servicios/" : "/servicios/";
 const services = [
   {
     title: m["services.item.web"],

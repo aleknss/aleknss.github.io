@@ -59,3 +59,55 @@ export interface SiteData {
   experience: ExperienceItem[];
   participaciones: ParticipacionItem[];
 }
+
+export interface ServiceMonthly {
+  from?: number | null;
+  to?: number | null;
+  note?: string | null;
+  includes: string[];
+}
+
+export interface ServiceTier {
+  name: string;
+  price: string;
+  description: string;
+  includes: string[];
+  monthly?: ServiceMonthly | null;
+}
+
+export interface ServiceStep {
+  title: string;
+  description: string;
+}
+
+export interface ServiceFaq {
+  question: string;
+  answer: string;
+}
+
+export interface ServiceTestimonial {
+  quote: string;
+  author: string;
+  role?: string | null;
+}
+
+export interface ServiceData {
+  title: string;
+  tagline: string;
+  description: string;
+  bullets: string[];
+  icon: string;
+  stack: string[];
+  priceFrom?: number | null;
+  priceTo?: number | null;
+  priceNote?: string | null;
+  hourlyRate?: number | null;
+  tiers: ServiceTier[];
+  steps: ServiceStep[];
+  differentials: string[];
+  faq: ServiceFaq[];
+  testimonials: ServiceTestimonial[];
+  featuredClient?: { name: string; href: string } | null;
+  locale: "es" | "en";
+  order: number;
+}

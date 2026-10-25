@@ -1,0 +1,68 @@
+---
+import { t } from "../../../i18n";
+import type { ServiceTier } from "../../../lib/types";
+
+interface Props {
+  tier: ServiceTier;
+  locale?: string;
+}
+
+const { tier, locale = "es" } = Astro.props;
+const m = t(locale);
+const monthly = tier.monthly;
+const hasMonthly = Boolean(monthly?.from);
+const check = "M4 12l5 5L20 6";
+---
+
+<div
+  class="flex h-full flex-col rounded-xl border border-border bg-background p-6 transition-colors duration-300 hover:border-primary"
+>
+  <h3 class="font-serif text-2xl font-semibold text-secondary">{tier.name}</h3>
+  <p class="mt-2 font-serif text-3xl font-semibold text-primary">
+    {tier.price}
+  </p>
+  <p class="mt-3 text-sm leading-relaxed text-foreground/70">
+    {tier.description}
+  </p>
+
+  <p class="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-foreground/40">
+    {m["services.includes"]}
+  </p>
+  <ul class="mt-3 flex flex-col gap-2">
+    {
+      tier.includes.map((item) => (
+        <li class="flex items-start gap-2 text-sm text-foreground/75">
+          <svg
+            class="mt-0.5 h-4 w-4 shrink-0 text-primary"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d={check} />
+          </svg>
+          <span>{item}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  {
+    hasMonthly && (
+      <div class="mt-auto border-t border-border pt-4">
+        <p class="text-sm font-semibold text-secondary">
+          {m["services.monthly"]} {monthly?.from}
+          {monthly?.to ? ` - ${monthly.to}` : ""} €
+          {m["services.monthlySuffix"]}
+        </p>
+        {monthly?.note && (
+          <p class="mt-1 text-xs text-foreground/55">{monthly.note}</p>
+        )}
+      </div>
+    )
+  }
+</div>

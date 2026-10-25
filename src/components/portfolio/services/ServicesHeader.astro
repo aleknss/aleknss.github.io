@@ -1,0 +1,140 @@
+---
+import Button from "../Button.astro";
+import LanguageSwitch from "../LanguageSwitch.astro";
+import ThemeSwitch from "../ThemeSwitch.astro";
+import Wrapper from "../Wrapper.astro";
+import { t } from "../../../i18n";
+import { getSite } from "../../../lib/content";
+import type { ServiceData } from "../../../lib/types";
+
+interface Props {
+  service: ServiceData;
+  locale?: string;
+}
+
+const { service, locale = "es" } = Astro.props;
+const m = t(locale);
+const portfolio = await getSite(locale);
+const home = locale === "en" ? "/en/" : "/";
+const email = portfolio?.contacts?.email ?? "";
+const mailto = `mailto:${email}?subject=${encodeURIComponent(service.title)}`;
+
+const check = "M4 12l5 5L20 6";
+---
+
+<header class="relative w-full overflow-hidden">
+  <div class="services-glow pointer-events-none absolute inset-0" aria-hidden="true">
+  </div>
+
+  <Wrapper class="relative">
+    <div class="flex items-center justify-between gap-4 border-b border-border py-4">
+      <a
+        href={home}
+        class="font-serif text-lg font-semibold text-secondary transition-colors hover:text-primary"
+      >
+        {m["services.company"]}
+      </a>
+      <div class="flex items-center gap-1">
+        <a
+          href={home}
+          class="rounded-md px-3 py-2 text-sm font-medium text-foreground/70 transition-colors hover:bg-primary-muted hover:text-primary"
+        >
+          {m["services.soon.back"]}
+        </a>
+        <LanguageSwitch locale={locale} />
+        <ThemeSwitch locale={locale} />
+      </div>
+    </div>
+
+    <div class="grid gap-10 py-16 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
+      <div class="flex flex-col gap-6">
+        <span
+          class="inline-flex w-fit items-center gap-2 rounded-full bg-primary-muted px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary"
+        >
+          {m["services.title"]}
+        </span>
+
+        <h1
+          class="max-w-3xl font-serif text-5xl font-semibold leading-[1.05] text-secondary sm:text-6xl"
+        >
+          {service.tagline}
+        </h1>
+
+        <p class="max-w-2xl text-base leading-relaxed text-foreground/70 sm:text-lg">
+          {service.description}
+        </p>
+
+        <ul class="grid gap-3 sm:grid-cols-2">
+          {
+            service.bullets.map((bullet) => (
+              <li class="flex items-start gap-3 text-sm text-foreground/75">
+                <svg
+                  class="mt-0.5 h-4 w-4 shrink-0 text-primary"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d={check} />
+                </svg>
+                <span>{bullet}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="mt-2 flex flex-wrap items-center gap-3">
+          <Button href={mailto} label={m["services.startEmail"]} />
+          <Button
+            variant="secondary"
+            href={`${home}#contact`}
+            label={m["services.startForm"]}
+          />
+        </div>
+      </div>
+
+      <aside class="rounded-2xl border border-border bg-background/60 p-6">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+          {m["services.setup"]}
+        </p>
+        <p class="mt-2 font-serif text-4xl font-semibold text-secondary">
+          {service.priceNote ?? m["services.from"]}
+          {service.priceFrom ? ` ${service.priceFrom} €` : ""}
+        </p>
+        {
+          service.stack.length > 0 && (
+            <ul class="mt-4 flex flex-wrap gap-2">
+              {service.stack.map((tech) => (
+                <li class="rounded-md border border-border px-2.5 py-1 text-xs text-foreground/60">
+                  {tech}
+                </li>
+              ))}
+            </ul>
+          )
+        }
+        {
+          service.hourlyRate && (
+            <p class="mt-4 border-t border-border pt-4 text-xs leading-relaxed text-foreground/55">
+              {m["services.hourly"]}: {service.hourlyRate} €/h,{" "}
+              {m["services.hourlyNote"]}.
+            </p>
+          )
+        }
+      </aside>
+    </div>
+  </Wrapper>
+</header>
+
+<style>
+  .services-glow {
+    background: radial-gradient(
+      50% 50% at 12% 8%,
+      color-mix(in srgb, var(--primary) 14%, transparent) 0%,
+      transparent 70%
+    );
+  }
+</style>

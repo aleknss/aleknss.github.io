@@ -44,7 +44,7 @@ const testimonial = z.object({
 });
 
 const monthly = z.object({
-  from: z.number(),
+  from: z.number().nullish(),
   to: z.number().nullish(),
   note: z.string().nullish(),
   includes: z.array(z.string()).default([]),
