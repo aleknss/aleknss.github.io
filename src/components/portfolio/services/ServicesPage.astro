@@ -151,40 +151,26 @@ const serviceSchema = {
       )
     }
 
-    <section id="precios" data-reveal class="w-full border-t border-border">
-      <Wrapper class="py-20 lg:py-28">
-        <div class="grid gap-10 lg:grid-cols-[9rem_minmax(0,1fr)]">
-          <div class="lg:sticky lg:top-24 lg:self-start">
-            <p
-              class="font-serif text-5xl font-semibold leading-none text-primary/25"
-              aria-hidden="true">03</p>
-            <p class="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              {m["nav.pricing"]}
-            </p>
-          </div>
-          <div>
-            <h2 class="max-w-2xl font-serif text-3xl font-semibold leading-tight text-secondary sm:text-4xl">
-              {m["services.pricing.sub"]}
-            </h2>
-            <div class="mt-10 grid gap-6 lg:grid-cols-3">
-              {
-                service.tiers.map((tier) => (
-                  <ServiceTierCard tier={tier} locale={locale} />
-                ))
-              }
-            </div>
-            {
-              service.hourlyRate && (
-                <p class="mt-6 text-xs text-foreground/50">
-                  {m["services.hourly"]}: {service.hourlyRate} €/h,{" "}
-                  {m["services.hourlyNote"]}.
-                </p>
-              )
-            }
-          </div>
-        </div>
-      </Wrapper>
-    </section>
+    <StorySection index="03" label={m["nav.pricing"]} id="precios" wide>
+      <h2 class="max-w-2xl font-serif text-3xl font-semibold leading-tight text-secondary sm:text-4xl">
+        {m["services.pricing.sub"]}
+      </h2>
+      <div class="mt-10 grid gap-6 lg:grid-cols-3">
+        {
+          service.tiers.map((tier) => (
+            <ServiceTierCard tier={tier} locale={locale} />
+          ))
+        }
+      </div>
+      {
+        service.hourlyRate && (
+          <p class="mt-6 text-xs text-foreground/50">
+            {m["services.hourly"]}: {service.hourlyRate} €/h,{" "}
+            {m["services.hourlyNote"]}.
+          </p>
+        )
+      }
+    </StorySection>
 
     {
       service.steps.length > 0 && (
@@ -207,6 +193,7 @@ const serviceSchema = {
       index="05"
       label={m["services.chapter.proof"]}
       id="clients"
+      wide
     >
       <h2 class="font-serif text-3xl font-semibold leading-tight text-secondary sm:text-4xl">
         {m["services.chapter.proof"]}
