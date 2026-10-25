@@ -1,0 +1,118 @@
+title: Website
+tagline: Your business online, ready for new customers
+description: >-
+  I design and build your complete website: it looks right on mobile, loads
+  fast, shows up on Google and is left ready for you to edit yourself.
+bullets:
+  - Custom design, no repeated templates
+  - Adapts to mobile, tablet and desktop
+  - Basic Google ranking included (SEO)
+  - Fast loading and easy to read
+  - Contact form and social links hooked up
+  - I teach you how to edit it when we finish
+icon: web
+stack:
+  - Astro
+  - Next.js
+  - Tailwind
+priceFrom: 800
+priceTo: 1600
+priceNote: from
+hourlyRate: 40
+tiers:
+  - name: Landing page
+    price: €800 - €900
+    description: >-
+      A single page to present your business or one service and get enquiries.
+    includes:
+      - One page with several sections
+      - Contact form
+      - Basic SEO and Google title
+      - Mobile ready
+      - Delivered in 1-2 weeks
+    monthly:
+      from: 20
+      note: Optional. Light month-to-month maintenance
+      includes:
+        - Domain and hosting managed by me
+        - Backups
+        - Small text and image changes
+        - I check everything keeps running
+  - name: Multi-page website
+    price: €1,200 - €1,600
+    description: >-
+      Several pages with a menu (home, services, about, contact) for businesses
+      with more content.
+    includes:
+      - Up to 6 pages
+      - Navigation menu
+      - Contact form and map
+      - SEO on every page
+      - Mobile ready
+      - Delivered in 2-3 weeks
+    monthly:
+      from: 30
+      note: Optional. Light month-to-month maintenance
+      includes:
+        - Domain and hosting managed by me
+        - Backups
+        - Small text and image changes
+        - I check everything keeps running
+  - name: Website with logic
+    price: From €1,600
+    description: >-
+      For when you need users, bookings, payments or your own data. Built with
+      Next.js or a custom backend.
+    includes:
+      - Database and user accounts
+      - Payments or bookings
+      - Content management panel
+      - Advanced performance and SEO
+    monthly:
+      from: 60
+      to: 150
+      note: Depending on features and support hours
+      includes:
+        - Hosting and domain managed by me
+        - Automatic backups
+        - Security updates included
+        - Small changes and tweaks each month
+        - Priority email support
+steps:
+  - title: We talk
+    description: You tell me what you need and we agree the budget before starting.
+  - title: Design
+    description: I show you a mockup of how it will look and we fine-tune it together.
+  - title: Build
+    description: I build it and send you a live link so you can follow along.
+  - title: Delivery
+    description: I publish it on your domain and show you how to edit it.
+differentials:
+  - Direct work with me, no middlemen
+  - Budget agreed before we start
+  - 30 days of support after delivery
+  - The website and its code are yours
+  - I explain whatever you need at handover
+faq:
+  - question: Is SEO included?
+    answer: >-
+      Yes. The landing page and multi-page website include basic Google ranking;
+      the version with logic includes advanced SEO.
+  - question: Who writes the copy?
+    answer: >-
+      I can write it with you from what you tell me. If you already have it,
+      even better.
+  - question: How long does it take?
+    answer: >-
+      A landing page, 1-2 weeks. A multi-page website, 2-3 weeks. With logic it
+      depends on scope and I tell you before starting.
+  - question: Will I be able to edit the site myself?
+    answer: >-
+      Yes. The content is left editable and I teach you to change text and
+      images without touching code.
+  - question: What do I need to get started?
+    answer: >-
+      An idea of what you offer, your logo if you have one and two or three
+      websites you like as a reference.
+locale: en
+order: 1

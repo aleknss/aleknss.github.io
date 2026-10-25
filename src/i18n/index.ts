@@ -114,6 +114,14 @@ const es = {
   "services.title": "Servicios",
   "services.hero": "Diseño y desarrollo web a medida.",
   "services.cta": "Ver servicios",
+  "services.hero.sub":
+    "Trabajo directo contigo, del diseño a la entrega.",
+  "services.item.web": "Diseño y desarrollo web",
+  "services.item.web.desc": "Webs a medida, rápidas y responsive.",
+  "services.item.app": "Aplicaciones fullstack",
+  "services.item.app.desc": "Del backend al último detalle visual.",
+  "services.item.perf": "Rendimiento y SEO",
+  "services.item.perf.desc": "Carga veloz y visibilidad en Google.",
   "services.soon.title": "Próximamente",
   "services.soon.text":
     "Estoy preparando una sección de servicios. Vuelve pronto.",
@@ -164,6 +172,13 @@ const en = {
   "services.title": "Services",
   "services.hero": "Custom web design and development.",
   "services.cta": "View services",
+  "services.hero.sub": "I work directly with you, from design to delivery.",
+  "services.item.web": "Web design & development",
+  "services.item.web.desc": "Custom sites, fast and responsive.",
+  "services.item.app": "Fullstack applications",
+  "services.item.app.desc": "From backend to the last visual detail.",
+  "services.item.perf": "Performance & SEO",
+  "services.item.perf.desc": "Fast loads and visibility on Google.",
   "services.soon.title": "Coming soon",
   "services.soon.text":
     "I'm preparing a services section. Check back soon.",

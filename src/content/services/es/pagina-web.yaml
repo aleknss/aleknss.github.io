@@ -1,0 +1,119 @@
+title: Página web
+tagline: Tu negocio online, listo para recibir clientes
+description: >-
+  Diseño y construyo tu página web completa: se ve bien en el móvil, carga
+  rápido, aparece en Google y te queda lista para editar tú mismo.
+bullets:
+  - Diseño a medida, sin plantillas repetidas
+  - Se adapta a móvil, tablet y ordenador
+  - Posicionamiento básico en Google incluido (SEO)
+  - Carga rápida y fácil de leer
+  - Formulario de contacto y redes sociales conectados
+  - Te enseño a editarla cuando terminemos
+icon: web
+stack:
+  - Astro
+  - Next.js
+  - Tailwind
+priceFrom: 800
+priceTo: 1600
+priceNote: desde
+hourlyRate: 40
+tiers:
+  - name: Landing
+    price: 800 - 900 €
+    description: >-
+      Una sola página para presentar tu negocio o un servicio concreto y
+      conseguir contactos.
+    includes:
+      - Una página con varias secciones
+      - Formulario de contacto
+      - SEO básico y título para Google
+      - Adaptada a móvil
+      - Entrega en 1-2 semanas
+    monthly:
+      from: 20
+      note: Opcional. Mantenimiento ligero mes a mes
+      includes:
+        - Dominio y hosting gestionados por mí
+        - Copias de seguridad
+        - Cambios pequeños de texto e imágenes
+        - Reviso que todo siga funcionando
+  - name: Web con navegación
+    price: 1.200 - 1.600 €
+    description: >-
+      Varias páginas con menú (inicio, servicios, sobre mí, contacto) para
+      negocios con más contenido.
+    includes:
+      - Hasta 6 páginas
+      - Menú de navegación
+      - Formulario y mapa
+      - SEO en cada página
+      - Adaptada a móvil
+      - Entrega en 2-3 semanas
+    monthly:
+      from: 30
+      note: Opcional. Mantenimiento ligero mes a mes
+      includes:
+        - Dominio y hosting gestionados por mí
+        - Copias de seguridad
+        - Cambios pequeños de texto e imágenes
+        - Reviso que todo siga funcionando
+  - name: Web con lógica
+    price: Desde 1.600 €
+    description: >-
+      Cuando necesitas usuarios, reservas, pagos o datos propios. Hecha con
+      Next.js o backend a medida.
+    includes:
+      - Base de datos y usuarios
+      - Pagos o reservas
+      - Panel para gestionar el contenido
+      - Rendimiento y SEO avanzado
+    monthly:
+      from: 60
+      to: 150
+      note: Según funciones y horas de soporte
+      includes:
+        - Hosting y dominio gestionados por mí
+        - Copias de seguridad automáticas
+        - Actualizaciones de seguridad incluidas
+        - Pequeños cambios y ajustes cada mes
+        - Soporte prioritario por email
+steps:
+  - title: Hablamos
+    description: Me cuentas qué necesitas y cerramos el presupuesto antes de empezar.
+  - title: Diseño
+    description: Te enseño una maqueta de cómo quedará y la ajustamos juntos.
+  - title: Desarrollo
+    description: La construyo y te paso un enlace para verla mientras avanza.
+  - title: Entrega
+    description: La publico con tu dominio y te explico cómo editarla.
+differentials:
+  - Trato directo conmigo, sin intermediarios
+  - Presupuesto cerrado antes de empezar
+  - 30 días de soporte después de la entrega
+  - La web y su código son tuyos
+  - Te explico todo lo que necesites al entregar
+faq:
+  - question: ¿El SEO está incluido?
+    answer: >-
+      Sí. La landing y la web con navegación incluyen posicionamiento básico en
+      Google; la versión con lógica incluye SEO avanzado.
+  - question: ¿Quién escribe los textos?
+    answer: >-
+      Puedo redactarlos contigo a partir de lo que me cuentes. Si ya los tienes,
+      mejor.
+  - question: ¿Cuánto tarda?
+    answer: >-
+      Una landing, 1-2 semanas. Una web con navegación, 2-3 semanas. Con lógica,
+      depende del alcance y te lo digo antes de empezar.
+  - question: ¿Podré editar la web yo mismo?
+    answer: >-
+      Sí. Te dejo el contenido editable y te enseño a cambiar textos e imágenes
+      sin tocar código.
+  - question: ¿Qué necesito para empezar?
+    answer: >-
+      Una idea de qué ofreces, tu logo si lo tienes y dos o tres webs que te
+      gusten como referencia.
+locale: es
+order: 1

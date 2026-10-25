@@ -27,6 +27,63 @@ const projects = defineCollection({
   }),
 });
 
+const step = z.object({
+  title: z.string(),
+  description: z.string(),
+});
+
+const faq = z.object({
+  question: z.string(),
+  answer: z.string(),
+});
+
+const testimonial = z.object({
+  quote: z.string(),
+  author: z.string(),
+  role: z.string().nullish(),
+});
+
+const monthly = z.object({
+  from: z.number(),
+  to: z.number().nullish(),
+  note: z.string().nullish(),
+  includes: z.array(z.string()).default([]),
+});
+
+const tier = z.object({
+  name: z.string(),
+  price: z.string(),
+  description: z.string(),
+  includes: z.array(z.string()).default([]),
+  monthly: monthly.nullish(),
+});
+
+const services = defineCollection({
+  loader: glob({ pattern: "**/*.yaml", base: "./src/content/services" }),
+  schema: z.object({
+    title: z.string(),
+    tagline: z.string(),
+    description: z.string(),
+    bullets: z.array(z.string()).default([]),
+    icon: z.string(),
+    stack: z.array(z.string()).default([]),
+    priceFrom: z.number().nullish(),
+    priceTo: z.number().nullish(),
+    priceNote: z.string().nullish(),
+    hourlyRate: z.number().nullish(),
+    tiers: z.array(tier).default([]),
+    steps: z.array(step).default([]),
+    differentials: z.array(z.string()).default([]),
+    faq: z.array(faq).default([]),
+    testimonials: z.array(testimonial).default([]),
+    featuredClient: z
+      .object({ name: z.string(), href: z.string() })
+      .nullish(),
+    locale: z.enum(["es", "en"]),
+    order: z.number().default(0),
+  }),
+});
+
 const site = defineCollection({
   loader: glob({ pattern: "**/*.yaml", base: "./src/content/site" }),
   schema: z.object({
@@ -73,4 +130,4 @@ const skills = defineCollection({
   }),
 });
 
-export const collections = { projects, site, skills };
+export const collections = { projects, site, skills, services };
