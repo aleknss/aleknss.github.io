@@ -8,6 +8,7 @@ import ServicesHeader from "./ServicesHeader.astro";
 import ServiceTierCard from "./ServiceTierCard.astro";
 import ServiceSteps from "./ServiceSteps.astro";
 import ServiceFaq from "./ServiceFaq.astro";
+import ServiceTestimonials from "./ServiceTestimonials.astro";
 import { t } from "../../../i18n";
 import { getServices, getSite } from "../../../lib/content";
 
@@ -21,6 +22,7 @@ const home = locale === "en" ? "/en/" : "/";
 const path = `${home}servicios/`;
 const services = await getServices(locale);
 const service = services[0]!;
+const testimonials = services.flatMap((item) => item.testimonials);
 const portfolio = await getSite(locale);
 const email = portfolio?.contacts?.email ?? "";
 const mailto = `mailto:${email}?subject=${encodeURIComponent(service.title)}`;
@@ -37,16 +39,27 @@ const mailto = `mailto:${email}?subject=${encodeURIComponent(service.title)}`;
 
     <Wrapper class="pb-24">
       {
-        service.tiers.length > 0 && (
-          <section id="precios" class="pt-4">
-            <SecondaryTitle>{m["services.pricing"]}</SecondaryTitle>
-            <div class="mt-8 grid gap-6 lg:grid-cols-3">
-              {service.tiers.map((tier) => (
-                <ServiceTierCard tier={tier} locale={locale} />
-              ))}
-            </div>
+        services.map((item, index) => (
+          <section
+            id={index === 0 ? "precios" : `precios-${index + 1}`}
+            class={index === 0 ? "pt-4" : "pt-16"}
+          >
+            {index === 0 ? (
+              <SecondaryTitle>{m["services.pricing"]}</SecondaryTitle>
+            ) : (
+              <h2 class="text-center font-serif text-2xl font-semibold text-secondary">
+                {item.title}
+              </h2>
+            )}
+            {item.tiers.length > 0 && (
+              <div class="mt-8 grid gap-6 lg:grid-cols-3">
+                {item.tiers.map((tier) => (
+                  <ServiceTierCard tier={tier} locale={locale} />
+                ))}
+              </div>
+            )}
           </section>
-        )
+        ))
       }
 
       {
@@ -98,6 +111,10 @@ const mailto = `mailto:${email}?subject=${encodeURIComponent(service.title)}`;
           </section>
         )
       }
+
+      {testimonials.length > 0 && (
+        <ServiceTestimonials testimonials={testimonials} locale={locale} />
+      )}
 
       <section class="mt-20 border-t border-border pt-12 text-center">
         <h2 class="font-serif text-3xl font-semibold text-secondary sm:text-4xl">
