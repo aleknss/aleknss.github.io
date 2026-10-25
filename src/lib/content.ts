@@ -1,5 +1,6 @@
 import { getCollection, getEntry } from "astro:content";
 import type {
+  ClientData,
   ProjectData,
   ServiceData,
   SiteData,
@@ -57,4 +58,15 @@ export async function getServiceBySlug(
     (entry) => entry.id.split("/").pop() === slug && entry.data.locale === lang,
   );
   return match?.data;
+}
+
+export async function getClients(
+  locale: string | undefined,
+): Promise<ClientData[]> {
+  const lang = normalize(locale);
+  const entries = (await getCollection("clients")) as Entry<ClientData>[];
+  return entries
+    .map((entry) => entry.data)
+    .filter((client) => client.locale === lang)
+    .sort((a, b) => a.order - b.order);
 }

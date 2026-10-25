@@ -60,6 +60,18 @@ export interface SiteData {
   participaciones: ParticipacionItem[];
 }
 
+export interface ClientData {
+  name: string;
+  sector?: string | null;
+  summary: string;
+  result?: string | null;
+  href?: string | null;
+  image?: string | null;
+  year?: number | null;
+  locale: "es" | "en";
+  order: number;
+}
+
 export interface ServiceMonthly {
   from?: number | null;
   to?: number | null;

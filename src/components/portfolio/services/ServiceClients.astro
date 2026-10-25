@@ -1,0 +1,60 @@
+---
+import { t } from "../../../i18n";
+import type { ClientData } from "../../../lib/types";
+
+interface Props {
+  clients: ClientData[];
+  locale?: string;
+}
+
+const { clients, locale = "es" } = Astro.props;
+const m = t(locale);
+---
+
+<section id="clients" class="pt-20">
+  <h2 class="text-center font-serif text-2xl font-semibold text-secondary">
+    {m["nav.clients"]}
+  </h2>
+  <ul class="mx-auto mt-8 grid max-w-5xl gap-6 sm:grid-cols-2">
+    {
+      clients.map((client) => (
+        <li class="flex h-full flex-col rounded-xl border border-border p-6 transition-colors hover:border-primary">
+          <div class="flex items-baseline justify-between gap-4">
+            <h3 class="font-serif text-xl font-semibold text-secondary">
+              {client.name}
+            </h3>
+            {client.year && (
+              <span class="text-xs text-foreground/40">{client.year}</span>
+            )}
+          </div>
+          {client.sector && (
+            <p class="mt-1 text-xs uppercase tracking-[0.15em] text-primary">
+              {client.sector}
+            </p>
+          )}
+          <p class="mt-4 text-sm leading-relaxed text-foreground/70">
+            {client.summary}
+          </p>
+          {client.result && (
+            <p class="mt-4 border-t border-border pt-4 text-sm text-foreground/60">
+              <span class="font-semibold text-secondary">
+                {m["services.clients.result"]}:
+              </span>{" "}
+              {client.result}
+            </p>
+          )}
+          {client.href && (
+            <a
+              href={client.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-4 inline-flex w-fit items-center gap-2 text-sm font-medium text-primary underline decoration-primary/40 underline-offset-4 transition-colors hover:decoration-primary"
+            >
+              {m["project.visit"]}
+            </a>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</section>

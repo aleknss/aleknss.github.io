@@ -182,6 +182,49 @@ function serviceCollection(label: string, locale: 'es' | 'en') {
   });
 }
 
+function clientCollection(label: string, locale: 'es' | 'en') {
+  return collection({
+    label,
+    path: `src/content/clients/${locale}/*`,
+    slugField: 'name',
+    format: { data: 'yaml' },
+    schema: {
+      name: fields.slug({ name: { label: 'Cliente' } }),
+      sector: fields.text({
+        label: 'Sector',
+        validation: { isRequired: false },
+      }),
+      summary: fields.text({ label: 'Resumen', multiline: true }),
+      result: fields.text({
+        label: 'Resultado',
+        multiline: true,
+        validation: { isRequired: false },
+      }),
+      href: fields.url({
+        label: 'Enlace',
+        validation: { isRequired: false },
+      }),
+      image: fields.text({
+        label: 'Imagen (URL)',
+        validation: { isRequired: false },
+      }),
+      year: fields.integer({
+        label: 'Año',
+        validation: { isRequired: false },
+      }),
+      locale: fields.select({
+        label: 'Idioma',
+        options: [
+          { label: 'ES', value: 'es' },
+          { label: 'EN', value: 'en' },
+        ],
+        defaultValue: locale,
+      }),
+      order: fields.integer({ label: 'Orden', defaultValue: 0 }),
+    },
+  });
+}
+
 const siteSchema = {
   name: fields.text({ label: 'Nombre' }),
   bio: fields.text({ label: 'Bio', multiline: true }),
@@ -258,6 +301,8 @@ export default config({
     projects_en: projectCollection('Projects (EN)', 'en'),
     services_es: serviceCollection('Servicios (ES)', 'es'),
     services_en: serviceCollection('Services (EN)', 'en'),
+    clients_es: clientCollection('Clientes (ES)', 'es'),
+    clients_en: clientCollection('Clients (EN)', 'en'),
   },
   singletons: {
     site_es: singleton({

@@ -10,13 +10,15 @@ interface Props {
   servicesLink?: boolean;
 }
 
-const { locale = "es", items, servicesLink = true } = Astro.props;
+const { locale = "es", items, servicesLink = false } = Astro.props;
 const m = t(locale);
 const home = locale === "en" ? "/en/" : "/";
 const servicesHref = `${home}servicios/`;
 const pathname = Astro.url.pathname;
 const isHome = pathname === "/" || pathname === "/en/";
-const sectionHref = (id: string) => (isHome ? `#${id}` : `${home}#${id}`);
+const localAnchors = Boolean(items);
+const sectionHref = (id: string) =>
+  isHome || localAnchors ? `#${id}` : `${home}#${id}`;
 const onServices = pathname.replace(/\/$/, "") === servicesHref.replace(/\/$/, "");
 
 const SECTIONS: { id: string; key: MessageKey }[] = [

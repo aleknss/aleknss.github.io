@@ -27,6 +27,21 @@ const projects = defineCollection({
   }),
 });
 
+const clients = defineCollection({
+  loader: glob({ pattern: "**/*.yaml", base: "./src/content/clients" }),
+  schema: z.object({
+    name: z.string(),
+    sector: z.string().nullish(),
+    summary: z.string(),
+    result: z.string().nullish(),
+    href: z.string().nullish(),
+    image: z.string().nullish(),
+    year: z.number().nullish(),
+    locale: z.enum(["es", "en"]),
+    order: z.number().default(0),
+  }),
+});
+
 const step = z.object({
   title: z.string(),
   description: z.string(),
@@ -130,4 +145,4 @@ const skills = defineCollection({
   }),
 });
 
-export const collections = { projects, site, skills, services };
+export const collections = { projects, site, skills, services, clients };
