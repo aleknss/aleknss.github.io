@@ -73,6 +73,12 @@ const tier = z.object({
   monthly: monthly.nullish(),
 });
 
+const storyBlock = z.object({
+  title: z.string(),
+  text: z.string(),
+  points: z.array(z.string()).default([]),
+});
+
 const services = defineCollection({
   loader: glob({ pattern: "**/*.yaml", base: "./src/content/services" }),
   schema: z.object({
@@ -87,6 +93,8 @@ const services = defineCollection({
     priceNote: z.string().nullish(),
     hourlyRate: z.number().nullish(),
     tiers: z.array(tier).default([]),
+    problem: storyBlock.nullish(),
+    solution: storyBlock.nullish(),
     steps: z.array(step).default([]),
     differentials: z.array(z.string()).default([]),
     faq: z.array(faq).default([]),

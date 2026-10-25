@@ -1,0 +1,100 @@
+---
+import Button from "../Button.astro";
+import Wrapper from "../Wrapper.astro";
+import { t } from "../../../i18n";
+import { getSite } from "../../../lib/content";
+import type { ServiceData } from "../../../lib/types";
+
+interface Props {
+  service: ServiceData;
+  locale?: string;
+}
+
+const { service, locale = "es" } = Astro.props;
+const m = t(locale);
+const portfolio = await getSite(locale);
+const email = portfolio?.contacts?.email ?? "";
+const mailto = `mailto:${email}?subject=${encodeURIComponent(service.title)}`;
+
+const facts = [
+  m["services.fact.price"],
+  m["services.fact.response"],
+  m["services.fact.location"],
+];
+---
+
+<header class="relative w-full overflow-hidden">
+  <div class="hero-glow pointer-events-none absolute inset-0" aria-hidden="true">
+  </div>
+  <div class="hero-rule pointer-events-none absolute inset-0" aria-hidden="true">
+  </div>
+
+  <Wrapper class="relative">
+    <div class="flex min-h-[78vh] flex-col justify-center py-20">
+      <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+        {m["services.company"]}
+      </p>
+
+      <h1
+        data-reveal
+        class="mt-6 max-w-5xl font-serif text-5xl font-semibold leading-[1.02] text-secondary sm:text-6xl lg:text-7xl"
+      >
+        {m["services.hero"]}
+      </h1>
+
+      <p
+        data-reveal
+        class="mt-6 max-w-2xl font-serif text-2xl leading-snug text-foreground/80 sm:text-3xl"
+      >
+        {service.tagline}
+      </p>
+
+      <p
+        data-reveal
+        class="mt-4 max-w-xl text-base leading-relaxed text-foreground/60"
+      >
+        {service.description}
+      </p>
+
+      <div data-reveal class="mt-10 flex flex-wrap items-center gap-3">
+        <Button href={mailto} label={m["services.startEmail"]} />
+        <Button
+          variant="secondary"
+          href="#precios"
+          label={m["services.pricing"]}
+        />
+      </div>
+
+      <ul
+        data-reveal
+        class="mt-14 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-border pt-6 text-sm text-foreground/60"
+      >
+        {
+          facts.map((fact) => (
+            <li class="flex items-center gap-2">
+              <span class="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
+              {fact}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </Wrapper>
+</header>
+
+<style>
+  .hero-glow {
+    background: radial-gradient(
+      60% 60% at 85% 0%,
+      color-mix(in srgb, var(--primary) 18%, transparent) 0%,
+      transparent 70%
+    );
+  }
+  .hero-rule {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--primary) 10%, transparent) 0%,
+      transparent 45%
+    );
+  }
+</style>

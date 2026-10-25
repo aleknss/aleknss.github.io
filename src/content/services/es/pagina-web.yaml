@@ -19,6 +19,26 @@ priceFrom: 800
 priceTo: 1600
 priceNote: desde
 hourlyRate: 40
+problem:
+  title: Tu web no te trae clientes
+  text: >-
+    Tener una web no sirve de nada si nadie la encuentra, tarda en cargar o no
+    transmite confianza. La mayoría de negocios pierde consultas sin saberlo.
+  points:
+    - Carga lenta que espanta al visitante en los primeros segundos
+    - No aparece en Google cuando buscan lo que ofreces
+    - Se ve mal en el móvil, donde llega la mayoría del tráfico
+    - No deja claro qué haces ni cómo contactarte
+solution:
+  title: Una web pensada para que te escriban
+  text: >-
+    Diseño y construyo la web completa, con los textos, la estructura y la
+    velocidad trabajando a favor de una sola cosa: que el visitante dé el paso.
+  points:
+    - Estructura y textos orientados a conseguir consultas
+    - Rápida, accesible y perfecta en móvil
+    - SEO incluido desde el primer día
+    - Formulario y contacto a un clic
 tiers:
   - name: Landing
     price: 800 - 900 €

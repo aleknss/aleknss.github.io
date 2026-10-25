@@ -103,6 +103,12 @@ export interface ServiceTestimonial {
   role?: string | null;
 }
 
+export interface ServiceStoryBlock {
+  title: string;
+  text: string;
+  points: string[];
+}
+
 export interface ServiceData {
   title: string;
   tagline: string;
@@ -115,6 +121,8 @@ export interface ServiceData {
   priceNote?: string | null;
   hourlyRate?: number | null;
   tiers: ServiceTier[];
+  problem?: ServiceStoryBlock | null;
+  solution?: ServiceStoryBlock | null;
   steps: ServiceStep[];
   differentials: string[];
   faq: ServiceFaq[];

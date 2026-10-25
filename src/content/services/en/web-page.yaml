@@ -19,6 +19,26 @@ priceFrom: 800
 priceTo: 1600
 priceNote: from
 hourlyRate: 40
+problem:
+  title: Your website isn't bringing you customers
+  text: >-
+    Having a website is useless if nobody finds it, it loads slowly or it does
+    not build trust. Most businesses lose enquiries without knowing why.
+  points:
+    - Slow loading that scares visitors away in seconds
+    - It does not show up on Google when people search what you offer
+    - It looks broken on mobile, where most traffic comes from
+    - It does not make clear what you do or how to reach you
+solution:
+  title: A website built to get you enquiries
+  text: >-
+    I design and build the whole site, with copy, structure and speed working
+    towards one thing: getting the visitor to take the next step.
+  points:
+    - Structure and copy aimed at getting enquiries
+    - Fast, accessible and flawless on mobile
+    - SEO included from day one
+    - Contact form one click away
 tiers:
   - name: Landing page
     price: €800 - €900
