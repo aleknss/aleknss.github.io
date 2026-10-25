@@ -90,14 +90,35 @@ steps:
 differentials:
   - Direct work with me, no middlemen
   - Budget agreed before we start
+  - 50% upfront and 50% on delivery
   - 30 days of support after delivery
   - The website and its code are yours
   - I explain whatever you need at handover
 faq:
+  - question: How do payments work?
+    answer: >-
+      Half upfront and half on delivery. By bank transfer, Bizum or card. You get
+      an invoice with IGIC for each payment.
   - question: Is SEO included?
     answer: >-
       Yes. The landing page and multi-page website include basic Google ranking;
       the version with logic includes advanced SEO.
+  - question: Who handles the domain and hosting?
+    answer: >-
+      I set everything up. The domain is registered in your name so it is always
+      yours, and hosting is included while you keep maintenance.
+  - question: What happens if I stop the maintenance plan?
+    answer: >-
+      Nothing: the site stays online and the domain is yours. You just lose
+      included changes and priority support; changes then cost €40/h.
+  - question: What does the monthly fee include?
+    answer: >-
+      Managed domain and hosting, backups, security updates, small changes and
+      checking everything keeps running.
+  - question: Can I cancel the monthly plan?
+    answer: >-
+      Yes, with 15 days notice. No minimum term. If you cancel you keep the site
+      and domain, and I help you move them if you prefer another provider.
   - question: Who writes the copy?
     answer: >-
       I can write it with you from what you tell me. If you already have it,

@@ -1,0 +1,57 @@
+---
+import Base from "../../layouts/Base.astro";
+import Shell from "../portfolio/Shell.astro";
+import Wrapper from "../portfolio/Wrapper.astro";
+
+interface Props {
+  title: string;
+  path: string;
+  updated?: string;
+  locale?: string;
+}
+
+const { title, path, updated = "Octubre 2026", locale = "es" } = Astro.props;
+---
+
+<Base path={path} title={`${title} — Alek Suso`} locale={locale}>
+  <Shell locale={locale}>
+    <Wrapper class="py-16">
+      <article class="legal mx-auto max-w-3xl text-sm leading-relaxed text-foreground/75">
+        <h1 class="font-serif text-4xl font-semibold text-secondary">{title}</h1>
+        <p class="mt-2 text-xs text-foreground/50">
+          Última actualización: {updated}
+        </p>
+        <slot />
+      </article>
+    </Wrapper>
+  </Shell>
+</Base>
+
+<style>
+  .legal :global(h2) {
+    margin-top: 2rem;
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--secondary);
+  }
+  .legal :global(p) {
+    margin-top: 0.75rem;
+  }
+  .legal :global(ul) {
+    margin-top: 0.75rem;
+    padding-left: 1.1rem;
+    list-style: disc;
+  }
+  .legal :global(li) {
+    margin-top: 0.35rem;
+  }
+  .legal :global(a) {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .legal :global(strong) {
+    color: var(--secondary);
+  }
+</style>

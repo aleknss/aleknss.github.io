@@ -143,6 +143,8 @@ const es = {
   "services.startEmail": "Escríbeme",
   "services.startForm": "Usar el formulario",
   "services.featuredClient": "Ver proyecto de cliente",
+  "legal.aviso": "Aviso legal",
+  "legal.privacidad": "Privacidad",
   "services.soon.title": "Próximamente",
   "services.soon.text":
     "Estoy preparando una sección de servicios. Vuelve pronto.",
@@ -221,6 +223,8 @@ const en = {
   "services.startEmail": "Email me",
   "services.startForm": "Use the form",
   "services.featuredClient": "See client project",
+  "legal.aviso": "Legal notice",
+  "legal.privacidad": "Privacy",
   "services.soon.title": "Coming soon",
   "services.soon.text":
     "I'm preparing a services section. Check back soon.",

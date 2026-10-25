@@ -37,6 +37,29 @@ const navItems: { id: string; key: MessageKey }[] = [
   { id: "faq", key: "nav.faq" },
   { id: "contact", key: "nav.contact" },
 ];
+
+const site = Astro.site ?? new URL("https://alek.is-a.dev");
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: service.title,
+  serviceType: service.title,
+  description: service.description,
+  provider: {
+    "@type": "ProfessionalService",
+    name: "Alek Suso",
+    areaServed: "ES",
+    email,
+    url: site.href,
+  },
+  offers: {
+    "@type": "AggregateOffer",
+    priceCurrency: "EUR",
+    lowPrice: service.priceFrom ?? undefined,
+    highPrice: service.priceTo ?? undefined,
+    offerCount: service.tiers.length,
+  },
+};
 ---
 
 <Base
@@ -51,6 +74,7 @@ const navItems: { id: string; key: MessageKey }[] = [
     navItems={navItems}
     servicesLink={false}
   >
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
     <ServicesHeader service={service} locale={locale} />
 
     <Wrapper class="pb-24">

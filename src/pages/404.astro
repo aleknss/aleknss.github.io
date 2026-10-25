@@ -1,23 +1,56 @@
 ---
 import Base from "../layouts/Base.astro";
 import Shell from "../components/portfolio/Shell.astro";
+import Wrapper from "../components/portfolio/Wrapper.astro";
 
 const locale = Astro.currentLocale ?? "es";
-const notFound = locale === "en" ? "Page not found" : "Página no encontrada";
-const back = locale === "en" ? "Back to home" : "Volver al inicio";
+const isEn = locale === "en";
+const home = isEn ? "/en/" : "/";
+const notFound = isEn ? "Page not found" : "Página no encontrada";
+const back = isEn ? "Back to home" : "Volver al inicio";
+const services = isEn ? "Services" : "Servicios";
+const contact = isEn ? "Contact" : "Contacto";
+const hint = isEn
+  ? "The page you are looking for does not exist or has moved."
+  : "La página que buscas no existe o ha cambiado de dirección.";
 ---
 
-<Base path="/404" locale={locale} title="404">
+<Base
+  path="/404"
+  locale={locale}
+  title={notFound}
+  description={hint}
+  noindex
+>
   <Shell locale={locale}>
-    <div class="w-full min-h-screen flex items-center justify-center">
-      <div class="text-center">
-        <h1 class="text-4xl font-serif font-bold mb-4">404</h1>
-        <p class="mb-6">{notFound}</p>
-        <a
-          href={locale === "en" ? "/en/" : "/"}
-          class="text-primary hover:underline">{back}</a
-        >
+    <Wrapper class="flex min-h-[calc(100vh_-_4rem)] items-center justify-center py-16">
+      <div class="max-w-lg text-center">
+        <p class="font-serif text-6xl font-semibold text-primary">404</p>
+        <h1 class="mt-4 font-serif text-3xl font-semibold text-secondary">
+          {notFound}
+        </h1>
+        <p class="mt-3 text-sm text-foreground/65">{hint}</p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <a
+            href={home}
+            class="inline-flex items-center justify-center rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-accent"
+          >
+            {back}
+          </a>
+          <a
+            href={`${home}servicios/`}
+            class="inline-flex items-center justify-center rounded-md border border-border px-5 py-2.5 text-sm font-medium text-foreground/80 transition-colors hover:border-primary hover:text-primary"
+          >
+            {services}
+          </a>
+          <a
+            href={`${home}#contact`}
+            class="inline-flex items-center justify-center rounded-md border border-border px-5 py-2.5 text-sm font-medium text-foreground/80 transition-colors hover:border-primary hover:text-primary"
+          >
+            {contact}
+          </a>
+        </div>
       </div>
-    </div>
+    </Wrapper>
   </Shell>
 </Base>

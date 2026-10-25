@@ -91,14 +91,35 @@ steps:
 differentials:
   - Trato directo conmigo, sin intermediarios
   - Presupuesto cerrado antes de empezar
+  - 50 % al empezar y 50 % a la entrega
   - 30 días de soporte después de la entrega
   - La web y su código son tuyos
   - Te explico todo lo que necesites al entregar
 faq:
+  - question: ¿Cómo se paga?
+    answer: >-
+      La mitad al empezar y la mitad al entregar. Por transferencia, Bizum o
+      tarjeta. Recibes factura con IGIC de cada pago.
   - question: ¿El SEO está incluido?
     answer: >-
       Sí. La landing y la web con navegación incluyen posicionamiento básico en
       Google; la versión con lógica incluye SEO avanzado.
+  - question: ¿Quién pone el dominio y el hosting?
+    answer: >-
+      Yo lo dejo todo funcionando. El dominio se registra a tu nombre para que
+      sea siempre tuyo, y el hosting va incluido mientras tengas mantenimiento.
+  - question: ¿Qué pasa si dejo el mantenimiento?
+    answer: >-
+      Nada: la web sigue online y el dominio es tuyo. Sólo dejas de tener
+      cambios incluidos y soporte prioritario; los cambios pasan a 40 €/h.
+  - question: ¿Qué incluye la cuota mensual?
+    answer: >-
+      Dominio y hosting gestionados, copias de seguridad, actualizaciones de
+      seguridad, cambios pequeños y revisión de que todo sigue funcionando.
+  - question: ¿Puedo cancelar la cuota?
+    answer: >-
+      Sí, avisando con 15 días. No hay permanencia. Al cancelar te llevas la web
+      y el dominio, y te ayudo a moverlo si quieres otro proveedor.
   - question: ¿Quién escribe los textos?
     answer: >-
       Puedo redactarlos contigo a partir de lo que me cuentes. Si ya los tienes,
