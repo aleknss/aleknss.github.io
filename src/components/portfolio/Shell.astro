@@ -1,20 +1,25 @@
 ---
 import TopNav from "./TopNav.astro";
+import type { MessageKey } from "../../i18n";
 
 interface Props {
   locale?: string;
   slideTransition?: boolean;
   hideHeader?: boolean;
+  navItems?: { id: string; key: MessageKey }[];
+  servicesLink?: boolean;
 }
 
 const {
   locale = "es",
   slideTransition = false,
   hideHeader = false,
+  navItems,
+  servicesLink = true,
 } = Astro.props;
 ---
 
-{!hideHeader && <TopNav locale={locale} />}
+{!hideHeader && <TopNav locale={locale} items={navItems} servicesLink={servicesLink} />}
 <main
   id="main-content"
   class={hideHeader ? "" : "pt-16"}

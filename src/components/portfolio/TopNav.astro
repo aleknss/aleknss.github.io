@@ -6,9 +6,11 @@ import type { MessageKey } from "../../i18n";
 
 interface Props {
   locale?: string;
+  items?: { id: string; key: MessageKey }[];
+  servicesLink?: boolean;
 }
 
-const { locale = "es" } = Astro.props;
+const { locale = "es", items, servicesLink = true } = Astro.props;
 const m = t(locale);
 const home = locale === "en" ? "/en/" : "/";
 const servicesHref = `${home}servicios/`;
@@ -26,9 +28,13 @@ const SECTIONS: { id: string; key: MessageKey }[] = [
   { id: "skills", key: "nav.skills" },
   { id: "contact", key: "nav.contact" },
 ];
+
+const navItems = items ?? SECTIONS;
+const navIds = navItems.map((item) => item.id).join(",");
 ---
 
 <header
+  data-nav-ids={navIds}
   class="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl"
 >
   <div
@@ -50,7 +56,7 @@ const SECTIONS: { id: string; key: MessageKey }[] = [
       class="hidden items-center gap-1 lg:flex"
     >
       {
-        SECTIONS.map(({ id, key }) => (
+        navItems.map(({ id, key }) => (
           <a
             href={sectionHref(id)}
             data-section={id}
@@ -60,16 +66,18 @@ const SECTIONS: { id: string; key: MessageKey }[] = [
           </a>
         ))
       }
-      <a
-        href={servicesHref}
-        aria-current={onServices ? "page" : undefined}
-        class:list={[
-          "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-primary-muted hover:text-primary",
-          onServices ? "bg-primary-muted text-primary" : "text-foreground/70",
-        ]}
-      >
-        {m["services.title"]}
-      </a>
+      {servicesLink && (
+        <a
+          href={servicesHref}
+          aria-current={onServices ? "page" : undefined}
+          class:list={[
+            "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-primary-muted hover:text-primary",
+            onServices ? "bg-primary-muted text-primary" : "text-foreground/70",
+          ]}
+        >
+          {m["services.title"]}
+        </a>
+      )}
     </nav>
 
     <div class="flex items-center gap-1">
@@ -117,7 +125,7 @@ const SECTIONS: { id: string; key: MessageKey }[] = [
       class="mx-auto flex max-w-[1440px] flex-col px-4 py-3 sm:px-8"
     >
       {
-        SECTIONS.map(({ id, key }) => (
+        navItems.map(({ id, key }) => (
           <a
             href={sectionHref(id)}
             data-section={id}
@@ -128,17 +136,19 @@ const SECTIONS: { id: string; key: MessageKey }[] = [
           </a>
         ))
       }
-      <a
-        href={servicesHref}
-        data-mobile
-        aria-current={onServices ? "page" : undefined}
-        class:list={[
-          "rounded-md px-3 py-2.5 text-sm font-medium transition-colors hover:bg-primary-muted hover:text-primary",
-          onServices ? "bg-primary-muted text-primary" : "text-foreground/70",
-        ]}
-      >
-        {m["services.title"]}
-      </a>
+      {servicesLink && (
+        <a
+          href={servicesHref}
+          data-mobile
+          aria-current={onServices ? "page" : undefined}
+          class:list={[
+            "rounded-md px-3 py-2.5 text-sm font-medium transition-colors hover:bg-primary-muted hover:text-primary",
+            onServices ? "bg-primary-muted text-primary" : "text-foreground/70",
+          ]}
+        >
+          {m["services.title"]}
+        </a>
+      )}
     </nav>
   </div>
 </header>
@@ -161,15 +171,15 @@ const SECTIONS: { id: string; key: MessageKey }[] = [
 </style>
 
 <script>
-  const SECTION_IDS = [
-    "bio",
-    "experience",
-    "projects",
-    "attendee",
-    "education",
-    "skills",
-    "contact",
-  ];
+  function navIds(): string[] {
+    return (
+      document
+        .querySelector("header[data-nav-ids]")
+        ?.getAttribute("data-nav-ids")
+        ?.split(",")
+        .filter(Boolean) ?? []
+    );
+  }
 
   function initMenu() {
     const toggle = document.getElementById("menu-toggle");
@@ -200,6 +210,7 @@ const SECTIONS: { id: string; key: MessageKey }[] = [
   function setupScrollspy() {
     observer?.disconnect();
     ratios.clear();
+    const ids = navIds();
 
     const links = new Map<string, Element[]>();
     document.querySelectorAll("a[data-section]").forEach((a) => {
@@ -219,7 +230,7 @@ const SECTIONS: { id: string; key: MessageKey }[] = [
         }
         let maxId = "";
         let maxRatio = 0;
-        for (const id of SECTION_IDS) {
+        for (const id of ids) {
           const ratio = ratios.get(id) ?? 0;
           if (ratio > maxRatio) {
             maxRatio = ratio;
@@ -240,7 +251,7 @@ const SECTIONS: { id: string; key: MessageKey }[] = [
       },
     );
 
-    for (const id of SECTION_IDS) {
+    for (const id of ids) {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     }

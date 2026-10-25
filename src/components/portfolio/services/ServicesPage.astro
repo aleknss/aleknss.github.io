@@ -2,14 +2,16 @@
 import Base from "../../../layouts/Base.astro";
 import Shell from "../Shell.astro";
 import Wrapper from "../Wrapper.astro";
-import SecondaryTitle from "../SecondaryTitle.astro";
 import Button from "../Button.astro";
+import Proyectos from "../Proyectos.astro";
+import Contacto from "../Contacto.astro";
 import ServicesHeader from "./ServicesHeader.astro";
 import ServiceTierCard from "./ServiceTierCard.astro";
 import ServiceSteps from "./ServiceSteps.astro";
 import ServiceFaq from "./ServiceFaq.astro";
 import ServiceTestimonials from "./ServiceTestimonials.astro";
 import { t } from "../../../i18n";
+import type { MessageKey } from "../../../i18n";
 import { getServices, getSite } from "../../../lib/content";
 
 interface Props {
@@ -26,6 +28,15 @@ const testimonials = services.flatMap((item) => item.testimonials);
 const portfolio = await getSite(locale);
 const email = portfolio?.contacts?.email ?? "";
 const mailto = `mailto:${email}?subject=${encodeURIComponent(service.title)}`;
+
+const navItems: { id: string; key: MessageKey }[] = [
+  { id: "empresa", key: "nav.company" },
+  { id: "precios", key: "nav.pricing" },
+  { id: "proceso", key: "nav.process" },
+  { id: "projects", key: "nav.projects" },
+  { id: "faq", key: "nav.faq" },
+  { id: "contact", key: "nav.contact" },
+];
 ---
 
 <Base
@@ -34,49 +45,21 @@ const mailto = `mailto:${email}?subject=${encodeURIComponent(service.title)}`;
   title={`${service.title} — ${m["services.company"]}`}
   description={service.description}
 >
-  <Shell locale={locale} slideTransition hideHeader>
+  <Shell
+    locale={locale}
+    slideTransition
+    navItems={navItems}
+    servicesLink={false}
+  >
     <ServicesHeader service={service} locale={locale} />
 
     <Wrapper class="pb-24">
       {
-        services.map((item, index) => (
-          <section
-            id={index === 0 ? "precios" : `precios-${index + 1}`}
-            class={index === 0 ? "pt-4" : "pt-16"}
-          >
-            {index === 0 ? (
-              <SecondaryTitle>{m["services.pricing"]}</SecondaryTitle>
-            ) : (
-              <h2 class="text-center font-serif text-2xl font-semibold text-secondary">
-                {item.title}
-              </h2>
-            )}
-            {item.tiers.length > 0 && (
-              <div class="mt-8 grid gap-6 lg:grid-cols-3">
-                {item.tiers.map((tier) => (
-                  <ServiceTierCard tier={tier} locale={locale} />
-                ))}
-              </div>
-            )}
-          </section>
-        ))
-      }
-
-      {
-        service.steps.length > 0 && (
-          <section id="proceso" class="pt-20">
-            <SecondaryTitle>{m["services.process"]}</SecondaryTitle>
-            <div class="mt-8">
-              <ServiceSteps steps={service.steps} />
-            </div>
-          </section>
-        )
-      }
-
-      {
         service.differentials.length > 0 && (
-          <section id="diferenciales" class="pt-20">
-            <SecondaryTitle>{m["services.differentials"]}</SecondaryTitle>
+          <section class="pt-4">
+            <h2 class="text-center font-serif text-2xl font-semibold text-secondary">
+              {m["services.differentials"]}
+            </h2>
             <ul class="mx-auto mt-8 grid max-w-4xl gap-4 sm:grid-cols-2">
               {service.differentials.map((item) => (
                 <li class="flex items-start gap-3 rounded-xl bg-primary-muted/50 p-4 text-sm text-foreground/75">
@@ -102,11 +85,33 @@ const mailto = `mailto:${email}?subject=${encodeURIComponent(service.title)}`;
       }
 
       {
-        service.faq.length > 0 && (
-          <section id="faq" class="pt-20">
-            <SecondaryTitle>{m["services.faq"]}</SecondaryTitle>
-            <div class="mx-auto mt-8">
-              <ServiceFaq faq={service.faq} />
+        services.map((item, index) => (
+          <section
+            id={index === 0 ? "precios" : `precios-${index + 1}`}
+            class={index === 0 ? "pt-20" : "pt-16"}
+          >
+            <h2 class="text-center font-serif text-2xl font-semibold text-secondary">
+              {index === 0 ? m["services.pricing"] : item.title}
+            </h2>
+            {item.tiers.length > 0 && (
+              <div class="mt-8 grid gap-6 lg:grid-cols-3">
+                {item.tiers.map((tier) => (
+                  <ServiceTierCard tier={tier} locale={locale} />
+                ))}
+              </div>
+            )}
+          </section>
+        ))
+      }
+
+      {
+        service.steps.length > 0 && (
+          <section id="proceso" class="pt-20">
+            <h2 class="text-center font-serif text-2xl font-semibold text-secondary">
+              {m["services.process"]}
+            </h2>
+            <div class="mt-8">
+              <ServiceSteps steps={service.steps} />
             </div>
           </section>
         )
@@ -115,6 +120,19 @@ const mailto = `mailto:${email}?subject=${encodeURIComponent(service.title)}`;
       {testimonials.length > 0 && (
         <ServiceTestimonials testimonials={testimonials} locale={locale} />
       )}
+
+      {
+        service.faq.length > 0 && (
+          <section id="faq" class="pt-20">
+            <h2 class="text-center font-serif text-2xl font-semibold text-secondary">
+              {m["services.faq"]}
+            </h2>
+            <div class="mx-auto mt-8">
+              <ServiceFaq faq={service.faq} />
+            </div>
+          </section>
+        )
+      }
 
       <section class="mt-20 border-t border-border pt-12 text-center">
         <h2 class="font-serif text-3xl font-semibold text-secondary sm:text-4xl">
@@ -154,5 +172,8 @@ const mailto = `mailto:${email}?subject=${encodeURIComponent(service.title)}`;
         )
       }
     </Wrapper>
+
+    <Proyectos locale={locale} />
+    <Contacto locale={locale} />
   </Shell>
 </Base>
