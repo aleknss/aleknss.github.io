@@ -5,10 +5,9 @@ interface Props {
   id?: string;
   index?: string;
   label?: string;
-  wide?: boolean;
 }
 
-const { id, index, label, wide = false } = Astro.props;
+const { id, index, label } = Astro.props;
 ---
 
 <section
@@ -17,7 +16,7 @@ const { id, index, label, wide = false } = Astro.props;
   class="relative w-full border-t border-border"
 >
   <Wrapper class="py-20 lg:py-28">
-    <div class="grid gap-10 lg:grid-cols-[9rem_minmax(0,1fr)]">
+    <div class="grid gap-10 lg:grid-cols-[11rem_minmax(0,1fr)_11rem]">
       <div class="lg:sticky lg:top-24 lg:self-start">
         {index && (
           <p
@@ -33,7 +32,7 @@ const { id, index, label, wide = false } = Astro.props;
           </p>
         )}
       </div>
-      <div class={wide ? "min-w-0" : "max-w-3xl"}>
+      <div class="mx-auto w-full min-w-0 max-w-4xl">
         <slot />
       </div>
     </div>

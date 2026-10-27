@@ -20,25 +20,28 @@ priceTo: 1600
 priceNote: desde
 hourlyRate: 40
 problem:
-  title: Tu web no te trae clientes
+  title: Si no estás en internet, tu negocio no existe
   text: >-
-    Tener una web no sirve de nada si nadie la encuentra, tarda en cargar o no
-    transmite confianza. La mayoría de negocios pierde consultas sin saberlo.
+    Tus clientes buscan en Google antes de decidir. Si no te encuentran, o
+    llegan a una web que no transmite confianza, acaban llamando a otro
+    negocio. Tu web es el escaparate abierto las 24 horas y la primera
+    impresión de lo que haces.
   points:
-    - Carga lenta que espanta al visitante en los primeros segundos
-    - No aparece en Google cuando buscan lo que ofreces
-    - Se ve mal en el móvil, donde llega la mayoría del tráfico
-    - No deja claro qué haces ni cómo contactarte
+    - Antes de contactar, casi todo el mundo busca en Google
+    - Una web propia da más confianza que sólo redes sociales
+    - Sin web dependes de que ya te conozcan de antes
+    - Tu competencia está ahí y se lleva esas consultas
 solution:
-  title: Una web pensada para que te escriban
+  title: Una web que trabaja para tu negocio todos los días
   text: >-
-    Diseño y construyo la web completa, con los textos, la estructura y la
-    velocidad trabajando a favor de una sola cosa: que el visitante dé el paso.
+    Diseño y construyo la web completa —textos, estructura y velocidad— para
+    que quien te encuentre entienda qué haces y te escriba. Es una inversión
+    que sigue trayendo clientes cuando tú no estás delante.
   points:
-    - Estructura y textos orientados a conseguir consultas
-    - Rápida, accesible y perfecta en móvil
-    - SEO incluido desde el primer día
-    - Formulario y contacto a un clic
+    - Explica en segundos qué haces y a quién ayudas
+    - Aparece en Google cuando buscan tu servicio
+    - Rápida y perfecta en móvil, donde llega la mayoría
+    - Contacto a un clic (formulario, teléfono o WhatsApp)
 tiers:
   - name: Landing
     price: 800 - 900 €

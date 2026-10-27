@@ -20,25 +20,28 @@ priceTo: 1600
 priceNote: from
 hourlyRate: 40
 problem:
-  title: Your website isn't bringing you customers
+  title: If you are not online, your business does not exist
   text: >-
-    Having a website is useless if nobody finds it, it loads slowly or it does
-    not build trust. Most businesses lose enquiries without knowing why.
+    Your customers search on Google before deciding. If they cannot find you,
+    or they land on a site that does not build trust, they call someone else.
+    Your website is the shop window open 24 hours and the first impression of
+    what you do.
   points:
-    - Slow loading that scares visitors away in seconds
-    - It does not show up on Google when people search what you offer
-    - It looks broken on mobile, where most traffic comes from
-    - It does not make clear what you do or how to reach you
+    - Almost everyone searches on Google before getting in touch
+    - A real website builds more trust than social media alone
+    - Without a website you rely on people already knowing you
+    - Your competitors are there, taking those enquiries
 solution:
-  title: A website built to get you enquiries
+  title: A website that works for your business every day
   text: >-
-    I design and build the whole site, with copy, structure and speed working
-    towards one thing: getting the visitor to take the next step.
+    I design and build the whole site —copy, structure and speed— so anyone
+    who finds you understands what you do and gets in touch. It is an
+    investment that keeps bringing customers when you are not around.
   points:
-    - Structure and copy aimed at getting enquiries
-    - Fast, accessible and flawless on mobile
-    - SEO included from day one
-    - Contact form one click away
+    - Explains in seconds what you do and who you help
+    - Shows up on Google when people search your service
+    - Fast and flawless on mobile, where most traffic comes from
+    - Contact one click away (form, phone or WhatsApp)
 tiers:
   - name: Landing page
     price: €800 - €900
